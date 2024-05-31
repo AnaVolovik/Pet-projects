@@ -1,0 +1,83 @@
+/* MAIN STYLES */
+
+@import "normalize";
+@import "ui";
+
+/* ПЕРЕМЕННЫЕ */
+
+$minWidth: 320px;
+$maxWidth: 1920px;
+$maxWidthContainer: 1580px;
+$md1: 1200px;
+$md2: 1023px;
+$md3: 767px;
+$md4: 479px;
+
+$ffSource: 'Source Sans Pro';
+$ffOpen: 'Open Sans';
+
+$color1: #F17228;
+$color2: #FFB30E;
+$color3: #424242;
+
+/* ==================================== */
+
+
+/* ОБЩИЕ ПАРАМЕТРЫ | ОБОЛОЧКА | ОСН. СЕТКА */
+
+html {
+  overflow-x: hidden;
+  @media (prefers-reduced-motion: no-preference) {
+    scroll-behavior: smooth;
+  }
+  @media (hover:hover) and (pointer:fine) {
+    * :hover {
+      transition: all 0.3s ease 0s;
+    }
+  }
+}
+
+.wrapper {
+  max-width: $maxWidth;
+  min-height: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+._container {
+  max-width: $maxWidthContainer;
+  margin: 0 auto;
+  padding: 0 50px;
+  @media (max-width: $md1) {
+    min-width: 1024px;
+  }
+  @media (max-width: $md2) {
+    min-width: 768px;
+    padding: 0 20px;
+  }
+  @media (max-width: $md3) {
+    min-width: 480px;
+  }
+  @media (max-width: $md4) {
+    min-width: $minWidth;
+    padding: 0 12px;
+  }
+}
+/* ==================================== */
+
+/* ПОДКЛЮЧЕНИЕ ФАЙЛОВ СТИЛЕЙ СТРАНИЦ И ЭЛЕМЕНТОВ */
+
+// @import "popup";
+@import "top";
+
+/* ==================================== */
+
+
+/* ОСНОВНОЙ БЛОК */
+
+.main {
+  flex: 1 1 auto;
+}

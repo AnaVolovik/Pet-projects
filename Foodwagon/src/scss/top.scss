@@ -1,0 +1,219 @@
+/* TOP */
+
+.top {
+  padding: 20px 0;
+  background: #FFFFFF;
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @media (max-width: $md1) { //1200
+      flex-wrap: wrap;
+    }
+    @media (max-width: $md4) { //479
+      flex-direction: column;
+    }
+
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+  }
+}
+
+.logo {
+  @media (max-width: $md1) { //1200
+    width: 50%;;
+  }
+  @media (max-width: $md4) { //479
+    order: 3;
+    justify-content: center;
+    width: 100%;
+  }
+
+  &__img {
+    display: block;
+    margin-right: 12px;
+    @media (max-width: $md3) { //767
+      margin-right: 8px;
+    }
+  }
+
+  &__text {
+    font-family: $ffSource;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 1.2;
+    @media (max-width: $md3) { //767
+      //font-size: 24px;
+    }
+
+
+    ._left {
+      color: $color1;
+      letter-spacing: -0.62px;
+    }
+    ._right {
+      color: $color2;
+      letter-spacing: -0.78px;
+      > span {
+        font-size: 25px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: -0.62px;
+      }
+    }
+  }
+}
+
+.deliver {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  line-height: 1.4;
+  @media (max-width: $md1) { //1200
+    order: 3;
+    width: 100%;
+    margin-top: 24px;
+  }
+  @media (max-width: $md3) { //767
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  @media (max-width: $md4) { //479
+    order: 2;
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+
+  &__head {
+    margin-right: 12px;
+    font-family: $ffSource;
+    font-weight: bold;
+    color: $color3;
+  }
+  &__body {
+    display: flex;
+    align-items: center;
+    @media (max-width: $md4) { //479
+      flex-wrap: wrap;
+      line-height: 2;
+    }
+  }
+  &__icon {
+    display: block;
+    margin-right: 9px;
+  }
+  &__infotext {
+    margin-right: 4px;
+    font-family: $ffOpen;
+  }
+  &__point {
+    font-family: $ffOpen;
+    font-weight: bold;
+  }
+}
+
+.tools {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  @media (max-width: $md1) { //1200
+    width: 50%;
+  }
+  @media (max-width: $md4) { //479
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  &__search {
+    display: flex;
+    align-items: center;
+    margin-right: 30px;
+    @media (max-width: $md3) { //767
+      margin-right: 12px;
+    }
+  }
+
+  &__search-icon {
+    display: block;
+    margin-right: 8px;
+    cursor: pointer;
+    @media (max-width: $md3) { //767
+      margin-right: 4px;
+    }
+  }
+
+  &__search-input {
+    width: 98px;
+    height: 18px;
+    font-family: $ffSource;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1;
+    color: $color3;
+    &::placeholder {
+      opacity: 1;
+    }
+  }
+
+  &__login {
+    width: 118px;
+    height: 46px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 24px;
+    border-radius: 8px;
+    box-shadow: 0 20px 40px 0 rgba(255, 174, 0, 0.29), 0 5px 10px 0 rgba(255, 174, 0, 0.26);
+    background-color: #fff;
+    @media (max-width: $md3) { //767
+      width: 100px;
+      padding: 8px 18px;
+    }
+  }
+
+  &__login-icon {
+    display: block;
+  }
+
+  &__login-text {
+    display: block;
+    height: 20px;
+    background-image: linear-gradient(125deg, #ffb800 -62%, #ff8a00 146%);
+    font-family: $ffSource;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1;
+    text-align: center;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    @media (max-width: $md3) { //767
+      font-size: 16px;
+    }
+  }
+}
+/*
+@media (max-width: $md1) { //1200
+  min-width: 1124px;
+}
+@media (max-width: $md2) { //1023
+  min-width: 808px;
+  padding: 0 20px;
+}
+@media (max-width: $md3) { //767
+  min-width: 520px;
+}
+@media (max-width: $md4) { //479
+  min-width: $minWidth;
+}
+*/

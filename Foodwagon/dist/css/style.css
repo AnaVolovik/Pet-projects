@@ -1,0 +1,370 @@
+@charset "UTF-8";
+/* MAIN STYLES */
+/* NULL */
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+:focus, :active {
+  outline: none;
+}
+
+a:focus, a:active {
+  outline: none;
+}
+
+nav, footer, header, aside {
+  display: block;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  font-size: 14px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+input, button, textarea {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a, a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: 400;
+}
+
+/*--------------------*/
+/* UI and ELEMENTS */
+/* ПЕРЕМЕННЫЕ */
+/* ==================================== */
+/* ОБЩИЕ ПАРАМЕТРЫ | ОБОЛОЧКА | ОСН. СЕТКА */
+html {
+  overflow-x: hidden;
+}
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  html * :hover {
+    transition: all 0.3s ease 0s;
+  }
+}
+
+.wrapper {
+  max-width: 1920px;
+  min-height: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  font-family: "Courier New", Courier, monospace;
+}
+
+._container {
+  max-width: 1580px;
+  margin: 0 auto;
+  padding: 0 50px;
+}
+@media (max-width: 1200px) {
+  ._container {
+    min-width: 1024px;
+  }
+}
+@media (max-width: 1023px) {
+  ._container {
+    min-width: 768px;
+    padding: 0 20px;
+  }
+}
+@media (max-width: 767px) {
+  ._container {
+    min-width: 480px;
+  }
+}
+@media (max-width: 479px) {
+  ._container {
+    min-width: 320px;
+    padding: 0 12px;
+  }
+}
+
+/* ==================================== */
+/* ПОДКЛЮЧЕНИЕ ФАЙЛОВ СТИЛЕЙ СТРАНИЦ И ЭЛЕМЕНТОВ */
+/* TOP */
+.top {
+  padding: 20px 0;
+  background: #FFFFFF;
+}
+.top__content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+@media (max-width: 1200px) {
+  .top__content {
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 479px) {
+  .top__content {
+    flex-direction: column;
+  }
+}
+.top__logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+@media (max-width: 1200px) {
+  .logo {
+    width: 50%;
+  }
+}
+@media (max-width: 479px) {
+  .logo {
+    order: 3;
+    justify-content: center;
+    width: 100%;
+  }
+}
+.logo__img {
+  display: block;
+  margin-right: 12px;
+}
+@media (max-width: 767px) {
+  .logo__img {
+    margin-right: 8px;
+  }
+}
+.logo__text {
+  font-family: "Source Sans Pro";
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 1.2;
+}
+.logo__text ._left {
+  color: #F17228;
+  letter-spacing: -0.62px;
+}
+.logo__text ._right {
+  color: #FFB30E;
+  letter-spacing: -0.78px;
+}
+.logo__text ._right > span {
+  font-size: 25px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.62px;
+}
+
+.deliver {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  line-height: 1.4;
+}
+@media (max-width: 1200px) {
+  .deliver {
+    order: 3;
+    width: 100%;
+    margin-top: 24px;
+  }
+}
+@media (max-width: 767px) {
+  .deliver {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}
+@media (max-width: 479px) {
+  .deliver {
+    order: 2;
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+}
+.deliver__head {
+  margin-right: 12px;
+  font-family: "Source Sans Pro";
+  font-weight: bold;
+  color: #424242;
+}
+.deliver__body {
+  display: flex;
+  align-items: center;
+}
+@media (max-width: 479px) {
+  .deliver__body {
+    flex-wrap: wrap;
+    line-height: 2;
+  }
+}
+.deliver__icon {
+  display: block;
+  margin-right: 9px;
+}
+.deliver__infotext {
+  margin-right: 4px;
+  font-family: "Open Sans";
+}
+.deliver__point {
+  font-family: "Open Sans";
+  font-weight: bold;
+}
+
+.tools {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+@media (max-width: 1200px) {
+  .tools {
+    width: 50%;
+  }
+}
+@media (max-width: 479px) {
+  .tools {
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+.tools__search {
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+}
+@media (max-width: 767px) {
+  .tools__search {
+    margin-right: 12px;
+  }
+}
+.tools__search-icon {
+  display: block;
+  margin-right: 8px;
+  cursor: pointer;
+}
+@media (max-width: 767px) {
+  .tools__search-icon {
+    margin-right: 4px;
+  }
+}
+.tools__search-input {
+  width: 98px;
+  height: 18px;
+  font-family: "Source Sans Pro";
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1;
+  color: #424242;
+}
+.tools__search-input::placeholder {
+  opacity: 1;
+}
+.tools__login {
+  width: 118px;
+  height: 46px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  border-radius: 8px;
+  box-shadow: 0 20px 40px 0 rgba(255, 174, 0, 0.29), 0 5px 10px 0 rgba(255, 174, 0, 0.26);
+  background-color: #fff;
+}
+@media (max-width: 767px) {
+  .tools__login {
+    width: 100px;
+    padding: 8px 18px;
+  }
+}
+.tools__login-icon {
+  display: block;
+}
+.tools__login-text {
+  display: block;
+  height: 20px;
+  background-image: linear-gradient(125deg, #ffb800 -62%, #ff8a00 146%);
+  font-family: "Source Sans Pro";
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1;
+  text-align: center;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+@media (max-width: 767px) {
+  .tools__login-text {
+    font-size: 16px;
+  }
+}
+
+/*
+@media (max-width: $md1) { //1200
+  min-width: 1124px;
+}
+@media (max-width: $md2) { //1023
+  min-width: 808px;
+  padding: 0 20px;
+}
+@media (max-width: $md3) { //767
+  min-width: 520px;
+}
+@media (max-width: $md4) { //479
+  min-width: $minWidth;
+}
+*/
+/* ==================================== */
+/* ОСНОВНОЙ БЛОК */
+.main {
+  flex: 1 1 auto;
+}

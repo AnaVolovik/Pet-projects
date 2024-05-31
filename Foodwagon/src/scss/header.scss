@@ -1,0 +1,45 @@
+/* HEADER */
+
+.header {
+  padding: 64px 0 20px 0;
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.3s ease 0s;
+    @media (min-width: $minWidth) {
+      &:hover {
+        >.header__text,
+        .header__icon {
+          color: $color-yellow;
+          path {
+            fill: #FBD784;
+            transition: all 0.3s ease 0s;
+          }
+        }
+      }
+    }
+  }
+}
+
+.menu {
+  &__list {
+    display: flex;
+    li:not(:last-child) {
+      padding-right: 40px;
+    }
+  }
+}
+
+
+
+
+
+
