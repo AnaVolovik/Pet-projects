@@ -1,7 +1,6 @@
 /* MAIN STYLES */
 
 @import "normalize";
-@import "ui";
 
 /* ПЕРЕМЕННЫЕ */
 
@@ -19,6 +18,9 @@ $ffOpen: 'Open Sans';
 $color1: #F17228;
 $color2: #FFB30E;
 $color3: #424242;
+$color4: #504F4F;
+$color5: #757575;
+$color6: #FF8A00;
 
 /* ==================================== */
 
@@ -44,7 +46,6 @@ html {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  font-family: 'Courier New', Courier, monospace;
 }
 
 ._container {
@@ -70,8 +71,9 @@ html {
 
 /* ПОДКЛЮЧЕНИЕ ФАЙЛОВ СТИЛЕЙ СТРАНИЦ И ЭЛЕМЕНТОВ */
 
-// @import "popup";
+@import "ui";
 @import "top";
+@import "header";
 
 /* ==================================== */
 

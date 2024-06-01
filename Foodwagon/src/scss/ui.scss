@@ -1,2 +1,29 @@
 /* UI and ELEMENTS */
 
+.button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__text {
+    font-family: $ffSource;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1;
+    text-align: center;
+    @media (max-width: $md3) { //767
+      font-size: 16px;
+    }
+  }
+}
+
+.line {
+  width: 100%;
+  border-top: 1px solid #F5F5F5;
+}

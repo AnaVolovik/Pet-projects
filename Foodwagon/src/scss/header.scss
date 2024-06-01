@@ -1,7 +1,16 @@
 /* HEADER */
 
 .header {
-  padding: 64px 0 20px 0;
+  padding: 90px 0 25px 0;
+  background: -webkit-linear-gradient(124deg, #fccc2b,#fccc0d,#fcc40c,#fcbc0c,#fcb204);/* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(124deg, #fccc2b,#fccc0d,#fcc40c,#fcbc0c,#fcb204);/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  overflow: hidden;
+  @media (max-width: $md2) { //1023
+    padding-top: 50px;
+  }
+  @media (max-width: $md4) { //479
+    padding-top: 30px;;
+  }
 
   &__content {
     display: flex;
@@ -9,37 +18,253 @@
     justify-content: space-between;
   }
 
-  &__link {
+  &__title-form {
+    display: flex;
+    flex-direction: column;
+    width: 58%;
+    @media (max-width: $md3) { //767
+      width: 100%;
+    }
+  }
+
+  &__title {
+    margin-bottom: 15px;
+    font-family: $ffSource;
+    font-size: 80px;
+    font-weight: bold;
+    line-height: 1;
+    color: #FFFFFF;
+    text-shadow: 0px 14px 15px rgba(255, 174, 0, 0.01), 0px 27px 82px rgba(255, 174, 0, 0.28);
+    @media (max-width: $md1) { //1200
+      font-size: 70px;
+    }
+    @media (max-width: $md2) { //1023
+      font-size: 55px;
+    }
+    @media (max-width: $md4) { //479
+      font-size: 30px;
+    }
+  }
+
+  &__subtitle {
+    margin-bottom: 32px;
+    font-family: $ffSource;
+    font-size: 22px;
+    font-weight: normal;
+    line-height: 1.2;
+    color: $color4;
+    @media (max-width: $md1) { //1200
+      font-size: 18px;
+    }
+    @media (max-width: $md2) { //1023
+      margin-bottom: 24px;
+      font-size: 16px;
+    }
+    @media (max-width: $md4) { //479
+      margin-bottom: 16px;
+      font-size: 12px;
+    }
+  }
+
+  &__image {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    width: 38%;
+    img {
+      max-width: 100%;
+    }
+    @media (max-width: $md3) { //767
+      display: none;
+    }
+  }
+
+  &__image-shadow {
+    position: absolute;
+    width: 619px;
+    height: 612px;
+    left: 0;
+    top: 0;
+    transform: matrix(-1, 0, 0, 1, 0, 0);
+    @media (max-width: $md3) { //767
+      display: none;
+    }
+  }
+  &__image-ellipse96 {
+    position: absolute;
+    width: 611px;
+    height: 612px;
+    left: 0;
+    top: 0;
+    border-radius: 50%;
+    background: rgba(196, 196, 196, 0.7);
+    mix-blend-mode: multiply;
+    filter: blur(40.81px);
+    transform: matrix(-1, 0, 0, 1, 0, 0);
+    @media (max-width: $md3) { //767
+      display: none;
+    }
+  }
+  &__image-ellipse97 {
+    position: absolute;
+    width: 539px;
+    height: 540px;
+    top: 11px;
+    left: 0;
+    border-radius: 50%;
+    background: radial-gradient(50% 50% at 50% 50%, rgba(205, 205, 205, 0.8) 0%, rgba(196, 196, 196, 0) 100%);
+    mix-blend-mode: multiply;
+    filter: blur(13.1028px);
+    transform: matrix(-1, 0, 0, 1, 0, 0);
+    @media (max-width: $md3) { //767
+      display: none;
+    }
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: auto;
+  padding: 0;
+  filter: drop-shadow(0px 5px 10px rgba(255, 174, 0, 0.26)) drop-shadow(0px 20px 40px rgba(255, 174, 0, 0.29));
+  border-radius: 16px;
+  background-color: #fff;
+
+  &__button-row {
+    display: flex;
+    width: 100%;
+    padding: 24px;
+    @media (max-width: $md2) { //1023
+      padding: 16px;
+    }
+    @media (max-width: $md4) { //479
+      padding: 14px;
+    }
+  }
+
+  &__button-deliver,
+  &__button-pickup {
+    gap: 10px;
+    width: 148px;
+    height: 38px;
+    margin-right: 8px;
+    padding: 10px 24px;
+    background-color: #fff;
+    border: 1px solid $color5;
+    color: $color5;
+    @media (max-width: $md4) { //479
+      width: 132px;
+    }
+
+    &._checked {
+      background-color: $color1;
+      border: 1px solid transparent;
+      color: #fff;
+      pointer-events: none;
+      path {
+        fill: #fff;
+      }
+    }
+    &:hover {
+      background-color: $color1;
+      border: 1px solid $color1;
+      color: #fff;
+      transition: none;
+      transition: background-color 0.3s ease 0s;
+      path {
+        fill: #fff;
+      }
+    }
+  }
+
+  &__button-pickup {
+    @media (max-width: $md4) { //479
+      margin-right: 0;
+    }
+  }
+
+  &__search-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 24px;
+    @media (max-width: $md2) { //1023
+      padding: 16px;
+    }
+    @media (max-width: $md4) { //479
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+
+  &__input-wrapper {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    margin: 6px 16px 6px 0;
+    padding: 10px 16px;
+    background-color: #F5F5F5;
+    border: 1px solid #F5F5F5;
+    border-radius: 8px;
+    @media (max-width: $md2) { //1023
+      height: 40px;
+    }
+    @media (max-width: $md4) { //479
+      width: 100%;
+      margin: 6px 0;
+    }
+  }
+
+  &__icon-spot {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
-    transition: all 0.3s ease 0s;
-    @media (min-width: $minWidth) {
-      &:hover {
-        >.header__text,
-        .header__icon {
-          color: $color-yellow;
-          path {
-            fill: #FBD784;
-            transition: all 0.3s ease 0s;
-          }
-        }
+    justify-content: center;
+  }
+
+  &__address-input {
+    display: block;
+    width: 100%;
+    margin-left: 12px;
+    background-color: transparent;
+    font-family: $ffOpen;
+    font-size: 18px;
+    line-height: 1.4;
+    color: $color3;
+    &::placeholder {
+      opacity: 1;
+    }
+  }
+
+  &__button-search {
+    gap: 2px;
+    width: 199px;
+    height: 60px;
+    padding: 21px 48px;
+    background: linear-gradient(95.71deg, #FF7A7A -39.64%, #F75900 135.31%);
+    border: 1px solid $color1;
+    color: #fff;
+    @media (max-width: $md2) { //1023
+      height: 40px;
+      padding: 10px 20px;
+    }
+    @media (max-width: $md4) { //479
+      width: 100%;
+      height: 48px;
+      padding: 16px 20px;
+    }
+
+    &:hover {
+      background: #fff;
+      color: $color1;
+      transition: none;
+      transition: background-color 0.3s ease 0s;
+      path {
+        fill: $color1;
       }
     }
   }
 }
-
-.menu {
-  &__list {
-    display: flex;
-    li:not(:last-child) {
-      padding-right: 40px;
-    }
-  }
-}
-
-
-
-
-
-
