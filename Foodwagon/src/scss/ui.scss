@@ -25,5 +25,9 @@
 
 .line {
   width: 100%;
+  -webkit-border-top: 1px solid #F5F5F5;
+  -moz-border-top: 1px solid #F5F5F5;
+  -ms-border-top: 1px solid #F5F5F5;
+  -o-border-top: 1px solid #F5F5F5;
   border-top: 1px solid #F5F5F5;
 }

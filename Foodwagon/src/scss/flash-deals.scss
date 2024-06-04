@@ -1,14 +1,11 @@
 .flash-deals {
-  padding: 50px 0;
+  padding: 80px 0;
   background: #FFFFFF;
   @media (max-width: $md2) { //1023
-    padding: 40px 0;
+    padding: 60px 0;
   }
   @media (max-width: $md3) { //767
-    padding: 40px 0 10px;
-  }
-  @media (max-width: $md4) { //479
-    padding: 40px 0 10px;
+    padding: 40px 0;
   }
 
   &__content {
@@ -55,6 +52,10 @@
       &:nth-child(2),
       &:nth-child(4) {
         margin-right: 0;
+      }
+      &:nth-child(3),
+      &:nth-child(4) {
+        margin-bottom: 0;
       }
     }
     @media (max-width: $md4) { //479

@@ -2,8 +2,8 @@
 
 .header {
   padding: 90px 0 25px 0;
-  background: -webkit-linear-gradient(124deg, #fccc2b,#fccc0d,#fcc40c,#fcbc0c,#fcb204);/* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(124deg, #fccc2b,#fccc0d,#fcc40c,#fcbc0c,#fcb204);/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: -webkit-linear-gradient(124deg, #fccc2b,#fccc0d,#fcc40c,#fcbc0c,#fcb204);
+  background: linear-gradient(124deg, #fccc2b,#fccc0d,#fcc40c,#fcbc0c,#fcb204);
   overflow: hidden;
   @media (max-width: $md2) { //1023
     padding-top: 50px;
@@ -35,6 +35,10 @@
     line-height: 1;
     color: #FFFFFF;
     text-shadow: 0px 14px 15px rgba(255, 174, 0, 0.01), 0px 27px 82px rgba(255, 174, 0, 0.28);
+    -webkit-text-shadow: 0px 14px 15px rgba(255, 174, 0, 0.01), 0px 27px 82px rgba(255, 174, 0, 0.28);
+    -moz-text-shadow: 0px 14px 15px rgba(255, 174, 0, 0.01), 0px 27px 82px rgba(255, 174, 0, 0.28);
+    -ms-text-shadow: 0px 14px 15px rgba(255, 174, 0, 0.01), 0px 27px 82px rgba(255, 174, 0, 0.28);
+    -o-text-shadow: 0px 14px 15px rgba(255, 174, 0, 0.01), 0px 27px 82px rgba(255, 174, 0, 0.28);
     @media (max-width: $md1) { //1200
       font-size: 70px;
     }
@@ -100,6 +104,10 @@
     background: rgba(196, 196, 196, 0.7);
     mix-blend-mode: multiply;
     filter: blur(40.81px);
+    -webkit-filter: blur(40.81px);
+    -moz-filter: blur(40.81px);
+    -ms-filter: blur(40.81px);
+    -o-filter: blur(40.81px);
     transform: matrix(-1, 0, 0, 1, 0, 0);
     @media (max-width: $md3) { //767
       display: none;
@@ -115,6 +123,10 @@
     background: radial-gradient(50% 50% at 50% 50%, rgba(205, 205, 205, 0.8) 0%, rgba(196, 196, 196, 0) 100%);
     mix-blend-mode: multiply;
     filter: blur(13.1028px);
+    -webkit-filter: blur(13.1028px);
+    -moz-filter: blur(13.1028px);
+    -ms-filter: blur(13.1028px);
+    -o-filter: blur(13.1028px);
     transform: matrix(-1, 0, 0, 1, 0, 0);
     @media (max-width: $md3) { //767
       display: none;
@@ -129,6 +141,10 @@
   height: auto;
   padding: 0;
   filter: drop-shadow(0px 5px 10px rgba(255, 174, 0, 0.26)) drop-shadow(0px 20px 40px rgba(255, 174, 0, 0.29));
+  -webkit-filter: drop-shadow(0px 5px 10px rgba(255, 174, 0, 0.26)) drop-shadow(0px 20px 40px rgba(255, 174, 0, 0.29));
+  -moz-filter: drop-shadow(0px 5px 10px rgba(255, 174, 0, 0.26)) drop-shadow(0px 20px 40px rgba(255, 174, 0, 0.29));
+  -ms-filter: drop-shadow(0px 5px 10px rgba(255, 174, 0, 0.26)) drop-shadow(0px 20px 40px rgba(255, 174, 0, 0.29));
+  -o-filter: drop-shadow(0px 5px 10px rgba(255, 174, 0, 0.26)) drop-shadow(0px 20px 40px rgba(255, 174, 0, 0.29));
   border-radius: 16px;
   background-color: #fff;
 
@@ -172,7 +188,15 @@
       border: 1px solid $color1;
       color: #fff;
       transition: none;
+      -webkit-transition: none;
+      -moz-transition: none;
+      -ms-transition: none;
+      -o-transition: none;
       transition: background-color 0.3s ease 0s;
+      -webkit-transition: background-color 0.3s ease 0s;
+      -moz-transition: background-color 0.3s ease 0s;
+      -ms-transition: background-color 0.3s ease 0s;
+      -o-transition: background-color 0.3s ease 0s;
       path {
         fill: #fff;
       }
@@ -245,7 +269,9 @@
     height: 60px;
     padding: 21px 48px;
     background: linear-gradient(95.71deg, #FF7A7A -39.64%, #F75900 135.31%);
+    -webkit-background: linear-gradient(95.71deg, #FF7A7A -39.64%, #F75900 135.31%);
     border: 1px solid $color1;
+    -webkit-border: 1px solid $color1;
     color: #fff;
     @media (max-width: $md2) { //1023
       height: 40px;
@@ -261,7 +287,15 @@
       background: #fff;
       color: $color1;
       transition: none;
+      -webkit-transition: none;
+      -moz-transition: none;
+      -ms-transition: none;
+      -o-transition: none;
       transition: background-color 0.3s ease 0s;
+      -webkit-transition: background-color 0.3s ease 0s;
+      -moz-transition: background-color 0.3s ease 0s;
+      -ms-transition: background-color 0.3s ease 0s;
+      -o-transition: background-color 0.3s ease 0s;
       path {
         fill: $color1;
       }
