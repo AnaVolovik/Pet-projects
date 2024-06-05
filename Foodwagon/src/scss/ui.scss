@@ -80,4 +80,17 @@
       right: 0;
     }
   }
+
+  &__arrow-left,
+  &__arrow-right {
+    &:hover {
+      cursor: pointer;
+      rect {
+        fill: #fff;
+      }
+      path {
+        fill: $color2;
+      }
+    }
+  }
 }

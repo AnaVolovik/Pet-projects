@@ -219,6 +219,15 @@ html {
     right: 0;
   }
 }
+.slider__arrow-left:hover, .slider__arrow-right:hover {
+  cursor: pointer;
+}
+.slider__arrow-left:hover rect, .slider__arrow-right:hover rect {
+  fill: #fff;
+}
+.slider__arrow-left:hover path, .slider__arrow-right:hover path {
+  fill: #FFB30E;
+}
 
 /* TOP */
 .top {
