@@ -31,3 +31,53 @@
   -o-border-top: 1px solid #F5F5F5;
   border-top: 1px solid #F5F5F5;
 }
+
+.slider {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  z-index: 500;
+
+  &__arrows-wrapper {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    height: 140px;
+    @media (max-width: $md1) { //1200
+      svg {
+        width: 120px;
+        height: 120px;
+      }
+    }
+    @media (max-width: $md2) { //1023
+      svg {
+        width: 100px;
+        height: 100px;
+      }
+    }
+    @media (max-width: $md3) { //767
+      svg {
+        width: 80px;
+        height: 80px;
+      }
+    }
+  }
+
+  &__arrow-left {
+    position: absolute;
+    left: -20px;
+    display: inline-block;
+    @media (max-width: $md4) { //479
+      left: 0;
+    }
+  }
+  
+  &__arrow-right {
+    position: absolute;
+    right: -20px;
+    display: inline-block;
+    @media (max-width: $md4) { //479
+      right: 0;
+    }
+  }
+}
