@@ -17,7 +17,7 @@
     align-items: center;
   }
 
-  .how-works__title {
+  &__title {
     margin-bottom: 80px;
     font-family: $ffSource;
     font-size: 43px;
@@ -39,7 +39,7 @@
     }
   }
 
-  .how-works__features {
+  &__features {
     display: flex;
     align-items: flex-start;
     @media (max-width: $md3) { //767

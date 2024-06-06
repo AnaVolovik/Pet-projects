@@ -846,9 +846,9 @@ html {
   align-items: flex-start;
   width: 25%;
   height: auto;
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
+  border-radius: 16px;
   border: 1px solid #F5F5F5;
+  overflow: hidden;
 }
 .deals__card:not(:last-child) {
   margin-right: 32px;
@@ -1076,7 +1076,7 @@ html {
   flex-direction: column;
   align-items: center;
 }
-.how-works .how-works__title {
+.how-works__title {
   margin-bottom: 80px;
   font-family: "Source Sans Pro";
   font-size: 43px;
@@ -1086,29 +1086,29 @@ html {
   color: #F17228;
 }
 @media (max-width: 1200px) {
-  .how-works .how-works__title {
+  .how-works__title {
     font-size: 36px;
     margin-bottom: 60px;
   }
 }
 @media (max-width: 1023px) {
-  .how-works .how-works__title {
+  .how-works__title {
     font-size: 32px;
     margin-bottom: 40px;
   }
 }
 @media (max-width: 479px) {
-  .how-works .how-works__title {
+  .how-works__title {
     font-size: 24px;
     margin-bottom: 24px;
   }
 }
-.how-works .how-works__features {
+.how-works__features {
   display: flex;
   align-items: flex-start;
 }
 @media (max-width: 767px) {
-  .how-works .how-works__features {
+  .how-works__features {
     flex-wrap: wrap;
   }
 }
@@ -1458,6 +1458,242 @@ html {
   -o-transition: background-color 0.3s ease 0s;
 }
 
+.restaurants {
+  padding: 0 0 80px;
+  background-color: #fff;
+}
+@media (max-width: 1023px) {
+  .restaurants {
+    padding: 0 0 60px;
+  }
+}
+@media (max-width: 767px) {
+  .restaurants {
+    padding: 40px 0;
+  }
+}
+.restaurants__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.restaurants__title {
+  margin-bottom: 88px;
+  font-family: "Source Sans Pro";
+  font-size: 43px;
+  font-weight: bold;
+  line-height: 1.12;
+  text-align: center;
+  color: #212121;
+}
+@media (max-width: 1200px) {
+  .restaurants__title {
+    font-size: 36px;
+    margin-bottom: 68px;
+  }
+}
+@media (max-width: 1023px) {
+  .restaurants__title {
+    font-size: 32px;
+    margin-bottom: 40px;
+  }
+}
+@media (max-width: 479px) {
+  .restaurants__title {
+    font-size: 24px;
+    margin-bottom: 32px;
+  }
+}
+.restaurants__wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+.restaurants__button {
+  gap: 10px;
+  padding: 21px 48px;
+  background: -webkit-linear-gradient(97.86deg, #FFBA26 -8.95%, #FF9A0E 109.24%);
+  background: -moz-linear-gradient(97.86deg, #FFBA26 -8.95%, #FF9A0E 109.24%);
+  background: -o-linear-gradient(97.86deg, #FFBA26 -8.95%, #FF9A0E 109.24%);
+  background: linear-gradient(97.86deg, #FFBA26 -8.95%, #FF9A0E 109.24%);
+  -webkit-box-shadow: 0px 5px 10px rgba(255, 174, 0, 0.26), 0px 20px 40px rgba(255, 174, 0, 0.29);
+  -moz-box-shadow: 0px 5px 10px rgba(255, 174, 0, 0.26), 0px 20px 40px rgba(255, 174, 0, 0.29);
+  box-shadow: 0px 5px 10px rgba(255, 174, 0, 0.26), 0px 20px 40px rgba(255, 174, 0, 0.29);
+  color: #fff;
+}
+.restaurants__button:hover {
+  background: #fff;
+  color: #F17228;
+  transition: none;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -ms-transition: none;
+  -o-transition: none;
+  transition: background-color 0.3s ease 0s;
+  -webkit-transition: background-color 0.3s ease 0s;
+  -moz-transition: background-color 0.3s ease 0s;
+  -ms-transition: background-color 0.3s ease 0s;
+  -o-transition: background-color 0.3s ease 0s;
+}
+.restaurants__button:hover path {
+  fill: #F17228;
+}
+
+.restaurants {
+  width: 100%;
+}
+.restaurants__card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 25%;
+  height: auto;
+  border-radius: 16px;
+  border: 1px solid #F5F5F5;
+  overflow: hidden;
+}
+.restaurants__image {
+  position: relative;
+  width: 100%;
+  margin-bottom: 24px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.restaurants__image img {
+  max-width: 100%;
+}
+.restaurants__promo {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+}
+.restaurants__about {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 32px;
+}
+.restaurants__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 64px;
+}
+.restaurants__logo {
+  margin-right: 24px;
+}
+.restaurants__name {
+  margin-bottom: 4px;
+  font-family: "Source Sans Pro";
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 1.2;
+  color: #424242;
+}
+@media (max-width: 1200px) {
+  .restaurants__name {
+    font-size: 20px;
+  }
+}
+@media (max-width: 1023px) {
+  .restaurants__name {
+    margin-bottom: 0;
+    font-size: 16px;
+  }
+}
+@media (max-width: 479px) {
+  .restaurants__name {
+    height: 50px;
+    padding: 8px;
+    font-size: 14px;
+  }
+}
+.restaurants__status {
+  width: 100%;
+  margin-top: auto;
+  padding: 16px;
+  font-family: "Source Sans Pro";
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 1.2;
+  background-color: rgba(241, 114, 40, 0.2);
+  color: #F17228;
+}
+@media (max-width: 1200px) {
+  .restaurants__status {
+    font-size: 20px;
+  }
+}
+@media (max-width: 1023px) {
+  .restaurants__status {
+    font-size: 16px;
+  }
+}
+@media (max-width: 479px) {
+  .restaurants__status {
+    padding: 8px;
+    font-size: 14px;
+  }
+}
+
+.promo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.promo__icon {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 2px;
+}
+.promo__discount {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  background-color: #F17228;
+  border-radius: 8px;
+  color: #fff;
+}
+.promo__time {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  background-color: #FFB30E;
+  border-radius: 8px;
+  color: #fff;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Source Sans Pro";
+  font-size: 22px;
+  font-weight: normal;
+  line-height: 1.2;
+  color: #FFB30E;
+}
+@media (max-width: 1200px) {
+  .rating {
+    font-size: 20px;
+  }
+}
+@media (max-width: 1023px) {
+  .rating {
+    margin-bottom: 0;
+    font-size: 16px;
+  }
+}
+@media (max-width: 479px) {
+  .rating {
+    height: 50px;
+    padding: 8px;
+    font-size: 14px;
+  }
+}
+.rating span {
+  display: inline-flex;
+  align-items: center;
+}
 /* ==================================== */
 /* ОСНОВНОЙ БЛОК */
 .main {

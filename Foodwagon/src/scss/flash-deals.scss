@@ -27,9 +27,9 @@
     align-items: flex-start;
     width: 25%;
     height: auto;
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
+    border-radius: 16px;
     border: 1px solid #F5F5F5;
+    overflow: hidden;
 
     &:not(:last-child) {
       margin-right: 32px;
