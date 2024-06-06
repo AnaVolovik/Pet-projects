@@ -1230,17 +1230,17 @@ html {
 }
 
 .popular {
-  padding: 0 0 80px;
+  padding: 0 0 60px;
   background-color: #fff;
 }
 @media (max-width: 1023px) {
   .popular {
-    padding: 0 0 60px;
+    padding: 0 0 40px;
   }
 }
 @media (max-width: 767px) {
   .popular {
-    padding: 40px 0;
+    padding: 40px 0 20px;
   }
 }
 .popular__content {
@@ -1281,7 +1281,9 @@ html {
   align-items: flex-start;
   justify-content: space-between;
   width: 1150px;
+  height: auto;
   margin: 0 auto;
+  padding: 0 10px 20px;
   overflow: hidden;
 }
 @media (max-width: 1580px) {
@@ -1417,6 +1419,9 @@ html {
   padding-top: 21px;
   padding-bottom: 21px;
   background-color: #F17228;
+  box-shadow: 0px 5px 10px rgba(253, 114, 92, 0.22), 0px 10px 20px rgba(250, 99, 35, 0.24);
+  -webkit-box-shadow: 0px 5px 10px rgba(253, 114, 92, 0.22), 0px 10px 20px rgba(250, 99, 35, 0.24);
+  -moz-box-shadow: 0px 5px 10px rgba(253, 114, 92, 0.22), 0px 10px 20px rgba(250, 99, 35, 0.24);
   border: 1px solid #F17228;
   color: #fff;
 }
