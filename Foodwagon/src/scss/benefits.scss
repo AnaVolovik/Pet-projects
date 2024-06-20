@@ -1,0 +1,103 @@
+.benefits {
+  padding: 80px 0 55px;
+  background-color: $color11;
+  @media (max-width: $md2) { //1023
+    padding: 60px 0 35px;
+  }
+  @media (max-width: $md3) { //767
+    padding: 40px 0 25px;
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 55px 45px;
+    background-color: #fff;
+    box-shadow: 0px 14px 15px rgba(255, 174, 0, 0.01), 0px 27px 82px rgba(255, 174, 0, 0.28);
+    -webkit-box-shadow: 0px 14px 15px rgba(255, 174, 0, 0.01), 0px 27px 82px rgba(255, 174, 0, 0.28);
+    -moz-box-shadow: 0px 14px 15px rgba(255, 174, 0, 0.01), 0px 27px 82px rgba(255, 174, 0, 0.28);
+    border-radius: 46px;
+    @media (max-width: $md2) { //1023
+      padding: 40px 30px;
+    }
+    @media (max-width: $md3) { //767
+      padding: 18px;
+    }
+    @media (max-width: $md4) { //479
+      flex-direction: column;
+      align-items: center;
+      //width: 70%;
+    }
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+  }
+
+  &__image {
+    display: flex;
+    justify-content: center;
+    @media (max-width: $md4) { //479
+      width: 40%;
+    }
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  &__name {
+    margin-left: 20px;
+    font-family: $ffSource;
+    font-weight: bold;
+    font-size: 35px;
+    line-height: 1.2;
+    background: linear-gradient(92.84deg, #FB3C00 -47.72%, #FFB800 136.81%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    @media (max-width: $md1) { //1200
+      font-size: 30px;
+    }
+    @media (max-width: $md2) { //1023
+      font-size: 24px;
+    }
+    @media (max-width: $md3) { //767
+      margin-left: 8px;
+      font-size: 18px;
+    }
+    @media (max-width: $md4) { //479
+      font-size: 16px;
+    }
+  }
+
+  &__line {
+    width: 2px;
+    height: 96px;
+    margin-left: 30px;
+    margin-right: 30px;
+    background-color: #CFCFCF;
+    @media (max-width: $md2) { //1023
+      height: 80px;
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+    @media (max-width: $md3) { //767
+      height: 64px;
+      margin-left: 16px;
+      margin-right: 16px;
+    }
+    @media (max-width: $md4) { //479
+      width: 70%;
+      height: 2px;
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+  }
+}
