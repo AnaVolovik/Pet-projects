@@ -1,0 +1,149 @@
+.search-food {
+  padding: 80px 0 55px;
+  background-color: $color10;
+  @media (max-width: $md2) { //1023
+    padding: 60px 0 35px;
+  }
+  @media (max-width: $md3) { //767
+    padding: 40px 0 25px;
+  }
+
+  &__content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 80px;
+    @media (max-width: $md1) { //1200
+      margin-bottom: 60px;
+    }
+    @media (max-width: $md2) { //1023
+      //margin-bottom: 80px;
+    }
+    @media (max-width: $md3) { //767
+      flex-direction: column;
+    }
+  }
+
+  &__title {
+    font-family: $ffSource;
+    font-size: 43px;
+    font-weight: bold;
+    line-height: 1.12;
+    text-align: left;
+    color: $color9;
+    @media (max-width: $md1) { //1200
+      font-size: 36px;
+    }
+    @media (max-width: $md2) { //1023
+      font-size: 32px;
+    }
+    @media (max-width: $md3) { //767
+      margin-bottom: 32px;
+    }
+    @media (max-width: $md4) { //479
+      font-size: 24px;
+    }
+  }
+
+  &__slider > .slider__arrows-wrapper {
+    top: 38%;
+    @media (max-width: $md3) { //767
+      top: 50%;
+    }
+  }
+
+  &__body {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 1150px;
+    height: auto;
+    margin: 0 auto;
+    padding: 0 10px 20px;
+    overflow: hidden;
+    z-index: 20;
+    @media (max-width: $maxWidthContainer) { //1580
+      width: 80%;
+    }
+    @media (max-width: $md3) { //767
+      width: 70%;
+    }
+    @media (max-width: $md4) { //479
+      flex-direction: column;
+      align-items: center;
+      width: 50%;
+    }
+  }
+
+  &__card {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 20%;
+    @media (max-width: $md3) { //767
+      width: 30%;
+    }
+    @media (max-width: $md4) { //479
+      width: 90%;
+    }
+
+    &:not(._active-last) {
+      margin-right: 24px;
+      @media (max-width: $md1) { //1200
+        margin-right: 16px;
+      }
+      @media (max-width: $md2) { //1023
+        margin-right: 8px;
+      }
+    }
+
+    &._active {
+      display: flex;
+    }
+
+    &:hover {
+      cursor: pointer;
+      > .search-food__name {
+        color: $color1;
+      }
+    }
+  }
+
+  &__image {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 26px;
+    border-radius: 50%;
+    overflow: hidden;
+    img {
+      min-width: 100%;
+    }
+  }
+
+  &__name {
+    font-family: $ffSource;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 1.2;
+    text-align: center;
+    color: $color3;
+    @media (max-width: $md2) { //1023
+      font-size: 18px;
+    }
+    @media (max-width: $md3) { //767
+      font-size: 16px;
+    }
+    @media (max-width: $md4) { //479
+      font-size: 14px;
+    }
+  }
+}
