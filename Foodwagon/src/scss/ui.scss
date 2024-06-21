@@ -133,3 +133,22 @@
     }
   }
 }
+
+
+.divaider {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  z-index: 0;
+
+  svg {
+    position: relative;
+    display: block;
+    width: -webkit-calc(105% + 1.3px);
+    width: calc(105% + 1.3px);
+    height: 220px;
+  }
+}

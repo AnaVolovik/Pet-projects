@@ -267,6 +267,23 @@ html {
   fill: #FFB30E;
 }
 
+.divaider {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  z-index: 0;
+}
+.divaider svg {
+  position: relative;
+  display: block;
+  width: -webkit-calc(105% + 1.3px);
+  width: calc(105% + 1.3px);
+  height: 220px;
+}
+
 /* TOP */
 .top {
   padding: 20px 0;
@@ -1978,17 +1995,22 @@ html {
 }
 
 .benefits {
-  padding: 80px 0 55px;
+  padding: 80px 0 80px;
   background-color: #FEEFD0;
 }
 @media (max-width: 1023px) {
   .benefits {
-    padding: 60px 0 35px;
+    padding: 60px 0 80px;
   }
 }
 @media (max-width: 767px) {
   .benefits {
-    padding: 40px 0 25px;
+    padding: 40px 0 80px;
+  }
+}
+@media (max-width: 479px) {
+  .benefits {
+    padding: 40px 0 60px;
   }
 }
 .benefits__content {
@@ -2045,7 +2067,6 @@ html {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-fill-color: transparent;
 }
 @media (max-width: 1200px) {
   .benefits__name {
@@ -2098,6 +2119,164 @@ html {
     margin-top: 20px;
     margin-bottom: 20px;
   }
+}
+
+.download {
+  position: relative;
+  padding-top: 60px;
+  background-color: #FEEFD0;
+}
+@media (max-width: 1023px) {
+  .download {
+    padding-top: 40px;
+  }
+}
+@media (max-width: 767px) {
+  .download {
+    padding-top: 20px;
+  }
+}
+.download__content {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+@media (max-width: 767px) {
+  .download__content {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+}
+.download__image {
+  width: 50%;
+  filter: drop-shadow(0px 12.8649px 13.7838px rgba(255, 174, 0, 0.01)) drop-shadow(0px 24.8108px 75.3513px rgba(255, 174, 0, 0.28));
+  z-index: 10;
+}
+@media (max-width: 767px) {
+  .download__image {
+    width: 90%;
+  }
+}
+.download__image img {
+  max-width: 100%;
+}
+.download__info {
+  width: 50%;
+  padding: 0 0 100px 100px;
+  z-index: 10;
+}
+@media (max-width: 1200px) {
+  .download__info {
+    padding: 0 0 60px 60px;
+  }
+}
+@media (max-width: 1023px) {
+  .download__info {
+    padding: 0 0 20px 40px;
+  }
+}
+@media (max-width: 767px) {
+  .download__info {
+    width: 90%;
+    padding: 0 0 40px 0;
+  }
+}
+.download__title {
+  margin-bottom: 16px;
+  font-family: "Source Sans Pro";
+  font-weight: bold;
+  font-size: 60px;
+  line-height: 1.06;
+  background: linear-gradient(92.84deg, #FFB800 -47.72%, #FF8A00 136.81%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+@media (max-width: 1200px) {
+  .download__title {
+    font-size: 54px;
+  }
+}
+@media (max-width: 1023px) {
+  .download__title {
+    font-size: 40px;
+  }
+}
+@media (max-width: 479px) {
+  .download__title {
+    font-size: 30px;
+  }
+}
+.download__text {
+  padding-right: 120px;
+  font-family: "Open Sans";
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.4;
+  color: #827E7E;
+}
+@media (max-width: 1200px) {
+  .download__text {
+    padding-right: 30px;
+  }
+}
+@media (max-width: 1023px) {
+  .download__text {
+    font-size: 16px;
+  }
+}
+@media (max-width: 479px) {
+  .download__text {
+    font-size: 14px;
+  }
+}
+.download__buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 40px;
+}
+@media (max-width: 1023px) {
+  .download__buttons {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 20px;
+  }
+}
+@media (max-width: 767px) {
+  .download__buttons {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+@media (max-width: 479px) {
+  .download__buttons {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 20px;
+  }
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  width: 200px;
+  height: 60px;
+  padding: 12px 14px 10px;
+  background-color: #fff;
+  box-shadow: 0px 5px 10px rgba(255, 174, 0, 0.26), 0px 20px 40px rgba(255, 174, 0, 0.29);
+  -webkit-box-shadow: 0px 5px 10px rgba(255, 174, 0, 0.26), 0px 20px 40px rgba(255, 174, 0, 0.29);
+  -moz-box-shadow: 0px 5px 10px rgba(255, 174, 0, 0.26), 0px 20px 40px rgba(255, 174, 0, 0.29);
+  border-radius: 5px;
+}
+.btn__icon {
+  margin-right: 12px;
+}
+.btn__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 4px;
 }
 
 /* ==================================== */
