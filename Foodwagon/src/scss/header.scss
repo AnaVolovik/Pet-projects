@@ -52,10 +52,7 @@
 
   &__subtitle {
     margin-bottom: 32px;
-    font-family: $ffSource;
-    font-size: 22px;
     font-weight: normal;
-    line-height: 1.2;
     color: $color4;
     @media (max-width: $md1) { //1200
       font-size: 18px;

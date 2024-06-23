@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /* MAIN STYLES */
 /* NULL */
 * {
@@ -75,9 +74,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*--------------------*/
-/* ПЕРЕМЕННЫЕ */
-/* ==================================== */
-/* ОБЩИЕ ПАРАМЕТРЫ | ОБОЛОЧКА | ОСН. СЕТКА */
+/* Variables */
+/* Layout */
 html {
   overflow-x: hidden;
 }
@@ -132,9 +130,24 @@ html {
   }
 }
 
-/* ==================================== */
-/* ПОДКЛЮЧЕНИЕ ФАЙЛОВ СТИЛЕЙ СТРАНИЦ И ЭЛЕМЕНТОВ */
+/* Imports */
 /* UI and ELEMENTS */
+.h2 {
+  font-family: "Source Sans Pro";
+  font-size: 43px;
+  font-weight: bold;
+  line-height: 1.12;
+  text-align: center;
+}
+
+.h4 {
+  font-family: "Source Sans Pro";
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 1.2;
+  text-align: left;
+}
+
 .button {
   display: flex;
   flex-direction: row;
@@ -737,21 +750,6 @@ html {
   height: 20px;
 }
 
-/*
-@media (max-width: $md1) { //1200
-  min-width: 1124px;
-}
-@media (max-width: $md2) { //1023
-  min-width: 808px;
-  padding: 0 20px;
-}
-@media (max-width: $md3) { //767
-  min-width: 520px;
-}
-@media (max-width: $md4) { //479
-  min-width: $minWidth;
-}
-*/
 /* HEADER */
 .header {
   padding: 90px 0 25px 0;
@@ -814,10 +812,7 @@ html {
 }
 .header__subtitle {
   margin-bottom: 32px;
-  font-family: "Source Sans Pro";
-  font-size: 22px;
   font-weight: normal;
-  line-height: 1.2;
   color: #504F4F;
 }
 @media (max-width: 1200px) {
@@ -907,6 +902,7 @@ html {
   }
 }
 
+/* FLASH-DEALS */
 .flash-deals {
   padding: 80px 0;
   background: #FFFFFF;
@@ -1097,10 +1093,6 @@ html {
   padding: 8px 16px;
   width: 100%;
   height: 60px;
-  font-family: "Source Sans Pro";
-  font-size: 22px;
-  font-weight: bold;
-  line-height: 1.2;
   color: #424242;
 }
 @media (max-width: 1200px) {
@@ -1149,6 +1141,7 @@ html {
   }
 }
 
+/* HOW-WORKS */
 .how-works {
   padding: 80px 0;
   background: -webkit-linear-gradient(180deg, rgba(255, 206, 103, 0.22) -42.47%, rgba(253, 237, 202, 0) 100%);
@@ -1173,11 +1166,6 @@ html {
 }
 .how-works__title {
   margin-bottom: 80px;
-  font-family: "Source Sans Pro";
-  font-size: 43px;
-  font-weight: bold;
-  line-height: 1.12;
-  text-align: center;
   color: #F17228;
 }
 @media (max-width: 1200px) {
@@ -1324,6 +1312,7 @@ html {
   }
 }
 
+/* POPULAR */
 .popular {
   padding: 0 0 60px;
   background-color: #fff;
@@ -1346,11 +1335,6 @@ html {
 }
 .popular__title {
   margin-bottom: 88px;
-  font-family: "Source Sans Pro";
-  font-size: 43px;
-  font-weight: bold;
-  line-height: 1.12;
-  text-align: center;
   color: #212121;
 }
 @media (max-width: 1200px) {
@@ -1554,6 +1538,7 @@ html {
   -o-transition: background-color 0.3s ease 0s;
 }
 
+/* RESTAURANTS */
 .restaurants {
   padding: 0 0 80px;
   background-color: #fff;
@@ -1575,11 +1560,6 @@ html {
 }
 .restaurants__title {
   margin-bottom: 88px;
-  font-family: "Source Sans Pro";
-  font-size: 43px;
-  font-weight: bold;
-  line-height: 1.12;
-  text-align: center;
   color: #212121;
 }
 @media (max-width: 1200px) {
@@ -1683,10 +1663,6 @@ html {
 }
 .restaurants__name {
   margin-bottom: 4px;
-  font-family: "Source Sans Pro";
-  font-size: 22px;
-  font-weight: bold;
-  line-height: 1.2;
   color: #424242;
 }
 @media (max-width: 1200px) {
@@ -1860,6 +1836,7 @@ html {
   align-items: center;
 }
 
+/* SEARCH-FOOD */
 .search-food {
   padding: 80px 0 55px;
   background-color: #FEFAF1;
@@ -1897,10 +1874,6 @@ html {
   }
 }
 .search-food__title {
-  font-family: "Source Sans Pro";
-  font-size: 43px;
-  font-weight: bold;
-  line-height: 1.12;
   text-align: left;
   color: #212121;
 }
@@ -2012,9 +1985,6 @@ html {
 }
 .search-food__name {
   font-family: "Source Sans Pro";
-  font-size: 22px;
-  font-weight: bold;
-  line-height: 1.2;
   text-align: center;
   color: #424242;
 }
@@ -2034,6 +2004,7 @@ html {
   }
 }
 
+/* BENEFITS */
 .benefits {
   padding: 80px 0 80px;
   background-color: #FEEFD0;
@@ -2161,6 +2132,7 @@ html {
   }
 }
 
+/* DOWNLOAD */
 .download {
   position: relative;
   padding-top: 60px;
@@ -2319,6 +2291,7 @@ html {
   gap: 4px;
 }
 
+/* DETAILS */
 .details {
   padding: 80px 0;
   background: #FFFFFF;
@@ -2411,10 +2384,7 @@ html {
 }
 .details__title {
   margin-bottom: 20px;
-  font-family: "Source Sans Pro";
-  font-weight: bold;
-  font-size: 43px;
-  line-height: 1.12;
+  text-align: left;
   color: #353535;
 }
 @media (max-width: 1200px) {
@@ -2517,6 +2487,7 @@ html {
   }
 }
 
+/* CTA */
 .cta {
   padding: 90px 0 75px;
   background-image: url("../img/cta-bg.png");
@@ -2619,6 +2590,7 @@ html {
   fill: #F17228;
 }
 
+/* FOOTER */
 .footer {
   padding: 100px 0 70px;
   background-color: #212121;
@@ -2645,10 +2617,6 @@ html {
 }
 .footer__title {
   margin-bottom: 40px;
-  font-family: "Source Sans Pro";
-  font-weight: bold;
-  font-size: 22px;
-  line-height: 1.2;
   color: #fff;
 }
 @media (max-width: 767px) {
@@ -2786,8 +2754,7 @@ html {
   }
 }
 
-/* ==================================== */
-/* ОСНОВНОЙ БЛОК */
+/* Main */
 .main {
   flex: 1 1 auto;
 }

@@ -1,3 +1,5 @@
+/* DOWNLOAD */
+
 .download {
   position: relative;
   padding-top: 60px;
@@ -58,7 +60,6 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    //text-fill-color: transparent;
     @media (max-width: $md1) { //1200
       font-size: 54px;
     }

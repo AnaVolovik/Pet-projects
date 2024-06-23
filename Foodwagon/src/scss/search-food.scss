@@ -1,3 +1,5 @@
+/* SEARCH-FOOD */
+
 .search-food {
   padding: 80px 0 55px;
   background-color: $color10;
@@ -23,19 +25,12 @@
     @media (max-width: $md1) { //1200
       margin-bottom: 60px;
     }
-    @media (max-width: $md2) { //1023
-      //margin-bottom: 80px;
-    }
     @media (max-width: $md3) { //767
       flex-direction: column;
     }
   }
 
   &__title {
-    font-family: $ffSource;
-    font-size: 43px;
-    font-weight: bold;
-    line-height: 1.12;
     text-align: left;
     color: $color9;
     @media (max-width: $md1) { //1200
@@ -131,9 +126,6 @@
 
   &__name {
     font-family: $ffSource;
-    font-size: 22px;
-    font-weight: bold;
-    line-height: 1.2;
     text-align: center;
     color: $color3;
     @media (max-width: $md2) { //1023

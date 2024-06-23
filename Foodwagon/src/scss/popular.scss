@@ -1,3 +1,5 @@
+/* POPULAR */
+
 .popular {
   padding: 0 0 60px;
   background-color: #fff;
@@ -17,11 +19,6 @@
 
   &__title {
     margin-bottom: 88px;
-    font-family: $ffSource;
-    font-size: 43px;
-    font-weight: bold;
-    line-height: 1.12;
-    text-align: center;
     color: $color9;
     @media (max-width: $md1) { //1200
       font-size: 36px;
@@ -199,9 +196,3 @@
     }
   }
 }
-
-//TODO
-// toggle in JS classes ._active ._active-last
-// 1920 - 768 - three elements
-// 767 - 480 - two elements
-// 479 - 320 - one element

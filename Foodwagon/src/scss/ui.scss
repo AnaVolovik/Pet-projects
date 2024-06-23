@@ -1,5 +1,21 @@
 /* UI and ELEMENTS */
 
+.h2 {
+  font-family: $ffSource;
+  font-size: 43px;
+  font-weight: bold;
+  line-height: 1.12;
+  text-align: center;
+}
+
+.h4 {
+  font-family: $ffSource;
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 1.2;
+  text-align: left;
+}
+
 .button {
   display: flex;
   flex-direction: row;
@@ -134,7 +150,6 @@
   }
 }
 
-
 .divaider {
   position: absolute;
   bottom: 0;
@@ -143,7 +158,6 @@
   overflow: hidden;
   line-height: 0;
   z-index: 0;
-
   svg {
     position: relative;
     display: block;

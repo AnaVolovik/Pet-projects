@@ -1,3 +1,5 @@
+/* FOOTER */
+
 .footer {
   padding: 100px 0 70px;
   background-color: $color9;
@@ -22,10 +24,6 @@
 
   &__title {
     margin-bottom: 40px;
-    font-family: $ffSource;
-    font-weight: bold;
-    font-size: 22px;
-    line-height: 1.2;
     color: #fff;
     @media (max-width: $md3) { //767
       margin-bottom: 20px;

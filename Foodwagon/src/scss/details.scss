@@ -1,3 +1,5 @@
+/* DETAILS */
+
 .details {
   padding: 80px 0;
   background: #FFFFFF;
@@ -75,10 +77,7 @@
 
   &__title {
     margin-bottom: 20px;
-    font-family: $ffSource;
-    font-weight: bold;
-    font-size: 43px;
-    line-height: 1.12;
+    text-align: left;
     color: $color12;
     @media (max-width: $md1) { //1200
       font-size: 38px;
