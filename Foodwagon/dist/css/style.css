@@ -431,6 +431,9 @@ html {
   background-color: #424242;
   border: 1px solid #424242;
 }
+.form__input-wrapper._footer input[data-autofill=false] {
+  background-color: transparent !important;
+}
 .form__icon {
   display: inline-flex;
   align-items: center;

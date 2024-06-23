@@ -292,6 +292,10 @@
       margin: 0 16px 0 0;
       background-color: $color3;
       border: 1px solid $color3;
+
+      input[data-autofill="false"] {
+        background-color: transparent !important;
+      }
     }
   }
 
