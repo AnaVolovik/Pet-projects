@@ -2426,13 +2426,14 @@ html {
 }
 .details__button {
   gap: 10px;
-  width: 240px;
+  width: 242px;
   padding: 21px 30px;
   background: linear-gradient(92.84deg, #FFB800 -47.72%, #FF8A00 136.81%);
   box-shadow: 0px 5px 8px rgba(222, 151, 0, 0.24), 0px 14px 32px rgba(255, 178, 14, 0.29);
   -webkit-box-shadow: 0px 5px 8px rgba(222, 151, 0, 0.24), 0px 14px 32px rgba(255, 178, 14, 0.29);
   -moz-box-shadow: 0px 5px 8px rgba(222, 151, 0, 0.24), 0px 14px 32px rgba(255, 178, 14, 0.29);
   border-radius: 8px;
+  border: 1px solid transparent;
 }
 @media (max-width: 1023px) {
   .details__button {
@@ -2474,6 +2475,108 @@ html {
   .details__image img {
     max-width: 100%;
   }
+}
+
+.cta {
+  padding: 90px 0 75px;
+  background-image: url("../img/cta-bg.png");
+  background-repeat: no-repeat;
+  background-position: 30% center;
+  background-size: cover;
+}
+@media (max-width: 767px) {
+  .cta {
+    padding: 60px 0 40px;
+  }
+}
+@media (max-width: 479px) {
+  .cta {
+    padding: 50px 0 40px;
+  }
+}
+.cta__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+  margin: 0 auto;
+}
+@media (max-width: 767px) {
+  .cta__content {
+    width: 90%;
+  }
+}
+@media (max-width: 479px) {
+  .cta__content {
+    width: 100%;
+  }
+}
+.cta__title {
+  margin-bottom: 62px;
+  font-family: "Source Sans Pro";
+  font-weight: 900;
+  font-size: 57px;
+  line-height: 1.12;
+  text-align: center;
+  color: #FFFFFF;
+}
+@media (max-width: 1200px) {
+  .cta__title {
+    font-size: 50px;
+  }
+}
+@media (max-width: 1023px) {
+  .cta__title {
+    font-size: 40px;
+  }
+}
+@media (max-width: 767px) {
+  .cta__title {
+    margin-bottom: 40px;
+    font-size: 36px;
+  }
+}
+@media (max-width: 479px) {
+  .cta__title {
+    font-size: 28px;
+  }
+}
+.cta__button {
+  gap: 10px;
+  width: 242px;
+  padding: 21px 30px;
+  background: linear-gradient(93.41deg, #F17228 -5.63%, #F15E28 100.8%);
+  box-shadow: 0px 5px 8px rgba(222, 151, 0, 0.24), 0px 14px 32px rgba(255, 178, 14, 0.29);
+  -webkit-box-shadow: 0px 5px 8px rgba(222, 151, 0, 0.24), 0px 14px 32px rgba(255, 178, 14, 0.29);
+  -moz-box-shadow: 0px 5px 8px rgba(222, 151, 0, 0.24), 0px 14px 32px rgba(255, 178, 14, 0.29);
+  border-radius: 8px;
+  border: 1px solid transparent;
+}
+@media (max-width: 1023px) {
+  .cta__button {
+    padding: 21px 24px;
+  }
+}
+@media (max-width: 767px) {
+  .cta__button {
+    width: 220px;
+    padding: 18px 20px;
+  }
+}
+.cta__button > .button__text {
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+.cta__button:hover {
+  background: #fff;
+  border: 1px solid #F17228;
+  color: #F17228;
+}
+.cta__button:hover > .button__text {
+  color: #F17228;
+}
+.cta__button:hover path {
+  fill: #F17228;
 }
 
 /* ==================================== */
