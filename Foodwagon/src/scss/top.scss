@@ -7,12 +7,22 @@
     padding: 10px 0;
   }
 
+  &__container {
+    @media (max-width: $md1) { //1200
+      position: relative;
+    }
+  }
+
   &__content {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 20px;
     @media (max-width: $md1) { //1200
-      flex-wrap: wrap;
+      padding-top: 60px;
+    }
+    @media (max-width: $md3) { //767
+      padding-bottom: 50px;
     }
   }
 
@@ -25,7 +35,7 @@
 
 .logo {
   @media (max-width: $md1) { //1200
-    width: 50%;;
+    width: 20%;;
   }
 
   &__img {
@@ -69,55 +79,79 @@
 .deliver {
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: 60%;
   font-size: 18px;
   line-height: 1.4;
   @media (max-width: $md1) { //1200
-    order: 3;
+    position: absolute;
+    top: 0;
+    left: 0;
+    justify-content: flex-start;
     width: 100%;
-    margin-top: 24px;
+    min-width: 1024px;
+    padding: 0 50px;
+    font-size: 14px;
+  }
+  @media (max-width: $md2) { //1023
+    min-width: 768px;
+    padding: 0 20px;
   }
   @media (max-width: $md3) { //767
-    justify-content: flex-start;
-    margin-top: 20px;
-    margin-bottom: 0;
-    font-size: 12px;
-    line-height: 1.5;
+    min-width: 480px;
   }
   @media (max-width: $md4) { //479
-    flex-direction: column;
-    align-items: flex-start;
+    min-width: $minWidth;
+    padding: 0 12px;
+    font-size: 12px;
   }
 
   &__head {
     display: flex;
     align-items: center;
-    margin-right: 4px;
-  }
-
-  &__header {
+    justify-content: flex-end;
+    width: auto;
     margin-right: 12px;
     font-family: $ffSource;
     font-weight: bold;
     color: $color3;
+    @media (max-width: $md1) { //1200
+      justify-content: flex-start;
+    }
   }
 
   &__icon {
-    display: block;
-    margin-right: 9px;
-  }
-
-  &__infotext {
-    margin-right: 4px;
-    font-family: $ffOpen;
+    width: 24px;
+    height: 20px;
+    margin-right: 6px;
   }
 
   &__body {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 74%;
+    padding: 0 10px 0 4px;
     font-family: $ffOpen;
     font-weight: bold;
+    font-size: 12px;
     line-height: 2;
+    @media (max-width: $md1) { //1200
+      width: 90%;
+      line-height: 1.6;
+    }
+    @media (max-width: $md2) { //1023
+      width: 87%;
+      line-height: 1.4;
+    }
+    @media (max-width: $md3) { //767
+      width: 80%;
+      line-height: 1.2;
+    }
+    @media (max-width: $md4) { //479
+      width: 70%;
+      font-size: 10px;
+    }
   }
 }
 
@@ -125,28 +159,21 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  @media (max-width: $md1) { //1200
-    width: 50%;
-  }
 
   &__search {
     display: flex;
     align-items: center;
     margin-right: 30px;
-    @media (max-width: $md1) { //1200
-      width: 100%;
-    }
     @media (max-width: $md3) { //767
-      display: none;
-    }
-  }
-
-  &__search-mobile {
-    display: none;
-    @media (max-width: $md3) { //767
-      display: flex;
+      position: absolute;
+      left: 0;
+      bottom: 10px;
       width: 100%;
-      margin-top: 24px;
+      min-width: 480px;
+      padding: 0 12px;
+    }
+    @media (max-width: $md4) { //479
+      min-width: $minWidth;
     }
   }
 
@@ -183,9 +210,6 @@
     @media (max-width: $md1) { //1200
       width: 100%;
     }
-    &._mobile {
-      width: 100%;
-    }
   }
 
   &__login {
@@ -210,9 +234,9 @@
         fill: #fff;
       }
     }
-    @media (max-width: $md3) { //767
-      width: 100px;
-      padding: 8px 18px;
+    @media (max-width: $md4) { //479
+      width: 90px;
+      padding: 0 10px;
     }
   }
 

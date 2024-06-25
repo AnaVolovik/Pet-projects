@@ -16,6 +16,7 @@
   "devDependencies": {
     "browser-sync": "latest",
     "del": "latest",
+    "express": "^4.19.2",
     "gulp": "latest",
     "gulp-autoprefixer": "latest",
     "gulp-clean-css": "latest",
@@ -46,4 +47,3 @@
     "webpack-stream": "latest"
   }
 }
-

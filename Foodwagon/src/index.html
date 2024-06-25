@@ -3,6 +3,7 @@
   @@include('html/_head.html',{"title":"Foodwagon"})
   <body>
     <div class="wrapper">
+      <div id="preloader" class="preloader"></div>
       @@include('html/_top.html',{})
       @@include('html/_header.html',{})
       <div class="main">
@@ -19,5 +20,10 @@
       @@include('html/_footer.html',{})
     </div>
     <script src="js/app.min.js"></script>
+    <script>
+      function loadMap() {
+        ymaps.ready(init);
+      }
+    </script>
   </body>
 </html>

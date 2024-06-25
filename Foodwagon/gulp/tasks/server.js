@@ -1,9 +1,64 @@
+import express from 'express';
+import browserSync from 'browser-sync';
+import { path } from '../../gulp/config/path.js'; 
+
+const app = express();
+const port = 3000;
+
+// Middleware для обработки JSON и URL-кодированных данных
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Функция для проверки существования адреса
+async function validateAddress(address) {
+  try {
+    const response = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json&addressdetails=1&limit=1`);
+    const data = await response.json();
+    return data.length > 0; // Возвращаем true, если адрес найден
+  } catch (error) {
+    console.error('Error validating address:', error);
+    return false; // Возвращаем false в случае ошибки
+  }
+}
+
+// Обработчик POST-запроса для формы
+app.post('/submit-form', async (req, res) => {
+  try {
+    const address = req.body.address;
+    console.log('Received address:', address);
+
+    const isValid = await validateAddress(address);
+    
+    if (isValid) {
+      console.log('Address is valid');
+      // Отправляем успешный ответ без тела
+      res.status(200).send();
+    } else {
+      console.log('Address not found');
+      // Отправляем ошибку, если адрес не найден
+      res.status(400).json({ error: 'Address not found' });
+    }
+  } catch (error) {
+    console.error('Error processing request:', error);
+    res.status(500).json({ error: 'An error occurred while processing data on the server' });
+  }
+});
+
+// Middleware для обслуживания статических файлов
+app.use(express.static(path.build.html));
+
+// Инициализация BrowserSync с использованием Express middleware
 export const server = (done) => {
-  app.plugins.browsersync.init({
+  browserSync.init({
     server: {
-      baseDir: `${app.path.build.html}`
+      baseDir: path.build.html,
+      middleware: [app],
     },
     notify: false,
-    port: 3000,
+    port: port,
   });
-}
+
+  done();
+};
+
+export default server;

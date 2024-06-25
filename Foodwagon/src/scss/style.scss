@@ -47,6 +47,7 @@ html {
 }
 
 .wrapper {
+  position: relative;
   max-width: $maxWidth;
   min-height: 100%;
   margin: 0 auto;

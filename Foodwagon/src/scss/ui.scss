@@ -1,5 +1,25 @@
 /* UI and ELEMENTS */
 
+.preloader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  display: none;
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 5px solid $color6;
+  transform: translate(-50%, -50%);
+  animation: spin 2s linear infinite;
+  z-index: 300;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 .h2 {
   font-family: $ffSource;
   font-size: 43px;
@@ -286,6 +306,48 @@
     @media (max-width: $md4) { //479
       width: 100%;
       margin: 6px 0;
+    }
+
+    &._header {
+      position: relative;
+    }
+
+    > #suggestions {
+      position: absolute;
+      bottom: 64px;
+      right: 0;
+      width: 100%;
+      max-height: 200px;
+      overflow-y: auto;
+      background-color: $color13;
+      font-size: 18px;
+      color: $color12;
+      @media (max-width: $md2) { //1023
+        bottom: 44px;
+      }
+    }
+
+    > #suggestions {
+      &.not-found {
+        padding: 10px;
+        background-color: transparent;
+        font-weight: bold;
+        color: red;
+        pointer-events: none;
+        overflow-y: hidden;
+        user-select: none;
+        cursor: not-allowed;
+      }
+    }
+    
+    > #suggestions div {
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    > #suggestions div:hover {
+      background-color: $color11;
+      color: $color1;
     }
 
     &._footer {
