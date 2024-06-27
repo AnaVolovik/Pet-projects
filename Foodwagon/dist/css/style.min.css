@@ -156,6 +156,19 @@ html {
     transform: rotate(360deg);
   }
 }
+#scrollToTopBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none;
+  padding: 10px;
+  background-color: #F17228;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
 .h2 {
   margin-bottom: 80px;
   font-family: "Source Sans Pro";
@@ -1690,13 +1703,16 @@ html {
   border: 1px solid #F5F5F5;
   overflow: hidden;
 }
+.restaurants__card:nth-child(n+5) {
+  display: none;
+}
 @media (max-width: 1023px) {
-  .restaurants__card:nth-child(n+7) {
+  .restaurants__card:nth-child(n+4) {
     display: none;
   }
 }
 @media (max-width: 767px) {
-  .restaurants__card:nth-child(n+5) {
+  .restaurants__card:nth-child(n+3) {
     display: none;
   }
 }
@@ -1738,10 +1754,11 @@ html {
 .restaurants__name {
   margin-bottom: 4px;
   color: #424242;
+  font-size: 20px;
 }
 @media (max-width: 1200px) {
   .restaurants__name {
-    font-size: 20px;
+    font-size: 18px;
   }
 }
 @media (max-width: 1023px) {

@@ -1,0 +1,74 @@
+[
+  {
+    "image": "/img/restaurants/rest-1.png",
+    "discount": "20% off",
+    "time": "Fast",
+    "logo": "/img/restaurants/rest-1-logo.png",
+    "name": "Frienly's",
+    "rating": 46,
+    "status": "Opens tomorrow"
+  },
+  {
+    "image": "/img/restaurants/rest-2.png",
+    "discount": "15% off",
+    "time": "Fast",
+    "logo": "/img/restaurants/rest-2-logo.png",
+    "name": "Foodies Delight",
+    "rating": 52,
+    "status": "Open now"
+  },
+  {
+    "image": "/img/restaurants/rest-3.png",
+    "discount": "10% off",
+    "time": "Fast",
+    "logo": "/img/restaurants/rest-3-logo.png",
+    "name": "Gourmet Haven",
+    "rating": 58,
+    "status": "Closed today"
+  },
+  {
+    "image": "/img/restaurants/rest-4.png",
+    "discount": "25% off",
+    "time": "Fast",
+    "logo": "/img/restaurants/rest-4-logo.png",
+    "name": "Culinary Arts",
+    "rating": 60,
+    "status": "Open now"
+  },
+  {
+    "image": "/img/restaurants/rest-5.png",
+    "discount": "12% off",
+    "time": "Fast",
+    "logo": "/img/restaurants/rest-5-logo.png",
+    "name": "Tasty Bites",
+    "rating": 55,
+    "status": "Opens tomorrow"
+  },
+  {
+    "image": "/img/restaurants/rest-6.png",
+    "discount": "18% off",
+    "time": "Fast",
+    "logo": "/img/restaurants/rest-6-logo.png",
+    "name": "Flavor Fusion",
+    "rating": 48,
+    "status": "Open now"
+  },
+  {
+    "image": "/img/restaurants/rest-7.png",
+    "discount": "20% off",
+    "time": "Fast",
+    "logo": "/img/restaurants/rest-7-logo.png",
+    "name": "Cafe Elegance",
+    "rating": 50,
+    "status": "Closed today"
+  },
+  {
+    "image": "/img/restaurants/rest-8.png",
+    "discount": "15% off",
+    "time": "Fast",
+    "logo": "/img/restaurants/rest-8-logo.png",
+    "name": "Gastronomy Hub",
+    "rating": 53,
+    "status": "Opens tomorrow"
+  }
+]

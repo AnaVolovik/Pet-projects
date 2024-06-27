@@ -50,13 +50,17 @@
     border-radius: 16px;
     border: 1px solid #F5F5F5;
     overflow: hidden;
+
+    &:nth-child(n+5) {
+      display: none;
+    }
     @media (max-width: $md2) { //1023
-      &:nth-child(n+7) {
+      &:nth-child(n+4) {
         display: none;
       }
     }
     @media (max-width: $md3) { //767
-      &:nth-child(n+5) {
+      &:nth-child(n+3) {
         display: none;
       }
     }
@@ -105,8 +109,9 @@
   &__name {
     margin-bottom: 4px;
     color: $color3;
+    font-size: 20px;
     @media (max-width: $md1) { //1200
-      font-size: 20px;
+      font-size: 18px;
     }
     @media (max-width: $md2) { //1023
       margin-bottom: 0;

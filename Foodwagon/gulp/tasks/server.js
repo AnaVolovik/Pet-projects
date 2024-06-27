@@ -2,6 +2,7 @@ import express from 'express';
 import browserSync from 'browser-sync';
 import { path } from '../../gulp/config/path.js';
 import foodsData from '../../gulp/tasks/foods.json' assert { type: 'json' };
+import restaurantsData from '../../gulp/tasks/restaurants.json' assert { type: 'json' };
 
 const app = express();
 const port = 3000;
@@ -45,10 +46,20 @@ app.post('/submit-form', async (req, res) => {
   }
 });
 
-// Обработчик GET-запроса для получения данных
+// Обработчик GET-запроса для получения данных foods
 app.get('/get-food-data', (req, res) => {
   try {
     res.json(foodsData);
+  } catch (error) {
+    console.error('Error sending JSON data:', error);
+    res.status(500).json({ error: 'Failed to send JSON data' });
+  }
+});
+
+// Обработчик GET-запроса для получения данных restaurants
+app.get('/get-restaurants-data', (req, res) => {
+  try {
+    res.json(restaurantsData);
   } catch (error) {
     console.error('Error sending JSON data:', error);
     res.status(500).json({ error: 'Failed to send JSON data' });
