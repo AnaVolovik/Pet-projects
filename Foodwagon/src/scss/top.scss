@@ -161,6 +161,7 @@
   justify-content: flex-end;
 
   &__search {
+    position: relative;
     display: flex;
     align-items: center;
     margin-right: 30px;
@@ -171,6 +172,7 @@
       width: 100%;
       min-width: 480px;
       padding: 0 12px;
+      z-index: 500;
     }
     @media (max-width: $md4) { //479
       min-width: $minWidth;
@@ -191,21 +193,23 @@
     height: 18px;
     padding: 10px;
     border: 1px solid #F5F5F5;
-    -webkit-border: 1px solid #F5F5F5;
-    -moz-border: 1px solid #F5F5F5;
-    -ms-border: 1px solid #F5F5F5;
-    -o-border: 1px solid #F5F5F5;
     font-family: $ffSource;
     font-size: 14px;
     font-weight: bold;
     line-height: 1;
     color: $color3;
+    transition: width 0.3s ease-in-out;
     &::placeholder {
       opacity: 1;
       -webkit-opacity: 1;
       -moz-opacity: 1;
       -ms-opacity: 1;
       -o-opacity: 1;
+    }
+    @media (min-width: 768px) {
+      &.expanded {
+        width: 300px;
+      }
     }
     @media (max-width: $md1) { //1200
       width: 100%;

@@ -3,7 +3,7 @@
     <div class="search-food__content">
       <div class="search-food__head">
         <h2 class="h2 search-food__title">Search by Food</h2>
-        <a class="search-food__link link" href="#">
+        <a class="search-food__link link" href="#" id="viewAllLink">
             <span class="link__text">View All</span>
             <span class="link__icon">
               <svg width="9" height="13" viewBox="0 0 9 13" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -13,7 +13,7 @@
         </a>
       </div>
 
-      <div class="search-food__slider slider">
+      <div class="search-food__slider slider" id="searchFoodBox">
         <div class="slider__arrows-wrapper">
           <span class="slider__arrow-left" id="arrow-left">
             <svg width="140" height="140" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -111,6 +111,8 @@
           </div>
         </div>
       </div>
+
+      <div class="search-food__foodlist foodlist" id="foodlist"></div>
     </div>
   </div>
 </section>

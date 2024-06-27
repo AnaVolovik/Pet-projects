@@ -1,0 +1,146 @@
+[
+  {
+    "id": 1,
+    "name": "Margherita Pizza",
+    "point": "Pizzahub",
+    "price": "$10.35",
+    "category": "pizza",
+    "image_url": "/img/search-food/items/Margherita Pizza.jpg",
+    "keywords": ["pizza", "margherita", "tomatoes", "mozzarella"]
+  },
+  {
+    "id": 2,
+    "name": "Pepperoni Pizza",
+    "point": "Pizzahub",
+    "price": "$12.00",
+    "category": "pizza",
+    "image_url": "/img/search-food/items/Pepperoni Pizza.jpg",
+    "keywords": ["pizza", "pepperoni", "mozzarella"]
+  },
+  {
+    "id": 3,
+    "name": "Vegetarian Pizza",
+    "point": "Pizzahub",
+    "price": "$10.99",
+    "category": "pizza",
+    "image_url": "/img/search-food/items/Vegetarian Pizza.jpg",
+    "keywords": ["pizza", "vegetarian", "vegetables", "cheese"]
+  },
+  {
+    "id": 4,
+    "name": "Tomato Soup",
+    "point": "Taco Bell",
+    "price": "$9.88",
+    "category": "soup",
+    "image_url": "/img/search-food/items/Tomato Soup.jpg",
+    "keywords": ["soup", "tomato", "warm"]
+  },
+  {
+    "id": 5,
+    "name": "Chicken Noodle Soup",
+    "point": "Red Square",
+    "price": "$9.50",
+    "category": "soup",
+    "image_url": "/img/search-food/items/Chicken Noodle Soup.jpg",
+    "keywords": ["soup", "chicken", "noodles"]
+  },
+  {
+    "id": 6,
+    "name": "Veggie Burger",
+    "point": "Foodworld",
+    "price": "$8.00",
+    "category": "burger",
+    "image_url": "/img/search-food/items/Veggie Burger.jpg",
+    "keywords": ["burger", "vegetarian", "veggie"]
+  },
+  {
+    "id": 7,
+    "name": "Cheeseburger",
+    "point": "Kuakata Fried Chicken",
+    "price": "$8.99",
+    "category": "burger",
+    "image_url": "/img/search-food/items/Cheeseburger.jpg",
+    "keywords": ["burger", "cheese", "beef"]
+  },
+  {
+    "id": 8,
+    "name": "Spicy Chicken Burger",
+    "point": "Foodworld",
+    "price": "$9.98",
+    "category": "burger",
+    "image_url": "/img/search-food/items/Spicy Chicken Burger.jpg",
+    "keywords": ["burger", "spicy", "chicken"]
+  },
+  {
+    "id": 9,
+    "name": "Beef Steak",
+    "point": "Ruby Tuesday",
+    "price": "$12.99",
+    "category": "steak",
+    "image_url": "/img/search-food/items/Beef Steak.jpg",
+    "keywords": ["steak", "beef", "grilled"]
+  },
+  {
+    "id": 10,
+    "name": "Chicken Noodles",
+    "point": "Foodworld",
+    "price": "$10.05",
+    "category": "noodles",
+    "image_url": "/img/search-food/items/Chicken Noodles.jpg",
+    "keywords": ["noodles", "chicken", "stir-fried"]
+  },
+  {
+    "id": 11,
+    "name": "Seafood Chow Mein",
+    "point": "Foodworld",
+    "price": "$12.70",
+    "category": "chowmein",
+    "image_url": "/img/search-food/items/Seafood Chow Mein.jpg",
+    "keywords": ["chow mein", "seafood", "Chinese noodles"]
+  },
+  {
+    "id": 12,
+    "name": "Vegetable Sub Sandwich",
+    "point": "Foodworld",
+    "price": "$9.15",
+    "category": "sub-sandwich",
+    "image_url": "/img/search-food/items/Vegetable Sub Sandwich.jpg",
+    "keywords": ["sub sandwich", "vegetable", "fresh"]
+  },
+  {
+    "id": 13,
+    "name": "Italian Sub Sandwich",
+    "point": "Foodworld",
+    "price": "$10.42",
+    "category": "sub-sandwich",
+    "image_url": "/img/search-food/items/Italian Sub Sandwich.jpg",
+    "keywords": ["sub sandwich", "Italian", "meats"]
+  },
+  {
+    "id": 14,
+    "name": "Pork Steak",
+    "point": "Ruby Tuesday",
+    "price": "$14.00",
+    "category": "steak",
+    "image_url": "/img/search-food/items/Pork Steak.jpg",
+    "keywords": ["steak", "pork", "grilled"]
+  },
+  {
+    "id": 15,
+    "name": "Thai Chicken Noodles",
+    "point": "Foodworld",
+    "price": "$11.25",
+    "category": "noodles",
+    "image_url": "/img/search-food/items/Thai Chicken Noodles.jpg",
+    "keywords": ["noodles", "Thai", "spicy"]
+  },
+  {
+    "id": 16,
+    "name": "Beef Chow Mein",
+    "point": "Ruby Tuesday",
+    "price": "$12.65",
+    "category": "chowmein",
+    "image_url": "/img/search-food/items/Beef Chow Mein.jpg",
+    "keywords": ["chow mein", "beef", "stir-fried"]
+  }
+]

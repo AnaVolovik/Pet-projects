@@ -25,26 +25,21 @@
     @media (max-width: $md1) { //1200
       margin-bottom: 60px;
     }
+    @media (max-width: $md2) { //1023
+      margin-bottom: 40px;
+    }
     @media (max-width: $md3) { //767
       flex-direction: column;
+    }
+    @media (max-width: $md4) { //479
+      margin-bottom: 20px;
     }
   }
 
   &__title {
+    margin-bottom: 0;
     text-align: left;
     color: $color9;
-    @media (max-width: $md1) { //1200
-      font-size: 36px;
-    }
-    @media (max-width: $md2) { //1023
-      font-size: 32px;
-    }
-    @media (max-width: $md3) { //767
-      margin-bottom: 32px;
-    }
-    @media (max-width: $md4) { //479
-      font-size: 24px;
-    }
   }
 
   &__slider > .slider__arrows-wrapper {
@@ -136,6 +131,79 @@
     }
     @media (max-width: $md4) { //479
       font-size: 14px;
+    }
+  }
+}
+
+.foodlist {
+  display: none;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+  padding: 60px 0;
+  background-color: #fff;
+  border-radius: 16px;
+  @media (max-width: $md2) { //1023
+    padding: 40px 0;
+  }
+  @media (max-width: $md4) { //479
+    padding: 20px 0;
+  }
+
+
+  &__category {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title {
+    margin-bottom: 50px;
+    @media (max-width: $md2) { //1023
+      margin-bottom: 40px;
+    }
+    @media (max-width: $md4) { //479
+      margin-bottom: 20px;
+    }
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+
+  &__items {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 40px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    padding: 0 20px 20px;
+    overflow: hidden;
+    @media (max-width: $maxWidthContainer) { //1580
+      //width: 80%;
+    }
+    @media (max-width: $md3) { //767
+      //width: 70%;
+    }
+    @media (max-width: $md4) { //479
+      flex-direction: column;
+      align-items: center;
+      //width: 50%;
+    }
+  }
+
+  &__item {
+    width: 25%;
+    @media (max-width: $md2) { //1023
+      width: 27%;
+    }
+    @media (max-width: $md3) { //767
+      width: 45%;
+    }
+    @media (max-width: $md4) { //479
+      width: 90%;
     }
   }
 }

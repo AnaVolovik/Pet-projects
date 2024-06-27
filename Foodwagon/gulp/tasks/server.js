@@ -1,6 +1,7 @@
 import express from 'express';
 import browserSync from 'browser-sync';
-import { path } from '../../gulp/config/path.js'; 
+import { path } from '../../gulp/config/path.js';
+import foodsData from '../../gulp/tasks/foods.json' assert { type: 'json' };
 
 const app = express();
 const port = 3000;
@@ -41,6 +42,16 @@ app.post('/submit-form', async (req, res) => {
   } catch (error) {
     console.error('Error processing request:', error);
     res.status(500).json({ error: 'An error occurred while processing data on the server' });
+  }
+});
+
+// Обработчик GET-запроса для получения данных
+app.get('/get-food-data', (req, res) => {
+  try {
+    res.json(foodsData);
+  } catch (error) {
+    console.error('Error sending JSON data:', error);
+    res.status(500).json({ error: 'Failed to send JSON data' });
   }
 });
 

@@ -4,3 +4,4 @@ myFunctions.isWebp();
 import download from "./download.js";
 import subscribe from "./subscribe.js";
 import getAddress from "./getAddress.js";
+import searchFood from "./searchFood.js";

@@ -45,5 +45,8 @@
     "webp-converter": "2.2.3",
     "webpack": "latest",
     "webpack-stream": "latest"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
   }
 }

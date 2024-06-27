@@ -37,11 +37,11 @@
         </div>
       </div>
       <div class="top__tools tools">
-        <div class="tools__search">
-          <svg class="tools__search-icon" width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div class="tools__search" id="searchBox">
+          <svg class="tools__search-icon" id="searchIcon" width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M17.7539 15.8242L14.2383 12.3086C14.0625 12.168 13.8516 12.0625 13.6406 12.0625H13.0781C14.0273 10.832 14.625 9.28516 14.625 7.5625C14.625 3.55469 11.3203 0.25 7.3125 0.25C3.26953 0.25 0 3.55469 0 7.5625C0 11.6055 3.26953 14.875 7.3125 14.875C9 14.875 10.5469 14.3125 11.8125 13.3281V13.9258C11.8125 14.1367 11.8828 14.3477 12.0586 14.5234L15.5391 18.0039C15.8906 18.3555 16.418 18.3555 16.7344 18.0039L17.7188 17.0195C18.0703 16.7031 18.0703 16.1758 17.7539 15.8242ZM7.3125 12.0625C4.81641 12.0625 2.8125 10.0586 2.8125 7.5625C2.8125 5.10156 4.81641 3.0625 7.3125 3.0625C9.77344 3.0625 11.8125 5.10156 11.8125 7.5625C11.8125 10.0586 9.77344 12.0625 7.3125 12.0625Z" fill="#FFB30E"/>
           </svg>
-          <input class="tools__search-input" type="text" placeholder="Search Food" aria-label="Search Food">
+          <input class="tools__search-input" id="searchFood" type="text" placeholder="Search Food" aria-label="Search Food">
         </div>
         <button class="tools__login button">
           <span class="tools__login-icon button__icon">
@@ -304,7 +304,7 @@
                   <path d="M6.04688 17.8984C0.914062 10.5156 0 9.74219 0 7C0 3.27344 2.98828 0.25 6.75 0.25C10.4766 0.25 13.5 3.27344 13.5 7C13.5 9.74219 12.5508 10.5156 7.41797 17.8984C7.10156 18.3906 6.36328 18.3906 6.04688 17.8984ZM6.75 9.8125C8.29688 9.8125 9.5625 8.58203 9.5625 7C9.5625 5.45312 8.29688 4.1875 6.75 4.1875C5.16797 4.1875 3.9375 5.45312 3.9375 7C3.9375 8.58203 5.16797 9.8125 6.75 9.8125Z" fill="#FFB30E"/>
                 </svg>
               </span>
-              <span>Burger Arena</span>
+              <span class="item__point-text">Burger Arena</span>
             </p>
             <p class="item__price">$3.88</p>
             <button class="item__button button">
@@ -323,7 +323,7 @@
                   <path d="M6.04688 17.8984C0.914062 10.5156 0 9.74219 0 7C0 3.27344 2.98828 0.25 6.75 0.25C10.4766 0.25 13.5 3.27344 13.5 7C13.5 9.74219 12.5508 10.5156 7.41797 17.8984C7.10156 18.3906 6.36328 18.3906 6.04688 17.8984ZM6.75 9.8125C8.29688 9.8125 9.5625 8.58203 9.5625 7C9.5625 5.45312 8.29688 4.1875 6.75 4.1875C5.16797 4.1875 3.9375 5.45312 3.9375 7C3.9375 8.58203 5.16797 9.8125 6.75 9.8125Z" fill="#FFB30E"/>
                 </svg>
               </span>
-              <span>Top Sticks</span>
+              <span class="item__point-text">Top Sticks</span>
             </p>
             <p class="item__price">$4.00</p>
             <button class="item__button button">
@@ -342,7 +342,7 @@
                   <path d="M6.04688 17.8984C0.914062 10.5156 0 9.74219 0 7C0 3.27344 2.98828 0.25 6.75 0.25C10.4766 0.25 13.5 3.27344 13.5 7C13.5 9.74219 12.5508 10.5156 7.41797 17.8984C7.10156 18.3906 6.36328 18.3906 6.04688 17.8984ZM6.75 9.8125C8.29688 9.8125 9.5625 8.58203 9.5625 7C9.5625 5.45312 8.29688 4.1875 6.75 4.1875C5.16797 4.1875 3.9375 5.45312 3.9375 7C3.9375 8.58203 5.16797 9.8125 6.75 9.8125Z" fill="#FFB30E"/>
                 </svg>
               </span>
-              <span>Cake World</span>
+              <span class="item__point-text">Cake World</span>
             </p>
             <p class="item__price">$1.99</p>
             <button class="item__button button">
@@ -361,7 +361,7 @@
                   <path d="M6.04688 17.8984C0.914062 10.5156 0 9.74219 0 7C0 3.27344 2.98828 0.25 6.75 0.25C10.4766 0.25 13.5 3.27344 13.5 7C13.5 9.74219 12.5508 10.5156 7.41797 17.8984C7.10156 18.3906 6.36328 18.3906 6.04688 17.8984ZM6.75 9.8125C8.29688 9.8125 9.5625 8.58203 9.5625 7C9.5625 5.45312 8.29688 4.1875 6.75 4.1875C5.16797 4.1875 3.9375 5.45312 3.9375 7C3.9375 8.58203 5.16797 9.8125 6.75 9.8125Z" fill="#FFB30E"/>
                 </svg>
               </span>
-              <span>Fastfood Dine</span>
+              <span class="item__point-text">Fastfood Dine</span>
             </p>
             <p class="item__price">$3.00</p>
             <button class="item__button button">
@@ -380,7 +380,7 @@
                   <path d="M6.04688 17.8984C0.914062 10.5156 0 9.74219 0 7C0 3.27344 2.98828 0.25 6.75 0.25C10.4766 0.25 13.5 3.27344 13.5 7C13.5 9.74219 12.5508 10.5156 7.41797 17.8984C7.10156 18.3906 6.36328 18.3906 6.04688 17.8984ZM6.75 9.8125C8.29688 9.8125 9.5625 8.58203 9.5625 7C9.5625 5.45312 8.29688 4.1875 6.75 4.1875C5.16797 4.1875 3.9375 5.45312 3.9375 7C3.9375 8.58203 5.16797 9.8125 6.75 9.8125Z" fill="#FFB30E"/>
                 </svg>
               </span>
-              <span>Foody man</span>
+              <span class="item__point-text">Foody man</span>
             </p>
             <p class="item__price">$2.79</p>
             <button class="item__button button">
@@ -741,7 +741,7 @@
     <div class="search-food__content">
       <div class="search-food__head">
         <h2 class="h2 search-food__title">Search by Food</h2>
-        <a class="search-food__link link" href="#">
+        <a class="search-food__link link" href="#" id="viewAllLink">
             <span class="link__text">View All</span>
             <span class="link__icon">
               <svg width="9" height="13" viewBox="0 0 9 13" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -751,7 +751,7 @@
         </a>
       </div>
 
-      <div class="search-food__slider slider">
+      <div class="search-food__slider slider" id="searchFoodBox">
         <div class="slider__arrows-wrapper">
           <span class="slider__arrow-left" id="arrow-left">
             <svg width="140" height="140" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -849,6 +849,8 @@
           </div>
         </div>
       </div>
+
+      <div class="search-food__foodlist foodlist" id="foodlist"></div>
     </div>
   </div>
 </section>
