@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
       allFoodData = data;
       generateFoodItems(data);
       initializeSearch(data);
+      initializeCategoryClicks(data);
     });
 
   const viewAllFood = document.getElementById('viewAllFood');
@@ -135,17 +136,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Perform search
-  function performSearch(data, query) {
-    const filteredData = data.filter(item => 
-      item.name.toLowerCase().includes(query) || 
-      item.keywords.some(keyword => keyword.toLowerCase().includes(query))
-    );
-
-    foodlist.innerHTML = '';
-    generateFoodItems(filteredData);
-
-    // Hide categories slider and show results of search
+  // Hide categories slider and show results of search or click on category
+  function showResults() {
     searchfoodBox.style.display = 'none';
     foodlist.style.display = 'flex';
     foodListVisible = true;
@@ -157,8 +149,34 @@ document.addEventListener('DOMContentLoaded', () => {
         </svg>
       </span>
     `;
+  }
+
+  // Perform search
+  function performSearch(data, query) {
+    const filteredData = data.filter(item => 
+      item.name.toLowerCase().includes(query) || 
+      item.keywords.some(keyword => keyword.toLowerCase().includes(query))
+    );
+
+    foodlist.innerHTML = '';
+    generateFoodItems(filteredData);
+    showResults();
 
     // Scroll to the food list
     foodlist.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // Initialize category click functionality
+  function initializeCategoryClicks(data) {
+    document.querySelectorAll('.search-food__card').forEach(card => {
+      card.addEventListener('click', (event) => {
+        const category = event.currentTarget.dataset.category.toLowerCase();
+        const filteredData = data.filter(item => item.category.toLowerCase() === category);
+
+        foodlist.innerHTML = '';
+        generateFoodItems(filteredData);
+        showResults();
+      });
+    });
   }
 });
