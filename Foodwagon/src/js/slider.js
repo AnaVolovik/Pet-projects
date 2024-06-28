@@ -1,20 +1,35 @@
+import allFoodData, { fetchFoodData } from './getAllFoodData.js';
+
 document.addEventListener('DOMContentLoaded', () => {
-  const items = document.querySelectorAll('.popular__item');
-  const cards = document.querySelectorAll('.search-food__card');
-  const popularArrowLeft = document.getElementById('popularArrowLeft');
-  const popularArrowRight = document.getElementById('popularArrowRight');
-  const foodArrowLeft = document.getElementById('foodArrowLeft');
-  const foodArrowRight = document.getElementById('foodArrowRight');
-
-  const filterGroups = {
-    popularArrowLeft: document.getElementById("filterGroupPL"),
-    popularArrowRight: document.getElementById("filterGroupPR"),
-    foodArrowLeft: document.getElementById("filterGroupFL"),
-    foodArrowRight: document.getElementById("filterGroupFR")
-  };
-
+  let items, cards, popularArrowLeft, popularArrowRight, foodArrowLeft, foodArrowRight;
   let activeIndexPopular = 0;
   let activeIndexFood = 0;
+
+  fetchFoodData().then(data => {
+    const randomFoodItems = getRandomFoodItems(data, 10);
+    generatePopularFoodContent(randomFoodItems);
+
+    items = document.querySelectorAll('.popular__item');
+    cards = document.querySelectorAll('.search-food__card');
+    popularArrowLeft = document.getElementById('popularArrowLeft');
+    popularArrowRight = document.getElementById('popularArrowRight');
+    foodArrowLeft = document.getElementById('foodArrowLeft');
+    foodArrowRight = document.getElementById('foodArrowRight');
+
+    // Add event listeners after initializing variables
+    if (popularArrowLeft && popularArrowRight) {
+      popularArrowLeft.addEventListener('click', () => handlePopularArrowClick('left'));
+      popularArrowRight.addEventListener('click', () => handlePopularArrowClick('right'));
+    }
+    if (foodArrowLeft && foodArrowRight) {
+      foodArrowLeft.addEventListener('click', () => handleFoodArrowClick('left'));
+      foodArrowRight.addEventListener('click', () => handleFoodArrowClick('right'));
+    }
+
+    updateClasses();
+  }).catch(error => {
+      console.error('Error during data fetch:', error);
+  });
 
   // Add/remove _active, _active-last classes for items and cards
   function updateClasses() {
@@ -74,17 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
     foodArrowRight.classList.toggle('_disabled', activeIndexFood + activeCountFood >= cards.length);
   }
 
-  updateClasses();
-
-  // Add/remove _disabled class for slider arrows
-  function updateArrowFilter(arrow, filterGroup) {
-    if (arrow.classList.contains('_disabled')) {
-      filterGroup.removeAttribute('filter');
-    } else {
-      filterGroup.setAttribute('filter', 'url(#filter0_dd_401_1471)');
-    }
-  }
-
   // Function to handle arrow click for Popular slider
   function handlePopularArrowClick(direction) {
     if (direction === 'left') {
@@ -109,13 +113,50 @@ document.addEventListener('DOMContentLoaded', () => {
     updateClasses();
   }
 
-  // Event listeners for Popular slider arrows
-  popularArrowLeft.addEventListener('click', () => handlePopularArrowClick('left'));
-  popularArrowRight.addEventListener('click', () => handlePopularArrowClick('right'));
+  // Get random food items
+  function getRandomFoodItems(allFoodData, count) {
+    const shuffled = allFoodData.sort(() => 0.5 - Math.random());
+    const randomItems = shuffled.slice(0, count);
+    return randomItems;
+  }
 
-  // Event listeners for Food slider arrows
-  foodArrowLeft.addEventListener('click', () => handleFoodArrowClick('left'));
-  foodArrowRight.addEventListener('click', () => handleFoodArrowClick('right'));
+  // Generate content
+  function generatePopularFoodContent(allFoodData) {
+    const container = document.getElementById('popularItems');
+
+    if (!container) {
+      console.error('Element with id "popularItems" not found.');
+      return;
+    }
+    container.innerHTML = '';
+
+    allFoodData.forEach(item => {
+      const foodElement = document.createElement('div');
+      foodElement.classList.add('popular__item', 'item');
+      foodElement.id = item.id;
+
+      foodElement.innerHTML = `
+        <div class="item__image">
+          <img src="${item.image_url}" alt="${item.name}">
+        </div>
+        <p class="item__title">${item.name}</p>
+        <p class="item__point">
+          <span class="item__point-icon">
+            <svg width="14" height="19" viewBox="0 0 14 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6.04688 17.8984C0.914062 10.5156 0 9.74219 0 7C0 3.27344 2.98828 0.25 6.75 0.25C10.4766 0.25 13.5 3.27344 13.5 7C13.5 9.74219 12.5508 10.5156 7.41797 17.8984C7.10156 18.3906 6.36328 18.3906 6.04688 17.8984ZM6.75 9.8125C8.29688 9.8125 9.5625 8.58203 9.5625 7C9.5625 5.45312 8.29688 4.1875 6.75 4.1875C5.16797 4.1875 3.9375 5.45312 3.9375 7C3.9375 8.58203 5.16797 9.8125 6.75 9.8125Z" fill="#FFB30E"/>
+            </svg>
+          </span>
+          <span class="item__point-text">${item.point}</span>
+        </p>
+        <p class="item__price">${item.price}</p>
+        <button class="item__button button">
+          <span class="button__text">Order Now</span>
+        </button>
+      `;
+
+      container.appendChild(foodElement);
+    });
+  }
 
   window.addEventListener('resize', updateClasses);
 });

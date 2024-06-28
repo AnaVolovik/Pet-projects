@@ -3,6 +3,7 @@ myFunctions.isWebp();
 
 import download from "./download.js";
 import subscribe from "./subscribe.js";
+import getAllFoodData from "./getAllFoodData.js";
 import getAddress from "./getAddress.js";
 import searchFood from "./searchFood.js";
 import showRestaurants from "./showRestaurants.js";

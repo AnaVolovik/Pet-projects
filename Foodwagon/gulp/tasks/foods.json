@@ -142,5 +142,32 @@
     "category": "chowmein",
     "image_url": "/img/search-food/items/Beef Chow Mein.jpg",
     "keywords": ["chow mein", "beef", "stir-fried"]
+  },
+  {
+    "id": 17,
+    "name": "Spicy Pizza",
+    "point": "Frienly's",
+    "price": "$11.32",
+    "category": "pizza",
+    "image_url": "/img/search-food/items/Spicy Pizza.png",
+    "keywords": ["pizza", "pepper", "spicy", "mozzarella"]
+  },
+  {
+    "id": 18,
+    "name": "Fried Chicken",
+    "point": "Gourmet Haven",
+    "price": "$14.00",
+    "category": "chicken",
+    "image_url": "/img/search-food/items/Fried Chicken.png",
+    "keywords": ["chicken", "fried"]
+  },
+  {
+    "id": 19,
+    "name": "Crispy Sandwich",
+    "point": "Gastronomy Hub",
+    "price": "$8.05",
+    "category": "sub-sandwich",
+    "image_url": "/img/search-food/items/Crispy Sandwich.png",
+    "keywords": ["sub sandwich", "vegetable", "fresh", "Italian"]
   }
 ]

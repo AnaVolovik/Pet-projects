@@ -1,20 +1,19 @@
+import allFoodData, { fetchFoodData } from './getAllFoodData.js';
+
 document.addEventListener('DOMContentLoaded', () => {
-  let allFoodData = [];
-
-  fetch('/get-food-data')
-    .then(response => response.json())
-    .then(data => {
-      allFoodData = data;
-      generateFoodItems(data);
-      initializeSearch(data);
-      initializeCategoryClicks(data);
-    });
-
   const viewAllFood = document.getElementById('viewAllFood');
   const searchfoodBox = document.getElementById('searchFoodBox');
   const foodlist = document.getElementById('foodlist');
   const searchFoodInput = document.getElementById('searchFood');
   const searchIcon = document.getElementById('searchIcon');
+
+  fetchFoodData().then(data => {
+    generateFoodItems(data);
+    initializeSearch(data);
+    initializeCategoryClicks(data);
+  }).catch(error => {
+      console.error('Error during data fetch:', error);
+  });
 
   // Animation of search-input in TOP section
   searchFoodInput.addEventListener('focus', function() {
@@ -66,23 +65,23 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Initialize search functionality
-  function initializeSearch(data) {
+  function initializeSearch(allFoodData) {
     searchFoodInput.addEventListener('keydown', (event) => {
       if (event.key === 'Enter') {
-        performSearch(data, searchFoodInput.value.trim().toLowerCase());
+        performSearch(allFoodData, searchFoodInput.value.trim().toLowerCase());
       }
     });
 
     searchIcon.addEventListener('click', () => {
-      performSearch(data, searchFoodInput.value.trim().toLowerCase());
+      performSearch(allFoodData, searchFoodInput.value.trim().toLowerCase());
     });
   }
 
   // Generate food list
-  function generateFoodItems(data) {
+  function generateFoodItems(allFoodData) {
     const categories = {};
 
-    data.forEach(item => {
+    allFoodData.forEach(item => {
       if (!categories[item.category]) {
         categories[item.category] = [];
       }
@@ -152,8 +151,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Perform search
-  function performSearch(data, query) {
-    const filteredData = data.filter(item => 
+  function performSearch(allFoodData, query) {
+    const filteredData = allFoodData.filter(item => 
       item.name.toLowerCase().includes(query) || 
       item.keywords.some(keyword => keyword.toLowerCase().includes(query))
     );
@@ -167,11 +166,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Initialize category click functionality
-  function initializeCategoryClicks(data) {
+  function initializeCategoryClicks(allFoodData) {
     document.querySelectorAll('.search-food__card').forEach(card => {
       card.addEventListener('click', (event) => {
         const category = event.currentTarget.dataset.category.toLowerCase();
-        const filteredData = data.filter(item => item.category.toLowerCase() === category);
+        const filteredData = allFoodData.filter(item => item.category.toLowerCase() === category);
 
         foodlist.innerHTML = '';
         generateFoodItems(filteredData);
