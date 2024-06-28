@@ -45,6 +45,7 @@
 
   &__item {
     display: none;
+    transition: opacity 0.3s ease;
     &:not(._active-last) {
       margin-right: 16px;
       @media (max-width: $md1) { //1200
@@ -57,6 +58,7 @@
   
     &._active {
       display: flex;
+      animation: fadeIn 0.3s ease forwards;
     }
   }
 }

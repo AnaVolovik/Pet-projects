@@ -7,3 +7,4 @@ import getAddress from "./getAddress.js";
 import searchFood from "./searchFood.js";
 import showRestaurants from "./showRestaurants.js";
 import scrollToTop from "./scrollToTop.js";
+import slider from "./slider.js";

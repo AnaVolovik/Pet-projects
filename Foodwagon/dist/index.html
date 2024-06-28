@@ -239,10 +239,10 @@
       <h2 class="h2 popular__title">Popular items</h2>
       <div class="popular__slider slider">
 
-        <div class="slider__arrows-wrapper">
-          <span class="slider__arrow-left" id="arrow-left">
+        <div class="slider__arrows-wrapper" id="popularSlider">
+          <span class="slider__arrow-left arrow" id="popularArrowLeft">
             <svg width="140" height="140" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g filter="url(#filter0_dd_401_1471)">
+              <g id="filterGroupPL" filter="url(#filter0_dd_401_1471)">
                 <rect x="32" y="32" width="76" height="76" rx="38" fill="#FFB20E"/>
                 <rect x="32.5" y="32.5" width="75" height="75" rx="37.5" stroke="#FAAA01"/>
                 <path d="M60.8789 68.5938C60.2988 69.1738 60.2988 70.1406 60.8789 70.7207L73.3828 83.2891C74.0273 83.8691 74.9941 83.8691 75.5742 83.2891L77.0566 81.8066C77.6367 81.2266 77.6367 80.2598 77.0566 79.6152L67.1309 69.625L77.0566 59.6992C77.6367 59.0547 77.6367 58.0879 77.0566 57.5078L75.5742 56.0254C74.9941 55.4453 74.0273 55.4453 73.3828 56.0254L60.8789 68.5938Z" fill="white"/>
@@ -265,9 +265,9 @@
               </defs>
             </svg>
           </span>
-          <span class="slider__arrow-right" id="arrow-right">
+          <span class="slider__arrow-right arrow" id="popularArrowRight">
             <svg width="140" height="140" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g filter="url(#filter0_dd_401_1471)">
+              <g id="filterGroupPR" filter="url(#filter0_dd_401_1471)">
                 <rect x="32" y="32" width="76" height="76" rx="38" fill="#FFB20E"/>
                 <rect x="32.5" y="32.5" width="75" height="75" rx="37.5" stroke="#FAAA01"/>
                 <path d="M79.1211 68.5938C79.7012 69.1738 79.7012 70.1406 79.1211 70.7207L66.6172 83.2891C65.9727 83.8691 65.0059 83.8691 64.4258 83.2891L62.9434 81.8066C62.3633 81.2266 62.3633 80.2598 62.9434 79.6152L72.8691 69.625L62.9434 59.6992C62.3633 59.0547 62.3633 58.0879 62.9434 57.5078L64.4258 56.0254C65.0059 55.4453 65.9727 55.4453 66.6172 56.0254L79.1211 68.5938Z" fill="white"/>
@@ -291,9 +291,9 @@
             </svg>
           </span>
         </div>
-        
+
         <div class="popular__items">
-          <div class="popular__item item _active">
+          <div class="popular__item item">
             <div class="item__image">
               <img src="img/popular-items/item-1.png" alt="Cheese Burger">
             </div>
@@ -312,7 +312,7 @@
             </button>
           </div>
 
-          <div class="popular__item item _active">
+          <div class="popular__item item">
             <div class="item__image">
               <img src="img/popular-items/item-2.png" alt="Toffe’s Cake">
             </div>
@@ -331,7 +331,7 @@
             </button>
           </div>
 
-          <div class="popular__item item _active _active-last">
+          <div class="popular__item item">
             <div class="item__image">
               <img src="img/popular-items/item-3.png" alt="Dancake">
             </div>
@@ -423,10 +423,10 @@
       </div>
 
       <div class="search-food__slider slider" id="searchFoodBox">
-        <div class="slider__arrows-wrapper">
-          <span class="slider__arrow-left" id="arrow-left">
+        <div class="slider__arrows-wrapper" id="foodSlider">
+          <span class="slider__arrow-left arrow" id="foodArrowLeft">
             <svg width="140" height="140" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g filter="url(#filter0_dd_401_1471)">
+              <g id="filterGroupFL" filter="url(#filter0_dd_401_1471)">
                 <rect x="32" y="32" width="76" height="76" rx="38" fill="#FFB20E"/>
                 <rect x="32.5" y="32.5" width="75" height="75" rx="37.5" stroke="#FAAA01"/>
                 <path d="M60.8789 68.5938C60.2988 69.1738 60.2988 70.1406 60.8789 70.7207L73.3828 83.2891C74.0273 83.8691 74.9941 83.8691 75.5742 83.2891L77.0566 81.8066C77.6367 81.2266 77.6367 80.2598 77.0566 79.6152L67.1309 69.625L77.0566 59.6992C77.6367 59.0547 77.6367 58.0879 77.0566 57.5078L75.5742 56.0254C74.9941 55.4453 74.0273 55.4453 73.3828 56.0254L60.8789 68.5938Z" fill="white"/>
@@ -449,9 +449,9 @@
               </defs>
             </svg>
           </span>
-          <span class="slider__arrow-right" id="arrow-right">
+          <span class="slider__arrow-right arrow" id="foodArrowRight">
             <svg width="140" height="140" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g filter="url(#filter0_dd_401_1471)">
+              <g id="filterGroupFR" filter="url(#filter0_dd_401_1471)">
                 <rect x="32" y="32" width="76" height="76" rx="38" fill="#FFB20E"/>
                 <rect x="32.5" y="32.5" width="75" height="75" rx="37.5" stroke="#FAAA01"/>
                 <path d="M79.1211 68.5938C79.7012 69.1738 79.7012 70.1406 79.1211 70.7207L66.6172 83.2891C65.9727 83.8691 65.0059 83.8691 64.4258 83.2891L62.9434 81.8066C62.3633 81.2266 62.3633 80.2598 62.9434 79.6152L72.8691 69.625L62.9434 59.6992C62.3633 59.0547 62.3633 58.0879 62.9434 57.5078L64.4258 56.0254C65.0059 55.4453 65.9727 55.4453 66.6172 56.0254L79.1211 68.5938Z" fill="white"/>
@@ -477,21 +477,21 @@
         </div>
         
         <div class="search-food__body">
-          <div class="search-food__card _active">
+          <div class="search-food__card">
             <div class="search-food__image">
               <img src="img/search-food/food-4.png" alt="Sub-sandiwch">
             </div>
             <h4 class="h4 search-food__name">Sub-sandiwch</h4>
           </div>
 
-          <div class="search-food__card _active">
+          <div class="search-food__card">
             <div class="search-food__image">
               <img src="img/search-food/food-1.png" alt="Pizza">
             </div>
             <h4 class="h4 search-food__name">Pizza</h4>
           </div>
   
-          <div class="search-food__card _active">
+          <div class="search-food__card">
             <div class="search-food__image">
               <img src="img/search-food/food-2.png" alt="Burger">
             </div>
@@ -505,7 +505,7 @@
             <h4 class="h4 search-food__name">Noodles</h4>
           </div>
 
-          <div class="search-food__card _active _active-last">
+          <div class="search-food__card">
             <div class="search-food__image">
               <img src="img/search-food/food-5.png" alt="Chowmein">
             </div>
