@@ -46,6 +46,19 @@ app.post('/submit-form', async (req, res) => {
   }
 });
 
+// Обработчик POST-запроса для логина
+app.post('/login', (req, res) => {
+  const { email, password } = req.body;
+  console.log('Received login request:', email, password);
+
+  // Простой пример проверки логина
+  if (email === 'user@example.com' && password === 'password123') {
+    res.status(200).json({ success: true, message: 'Login successful', email });
+  } else {
+    res.status(401).json({ success: false, message: 'Invalid credentials' });
+  }
+});
+
 // Обработчик GET-запроса для получения данных foods
 app.get('/get-food-data', (req, res) => {
   try {

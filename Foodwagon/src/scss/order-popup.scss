@@ -52,24 +52,6 @@
   }
 }
 
-.font {
-  font-family: $ffSource;
-  font-size: 24px;
-  font-weight: bold;
-  line-height: 1.2;
-  text-align: left;
-  color: $color12;
-  @media (max-width: $md2) { //1023
-    font-size: 20px;
-  }
-  @media (max-width: $md3) { //767
-    font-size: 16px;
-  }
-  @media (max-width: $md4) { //479
-    font-size: 14px;
-  }
-}
-
 .order {
   &__body {
     display: flex;

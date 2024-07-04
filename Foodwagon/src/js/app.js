@@ -10,3 +10,4 @@ import showRestaurants from "./showRestaurants.js";
 import scrollToTop from "./scrollToTop.js";
 import slider from "./slider.js";
 import makeOrder from "./makeOrder.js";
+import login from "./login.js";

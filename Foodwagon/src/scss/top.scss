@@ -216,7 +216,8 @@
     }
   }
 
-  &__login {
+  &__login,
+  &__logout {
     width: 118px;
     height: 46px;
     gap: 10px;
@@ -244,7 +245,18 @@
     }
   }
 
-  &__login-text {
+  &__logout {
+    path {
+      fill: $color1;
+    }
+    @media (max-width: $md4) { //479
+      width: 90px;
+      padding: 0 10px;
+    }
+  }
+
+  &__login-text,
+  &__logout-text {
     display: block;
     height: 20px;
   }
