@@ -7,10 +7,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const searchFoodInput = document.getElementById('searchFood');
   const searchIcon = document.getElementById('searchIcon');
 
+  let foodListVisible = false;
+  let allFoodData = [];
+
   fetchFoodData().then(data => {
-    generateFoodItems(data);
-    initializeSearch(data);
-    initializeCategoryClicks(data);
+    allFoodData = data;
+    generateFoodItems(allFoodData);
+    initializeSearch(allFoodData);
+    initializeCategoryClicks(allFoodData);
   }).catch(error => {
       console.error('Error during data fetch:', error);
   });
@@ -29,8 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // View All Link in Search-food section
-  let foodListVisible = false;
-
   viewAllFood.addEventListener('click', (event) => {
     event.preventDefault();
 
@@ -120,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <span class="item__point-text">${foodItem.point}</span>
           </p>
           <p class="item__price">${foodItem.price}</p>
-          <button class="item__button button">
+          <button class="item__button button orderBtn" data-item="${foodItem.name}">
             <span class="button__text">Order Now</span>
           </button>
         `;

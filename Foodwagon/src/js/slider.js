@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <span class="item__point-text">${item.point}</span>
         </p>
         <p class="item__price">${item.price}</p>
-        <button class="item__button button">
+        <button class="item__button button orderBtn" data-item="${item.name}">
           <span class="button__text">Order Now</span>
         </button>
       `;

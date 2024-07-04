@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const suggestionBox = document.getElementById('suggestions');
   const searchButton = document.getElementById('searchButton');
   const deliverPoint = document.getElementsByClassName('deliver__point')[0];
+  const orderPoint = document.getElementById('orderPoint');
   const preloader = document.getElementById('preloader');
 
   function showPreloader() {
@@ -118,11 +119,11 @@ document.addEventListener("DOMContentLoaded", function() {
       suggestionBox.innerHTML = '';
       suggestionBox.style.display = 'none';
       deliverPoint.textContent = selectedAddress;
+      orderPoint.textContent = selectedAddress;
     }
   });
 
   //Toggle class _checked
-
   const deliverButton = document.querySelector('.form__button-deliver');
   const pickupButton = document.querySelector('.form__button-pickup');
 

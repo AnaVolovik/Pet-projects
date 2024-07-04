@@ -1,0 +1,22 @@
+<div class="order-popup order" style = "display: none;">
+  <div class="order-popup__close" id="closeOrderPopup">
+    <svg width="24" height="24" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 2L16 16M16 2L2 16" stroke="#FFB30E" stroke-width="4"/>
+    </svg>
+  </div>
+  <h2 class="order__title h2">Order</h2>
+  <form class="order__body" action="http://localhost:3000/submit-form" method="POST" name="formOrder" id="orderBody" autocomplete="off" novalidate>
+    <div class="order__location font">
+      <p class="order__deliver">Deliver&nbsp;to:</p>
+      <p id="orderPoint"></p>
+    </div>
+    <div class="order__array" id="orderArray"></div>
+  </form>
+  <div class="order__total font">
+    <p>Total price:</p>
+    <p id="totalPrice"></p>
+  </div>
+  <button class="order__button button">
+    <span>Order Now</span>
+  </button>
+</div>
