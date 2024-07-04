@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const formAddress = document.getElementById('formAddress');
   const orderPopup = document.querySelector('.order-popup');
   const confirmPopup = document.querySelector('.confirm-popup');
+  const successPopup = document.querySelector('.success-popup');
   const overlay = document.querySelector('.overlay');
   const closeConfirmPopup = document.getElementById('closeConfirmPopup');
   const closeOrderPopup = document.getElementById('closeOrderPopup');
@@ -103,6 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
               }
 
               currentRelativeContainer.appendChild(orderPopup);
+              currentRelativeContainer.appendChild(successPopup);
               orderPopup.style.display = 'flex';
               orderPopup.scrollIntoView({ behavior: 'smooth', block: 'start'});
               overlay.classList.add('active');
@@ -400,6 +402,15 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .then(data => {
       clearOrderPopup();
+
+      successPopup.style.display = 'flex';
+      successPopup.scrollIntoView({ behavior: 'smooth', block: 'start'});
+      overlay.classList.add('active');
+
+      setTimeout(() => {
+        successPopup.parentNode.removeChild(successPopup);
+        overlay.classList.remove('active');
+      }, 2000);
     })
     .catch(error => {
       console.error('Error:', error);

@@ -1,0 +1,36 @@
+.success-popup {
+  position: fixed;
+  top: 30%;
+  left: calc(50% - 575px);
+  justify-content: center;
+  width: 1150px;
+  height: auto;
+  padding: 40px 60px 60px;
+  background-color: $color10;
+  border: 1px solid $color14;
+  z-index: 600;
+  @media (max-width: $maxWidthContainer) { //1580
+    width: 80%;
+    left: calc(50% - 40%);
+  }
+  @media (max-width: $md1) { //1200
+    padding: 40px 40px 60px;
+  }
+  @media (max-width: $md2) { //1023
+    padding: 20px 20px 40px;
+  }
+  @media (max-width: $md3) { //767
+    width: 90%;
+    left: calc(50% - 45%);
+    padding: 20px 10px 40px;
+  }
+
+  &__title {
+    margin-top: 40px;
+    text-align: center;
+    color: $color1;
+    @media (max-width: $md4) { //479
+      margin-bottom: 40px;
+    }
+  }
+}
