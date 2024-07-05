@@ -1,3 +1,5 @@
+// SCROLL TO TOP
+
 const scrollToTopBtn = document.getElementById('scrollToTopBtn');
 
 window.addEventListener('scroll', () => {

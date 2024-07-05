@@ -1,3 +1,5 @@
+// GET ADDRESS
+
 async function getSuggestions(query) {
   try {
     const response = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&addressdetails=1&limit=5`);
@@ -73,11 +75,22 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 
-  input.addEventListener('input', function(event) {
+  input.addEventListener('input', function() {
     suggestionBox.style.display = 'block';
   });
 
+  input.addEventListener('keydown', async function(event) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      await handleSearch();
+    }
+  });
+  
   searchButton.addEventListener('click', async () => {
+    await handleSearch();
+  });
+
+  async function handleSearch() {
     const query = input.value;
 
     suggestionBox.classList.remove('not-found');
@@ -110,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function() {
     } else {
       alert('Enter an address longer than 2 characters');
     }
-  });
+  }
 
   suggestionBox.addEventListener('click', function(event) {
     if (event.target.tagName === 'DIV') {

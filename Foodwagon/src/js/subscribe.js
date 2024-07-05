@@ -1,4 +1,4 @@
-// Subscribe
+// SUBSCRIBE
 
 const subscribeForm = document.getElementById('subscribeForm');
 const subscribeInput = document.getElementById('subscribeInput');

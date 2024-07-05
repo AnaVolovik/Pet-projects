@@ -1,5 +1,7 @@
 import allFoodData, { fetchFoodData } from './getAllFoodData.js';
 
+// SLIDER
+
 document.addEventListener('DOMContentLoaded', () => {
   let items, cards, popularArrowLeft, popularArrowRight, foodArrowLeft, foodArrowRight;
   let activeIndexPopular = 0;

@@ -1,3 +1,5 @@
+// LOGIN
+
 const loginPopup = document.querySelector('.login-popup');
 const loginForm = document.getElementById('loginForm');
 const emailInput = document.getElementById('emailInput');

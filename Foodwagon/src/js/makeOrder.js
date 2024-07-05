@@ -1,6 +1,8 @@
 
 import allFoodData, { fetchFoodData } from './getAllFoodData.js';
 
+// MAKE ORDER
+
 document.addEventListener('DOMContentLoaded', () => {
   const deliverPointSelect = document.getElementById('deliverPoint');
   const formAddress = document.getElementById('formAddress');
@@ -30,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     popupBtn.addEventListener('click', () => {
       popup.style.display = 'none';
       overlay.classList.remove('active');
-  
+
       if (popup.parentNode) {
         popup.parentNode.removeChild(popup);
       }
@@ -247,7 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return itemElement;
   }
 
-  // Delete from foodArray and update total price
+  // Delete item from foodArray and update total price
   function deleteFoodItem(foodId, orderItemHTML) {
     const index = foodArray.findIndex(item => item.id === foodId);
 

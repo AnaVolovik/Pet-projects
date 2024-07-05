@@ -443,8 +443,14 @@ html {
   display: flex;
   align-items: center;
   width: 100%;
+  height: 34px;
   margin-bottom: 10px;
   padding: 0 8px;
+}
+@media (max-width: 479px) {
+  .item__point {
+    height: auto;
+  }
 }
 .item__point-icon {
   display: inline-block;
@@ -3001,6 +3007,7 @@ html {
   }
 }
 
+/* ORDER POPUP*/
 .order-popup {
   position: fixed;
   top: 10%;
@@ -3347,6 +3354,7 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 0;
 }
 
+/* CONFIRM POPUP */
 .confirm-popup {
   position: fixed;
   top: 30%;
@@ -3510,6 +3518,7 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 
+/* SUCCESS POPUP */
 .success-popup {
   position: fixed;
   top: 30%;
@@ -3556,6 +3565,7 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 
+/* LOGIN POPUP */
 .login-popup {
   position: fixed;
   top: 10%;
@@ -3564,7 +3574,7 @@ input[type=number]::-webkit-outer-spin-button {
   align-items: center;
   width: 1150px;
   height: auto;
-  padding: 40px 60px 60px;
+  padding: 40px 60px 70px;
   background-color: #FEFAF1;
   border: 1px solid #dbdbdb;
   z-index: 600;
@@ -3577,19 +3587,19 @@ input[type=number]::-webkit-outer-spin-button {
 }
 @media (max-width: 1200px) {
   .login-popup {
-    padding: 40px 40px 60px;
+    padding: 40px 40px 70px;
   }
 }
 @media (max-width: 1023px) {
   .login-popup {
-    padding: 20px 20px 40px;
+    padding: 20px 20px 60px;
   }
 }
 @media (max-width: 767px) {
   .login-popup {
     width: 90%;
     left: 5%;
-    padding: 20px 10px 40px;
+    padding: 20px 10px 50px;
   }
 }
 @media (max-width: 479px) {
@@ -3636,9 +3646,9 @@ input[type=number]::-webkit-outer-spin-button {
   align-items: center;
   gap: 30px;
   width: 100%;
-  margin-bottom: 60px;
+  margin-bottom: 50px;
 }
-@media (max-width: 479px) {
+@media (max-width: 767px) {
   .login__body {
     margin-bottom: 40px;
   }

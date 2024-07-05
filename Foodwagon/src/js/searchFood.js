@@ -1,5 +1,7 @@
 import allFoodData, { fetchFoodData } from './getAllFoodData.js';
 
+// SEARCH FOOD
+
 document.addEventListener('DOMContentLoaded', () => {
   const viewAllFood = document.getElementById('viewAllFood');
   const searchfoodBox = document.getElementById('searchFoodBox');

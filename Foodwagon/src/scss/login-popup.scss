@@ -1,3 +1,5 @@
+/* LOGIN POPUP */
+
 .login-popup {
   position: fixed;
   top: 10%;
@@ -6,7 +8,7 @@
   align-items: center;
   width: 1150px;
   height: auto;
-  padding: 40px 60px 60px;
+  padding: 40px 60px 70px;
   background-color: $color10;
   border: 1px solid $color14;
   z-index: 600;
@@ -15,15 +17,15 @@
     left: calc(50% - 40%);
   }
   @media (max-width: $md1) { //1200
-    padding: 40px 40px 60px;
+    padding: 40px 40px 70px;
   }
   @media (max-width: $md2) { //1023
-    padding: 20px 20px 40px;
+    padding: 20px 20px 60px;
   }
   @media (max-width: $md3) { //767
     width: 90%;
     left: calc(50% - 45%);
-    padding: 20px 10px 40px;
+    padding: 20px 10px 50px;
   }
   @media (max-width: $md4) { //479
     flex-direction: column;
@@ -65,8 +67,8 @@
     align-items: center;
     gap: 30px;
     width: 100%;
-    margin-bottom: 60px;
-    @media (max-width: $md4) { //479
+    margin-bottom: 50px;
+    @media (max-width: $md3) { //767
       margin-bottom: 40px;
     }
   }

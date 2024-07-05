@@ -1,3 +1,5 @@
+// SHOW REATAURANTS
+
 document.addEventListener('DOMContentLoaded', () => {
   let allRestaurantsData = [];
 
