@@ -1,0 +1,66 @@
+/* MAIN STYLES */
+
+@import "normalize";
+
+/* Variables */
+
+$minWidth: 320px;
+$maxWidth: 1920px;
+$maxWidthContainer: 1580px;
+$md1: 1200px;
+$md2: 1023px;
+$md3: 767px;
+$md4: 479px;
+
+/* Layout */
+
+html {
+  overflow-x: hidden;
+  @media (prefers-reduced-motion: no-preference) {
+    scroll-behavior: smooth;
+  }
+  @media (hover:hover) and (pointer:fine) {
+    * :hover {
+      -webkit-transition: all 0.3s ease 0s;
+      -moz-transition: all 0.3s ease 0s;
+      -o-transition: all 0.3s ease 0s;
+      transition: all 0.3s ease 0s;
+    }
+  }
+}
+
+.wrapper {
+  position: relative;
+  max-width: $maxWidth;
+  min-height: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+._container {
+  max-width: $maxWidthContainer;
+  margin: 0 auto;
+  padding: 0 50px;
+  @media (max-width: $md1) {
+    min-width: 1024px;
+  }
+  @media (max-width: $md2) {
+    min-width: 768px;
+    padding: 0 20px;
+  }
+  @media (max-width: $md3) {
+    min-width: 480px;
+  }
+  @media (max-width: $md4) {
+    min-width: $minWidth;
+    padding: 0 12px;
+  }
+}
+
+/* Main */
+
+.main {
+  flex: 1 1 auto;
+}

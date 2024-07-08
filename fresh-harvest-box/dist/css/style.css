@@ -1,0 +1,137 @@
+/* MAIN STYLES */
+/* NULL */
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+:focus, :active {
+  outline: none;
+}
+
+a:focus, a:active {
+  outline: none;
+}
+
+nav, footer, header, aside {
+  display: block;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  font-size: 14px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+input, button, textarea {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a, a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: 400;
+}
+
+/*--------------------*/
+/* Variables */
+/* Layout */
+html {
+  overflow-x: hidden;
+}
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  html * :hover {
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+  }
+}
+
+.wrapper {
+  position: relative;
+  max-width: 1920px;
+  min-height: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+._container {
+  max-width: 1580px;
+  margin: 0 auto;
+  padding: 0 50px;
+}
+@media (max-width: 1200px) {
+  ._container {
+    min-width: 1024px;
+  }
+}
+@media (max-width: 1023px) {
+  ._container {
+    min-width: 768px;
+    padding: 0 20px;
+  }
+}
+@media (max-width: 767px) {
+  ._container {
+    min-width: 480px;
+  }
+}
+@media (max-width: 479px) {
+  ._container {
+    min-width: 320px;
+    padding: 0 12px;
+  }
+}
+
+/* Main */
+.main {
+  flex: 1 1 auto;
+}
