@@ -6,11 +6,13 @@
 
 $minWidth: 320px;
 $maxWidth: 1920px;
-$maxWidthContainer: 1580px;
-$md1: 1200px;
-$md2: 1023px;
-$md3: 767px;
-$md4: 479px;
+$maxWidthContainer: 1280px;
+$md1: 1023px;
+$md2: 767px;
+$md3: 479px;
+
+$color1: #AE1332;
+$color2: #A4CB66;
 
 /* Layout */
 
@@ -20,7 +22,8 @@ html {
     scroll-behavior: smooth;
   }
   @media (hover:hover) and (pointer:fine) {
-    * :hover {
+    a:hover,
+    button:hover {
       -webkit-transition: all 0.3s ease 0s;
       -moz-transition: all 0.3s ease 0s;
       -o-transition: all 0.3s ease 0s;
@@ -37,27 +40,30 @@ html {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  font-family: 'DM Sans', sans-serif;
 }
 
 ._container {
   max-width: $maxWidthContainer;
   margin: 0 auto;
-  padding: 0 50px;
-  @media (max-width: $md1) {
-    min-width: 1024px;
-  }
-  @media (max-width: $md2) {
+  padding: 0 32px;
+  @media (max-width: $md1) { //1023
     min-width: 768px;
+  }
+  @media (max-width: $md2) { //767
+    min-width: 480px;
     padding: 0 20px;
   }
-  @media (max-width: $md3) {
-    min-width: 480px;
-  }
-  @media (max-width: $md4) {
+  @media (max-width: $md3) { //480
     min-width: $minWidth;
     padding: 0 12px;
   }
 }
+
+/* Imports */
+
+@import "ui";
+@import "header";
 
 /* Main */
 
