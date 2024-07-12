@@ -18,7 +18,7 @@
     &._active {
       transform: translateX(0%);
       transition: transform 0.8s ease 0s;
-      z-index: 200;
+      z-index: 500;
     }
   }
 
@@ -70,5 +70,35 @@
     text-align: center;
     letter-spacing: -0.04em;
     text-transform: uppercase;
+  }
+}
+
+.round-button {
+  width: 114px;
+  height: 114px;
+  padding: 21px 9px 19px;
+  border-radius: 100%;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 28px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  text-shadow: 0px 4px 70px rgba(0, 0, 0, 0.1);
+  transform: rotate(-14deg);
+  @media (max-width: $md2) { //767
+    width: 100px;
+    height: 100px;
+    font-size: 24px;
+    line-height: 24px;
+  }
+  @media (max-width: $md3) { //479
+    width: 84px;
+    height: 84px;
+    font-size: 20px;
+    line-height: 20px;
   }
 }

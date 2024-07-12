@@ -4,7 +4,7 @@
 
 /* Variables */
 
-$minWidth: 320px;
+$minWidth: 360px;
 $maxWidth: 1920px;
 $maxWidthContainer: 1280px;
 $md1: 1023px;
@@ -13,6 +13,7 @@ $md3: 479px;
 
 $color1: #AE1332;
 $color2: #A4CB66;
+$color3: #F5CE13;
 
 /* Layout */
 
@@ -64,6 +65,7 @@ html {
 
 @import "ui";
 @import "header";
+@import "about";
 
 /* Main */
 
