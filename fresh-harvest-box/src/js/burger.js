@@ -1,5 +1,6 @@
 // MENU BURGER
 
+const body = document.getElementsByTagName('body')[0];
 const iconMenu = document.querySelector('.header__burger');
 const menu = document.querySelector('.menu');
 const mediaMobile = 'max-width: $md2';
@@ -11,6 +12,7 @@ let listElement = null;
 let isActive = function() {
   iconMenu.classList.toggle('_active');
   menu.classList.toggle('_active');
+  body.classList.toggle('fixBody');
   
   if (iconMenu.classList.contains('_active')) {
     listElement = document.createElement('li');
