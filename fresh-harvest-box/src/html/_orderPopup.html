@@ -1,0 +1,20 @@
+<div class="order-popup order" id="orderPopup">
+  <div class="order-popup__close" id="closeOrderPopup">
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M21 7L7 21" stroke="#AE1332" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M7 7L21 21" stroke="#AE1332" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+  <h2 class="order-popup__title">Your Order</h2>
+  <form class="order-popup__form form" id="orderForm" action="/submit-form" method="POST">
+    <div class="form__fruits-list" id="formFruitsList"></div>
+    <div class="form__data data">
+      <input class="data__item" id="nameInput" type="text" name="fullname" placeholder="Enter full name..." autocomplete="off" data-autofill="false">
+      <input class="data__item" id="emailInput" type="email" name="email" placeholder="Enter email..." autocomplete="off" data-autofill="false">
+      <input class="data__item" id="cardInput" type="text" name="card" placeholder="Enter 16-digit card number..." autocomplete="off" data-autofill="false">
+      <textarea class="data__item _textarea" id="commentInput" placeholder="Enter comments..." name="comment"></textarea>
+    </div>
+    <button class="form__button" type="submit">Submit</button>
+  </form>
+  <div class="order-popup__image"></div>
+</div>

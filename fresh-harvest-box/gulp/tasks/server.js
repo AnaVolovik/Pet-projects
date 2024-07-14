@@ -11,12 +11,31 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Обработчик GET-запроса для получения данных fruits
-app.get('/get-fruits-data', (res) => {
+app.get('/get-fruits-data', (req, res) => {
   try {
     res.json(fruits);
   } catch (error) {
     console.error('Error sending JSON data:', error);
     res.status(500).json({ error: 'Failed to send JSON data' });
+  }
+});
+
+// Обработчик POST-запроса для обработки данных формы
+app.post('/submit-form', (req, res) => {
+  try {
+    const formData = req.body; // Получаем данные формы из тела запроса
+    console.log('Form Data Received:', formData);
+
+    // Если в данных формы есть поле 'fruits', выводим его отдельно
+    if (formData.fruits) {
+      const selectedFruits = JSON.parse(formData.fruits);
+      console.log('Selected Fruits:', selectedFruits);
+    }
+
+    res.status(200).json({ message: 'Form data received successfully', data: formData });
+  } catch (error) {
+    console.error('Error processing form data:', error);
+    res.status(500).json({ error: 'Failed to process form data' });
   }
 });
 

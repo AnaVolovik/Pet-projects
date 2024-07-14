@@ -3,3 +3,4 @@ myFunctions.isWebp();
 
 import burger from "./burger.js";
 import showFruits from "./showFruits.js";
+import getOrder from "./getOrder.js";

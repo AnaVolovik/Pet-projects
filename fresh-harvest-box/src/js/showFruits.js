@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
     allFruitsData.slice(0, numberOfCards).forEach(fruit => {
       const card = `
         <div class="fruits__item item" style="background-color: ${fruit.bgc}">
-          <input class="item__input" type="checkbox">
           <h4 class="item__name">${fruit.name}</h4>
           <p class="item__type">${fruit.type}</p>
           <div class="item__image">
