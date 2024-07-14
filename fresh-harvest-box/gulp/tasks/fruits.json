@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "name": "Strawberry",
+    "type": "Plant",
+    "price": "100 UAH / kg",
+    "image_url": "/img/fruits/Strawberry.png",
+    "bgc": "#F8766B"
+  },
+  {
+    "id": 2,
+    "name": "Banana",
+    "type": "Plant",
+    "price": "80 UAH / kg",
+    "image_url": "/img/fruits/Banana.png",
+    "bgc": "#EDD251"
+  },
+  {
+    "id": 3,
+    "name": "Watermelon",
+    "type": "Plant",
+    "price": "40 UAH / kg",
+    "image_url": "/img/fruits/Watermelon.png",
+    "bgc": "#9DC262"
+  },
+  {
+    "id": 4,
+    "name": "Lime",
+    "type": "Plant",
+    "price": "60 UAH / kg",
+    "image_url": "/img/fruits/Lime.png",
+    "bgc": "#BFD663"
+  },
+  {
+    "id": 5,
+    "name": "Apple",
+    "type": "Plant",
+    "price": "50 UAH / kg",
+    "image_url": "/img/fruits/Apple.png",
+    "bgc": "#E93F29"
+  },
+  {
+    "id": 6,
+    "name": "Peach",
+    "type": "Plant",
+    "price": "80 UAH / kg",
+    "image_url": "/img/fruits/Peach.png",
+    "bgc": "#DB4F4B"
+  },
+  {
+    "id": 7,
+    "name": "Plums",
+    "type": "Plant",
+    "price": "40 UAH / kg",
+    "image_url": "/img/fruits/Plums.png",
+    "bgc": "#9B5366"
+  },
+  {
+    "id": 8,
+    "name": "Orange",
+    "type": "Plant",
+    "price": "60 UAH / kg",
+    "image_url": "/img/fruits/Orange.png",
+    "bgc": "#F47F4C"
+  },
+  {
+    "id": 9,
+    "name": "Kiwi",
+    "type": "Plant",
+    "price": "90 UAH / kg",
+    "image_url": "/img/fruits/Kiwi.png",
+    "bgc": "#98B37E"
+  }
+]

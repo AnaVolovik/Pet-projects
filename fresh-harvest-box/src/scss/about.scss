@@ -228,13 +228,21 @@
       position: absolute;
       bottom: -40px;
       left: calc(50% - 57px);
+      padding: 21px 9px 19px;
       background-color: #fff;
+      font-size: 28px;
+      line-height: 28px;
       color: $color1;
       @media (max-width: $md2) { //767
         left: calc(50% - 50px);
       }
       @media (max-width: $md3) { //479
         left: calc(50% - 42px);
+      }
+
+      &:hover {
+      color: $color2;
+      cursor: pointer;
       }
     }
   }
