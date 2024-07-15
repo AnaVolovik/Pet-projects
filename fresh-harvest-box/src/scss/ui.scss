@@ -279,6 +279,25 @@
   }
 }
 
+
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  &__icon {
+    &:hover {
+      cursor: pointer;
+      svg {
+        fill: rgba(174, 19, 50, 0.1);
+      }
+      path {
+        fill: $color1;
+      }
+    }
+  }
+}
+
 input[type="checkbox"] {
   width: 20px;
   height: 20px;
