@@ -1,4 +1,4 @@
-/* ABOUT section */
+/* ABOUT */
 
 .about {
   padding: 40px 0 105px;
@@ -193,7 +193,7 @@
     width: 410px;
     height: 100%;
     margin: 0 auto;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid #FFFFFF;
     border-radius: 500px;
     @media (max-width: $md2) { //767
       width: 322px;
@@ -229,7 +229,7 @@
       bottom: -40px;
       left: calc(50% - 57px);
       padding: 21px 9px 19px;
-      background-color: #fff;
+      background-color: #FFFFFF;
       font-size: 28px;
       line-height: 28px;
       color: $color1;
@@ -258,14 +258,8 @@
   }
 
   &__text {
-    padding-bottom: 44px;
-    font-family: inherit;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 18px;
-    letter-spacing: -0.04em;
-    color: #fff;
-    text-shadow: 0px 4px 70px rgba(0, 0, 0, 0.1);
+    margin-bottom: 44px;
+    text-align: left;
   }
 
   &__info-card {
@@ -320,7 +314,7 @@
     text-align: center;
     letter-spacing: -0.04em;
     text-transform: uppercase;
-    color: #fff;
+    color: #FFFFFF;
     text-shadow: 0px 4px 70px rgba(0, 0, 0, 0.1);
     @media (max-width: $md2) { //767
       width: 125px;
@@ -344,7 +338,7 @@
     font-size: 12px;
     line-height: 14px;
     letter-spacing: -0.04em;
-    color: #fff;
+    color: #FFFFFF;
     text-shadow: 0px 4px 70px rgba(0, 0, 0, 0.1);
   }
 
@@ -363,7 +357,7 @@
     text-align: center;
     letter-spacing: -0.04em;
     text-transform: uppercase;
-    color: #fff;
+    color: #FFFFFF;
     text-shadow: 0px 4px 70px rgba(0, 0, 0, 0.1);
   }
 }

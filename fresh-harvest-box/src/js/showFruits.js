@@ -1,3 +1,5 @@
+// SHOW FRUITS
+
 document.addEventListener('DOMContentLoaded', () => {
   let allFruitsData = [];
 

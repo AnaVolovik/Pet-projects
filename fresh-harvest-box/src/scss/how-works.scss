@@ -1,4 +1,4 @@
-/* HOW IT WORKS section */
+/* HOW IT WORKS */
 
 .how-works {
   padding: 40px 0 105px;
@@ -22,14 +22,8 @@
   &__title {
     width: 624px;
     margin-bottom: 14px;
-    font-family: inherit;
-    font-weight: 500;
-    font-size: 40px;
-    line-height: 44px;
     text-align: center;
-    letter-spacing: -0.04em;
-    text-transform: uppercase;
-    color: #fff;
+    color: #FFFFFF;
     text-shadow: 0px 4px 70px rgba(0, 0, 0, 0.1);
     @media (max-width: $md2) { //767
       width: 440px;
@@ -43,15 +37,6 @@
 
   &__annotation {
     width: 510px;
-    margin-bottom: 44px;
-    font-family: inherit;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 18px;
-    text-align: center;
-    letter-spacing: -0.04em;
-    color: #fff;
-    text-shadow: 0px 4px 70px rgba(0, 0, 0, 0.1);
     @media (max-width: $md2) { //767
       width: 440px;
     }
@@ -98,7 +83,7 @@
   width: 33%;
   min-height: 130px;
   padding: 40px 20px;
-  background-color: #fff;
+  background-color: #FFFFFF;
   border-radius: 20px;
   @media (max-width: "1200px") { //1200
     flex-direction: column;
@@ -131,7 +116,7 @@
     line-height: 24px;
     text-align: center;
     letter-spacing: -0.04em;
-    color: #fff;
+    color: #FFFFFF;
 
     &.first-step {
       background-color: $color1;

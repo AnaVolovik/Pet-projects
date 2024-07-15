@@ -1,4 +1,4 @@
-/* SUBSCRIBE section */
+/* SUBSCRIBE */
 
 .subscribe {
   position: relative;
@@ -33,7 +33,7 @@
     text-align: center;
     letter-spacing: -0.04em;
     text-transform: uppercase;
-    color: #fff;
+    color: #FFFFFF;
     text-shadow: 0px 4px 70px rgba(0, 0, 0, 0.1);
     @media (max-width: $md2) { //767
       top: 20px;
@@ -52,15 +52,6 @@
 
   &__annotation {
     width: 492px;
-    margin-bottom: 44px;
-    font-family: inherit;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 18px;
-    text-align: center;
-    letter-spacing: -0.04em;
-    color: #fff;
-    text-shadow: 0px 4px 70px rgba(0, 0, 0, 0.1);
     @media (max-width: $md2) { //767
       left: calc(50% - 220px);
       width: 440px;
@@ -138,14 +129,14 @@
     font-size: 14px;
     line-height: 18px;
     letter-spacing: -0.04em;
-    color: #fff;
+    color: #FFFFFF;
     &::placeholder {
       opacity: 0.5;
-      color: #fff;
+      color: #FFFFFF;
     }
 
     &:focus {
-      background-color: #fff;
+      background-color: #FFFFFF;
     }
   }
 
@@ -166,7 +157,7 @@
     font-size: 14px;
     line-height: 18px;
     letter-spacing: -0.04em;
-    color: #fff;
+    color: #FFFFFF;
 
     &:hover {
       background-color: $color3;

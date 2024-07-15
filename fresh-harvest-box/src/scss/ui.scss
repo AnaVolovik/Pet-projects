@@ -66,7 +66,7 @@
     letter-spacing: -0.04em;
     color: $color1;
     @media (max-width: $md2) { //767
-      color: #fff;
+      color: #FFFFFF;
     }
 
     &:hover {
@@ -126,6 +126,27 @@
   }
 }
 
+.title {
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 44px;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.annotation {
+  margin-bottom: 44px;
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: -0.04em;
+  text-align: center;
+  color: #FFFFFF;
+  text-shadow: 0px 4px 70px rgba(0, 0, 0, 0.1);
+}
+
 .item {
   display: flex;
   flex-direction: column;
@@ -171,7 +192,7 @@
     font-size: 32px;
     line-height: 38px;
     letter-spacing: -0.04em;
-    color: #fff;
+    color: #FFFFFF;
     @media (max-width: $md3) { //479
       font-size: 24px;
       line-height: 28px;
@@ -196,7 +217,7 @@
     font-size: 18px;
     line-height: 24px;
     letter-spacing: -0.02em;
-    color: #fff;
+    color: #FFFFFF;
     @media (max-width: $md3) { //479
       font-size: 14px;
       line-height: 18px;
@@ -251,7 +272,7 @@
     width: 136px;
     height: 48px;
     padding: 12px 17px;
-    background-color: #fff;
+    background-color: #FFFFFF;
     border-radius: 200px;
     font-family: inherit;
     font-weight: 500;
@@ -304,7 +325,7 @@ input[type="checkbox"] {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  border: 2px solid #fff;
+  border: 2px solid #FFFFFF;
   background-color: transparent;
 }
 
@@ -316,7 +337,7 @@ input[type="checkbox"]:checked::before {
   content: "✔";
   display: block;
   text-align: center;
-  color: #fff;
+  color: #FFFFFF;
   font-size: 14px;
   line-height: 18px;
 }

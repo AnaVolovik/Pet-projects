@@ -1,4 +1,4 @@
-/* FRUITS section */
+/* FRUITS */
 
 .fruits {
   position: relative;
@@ -23,14 +23,8 @@
   &__title {
     margin-bottom: 14px;
     width: 624px;
-    font-family: inherit;
-    font-weight: 500;
-    font-size: 40px;
-    line-height: 44px;
     text-align: center;
-    letter-spacing: -0.04em;
-    text-transform: uppercase;
-    color: #fff;
+    color: #FFFFFF;
     text-shadow: 0px 4px 70px rgba(0, 0, 0, 0.1);
     @media (max-width: $md2) { //767
       width: 440px;
@@ -44,15 +38,6 @@
 
   &__annotation {
     width: 547px;
-    margin-bottom: 44px;
-    font-family: inherit;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 18px;
-    text-align: center;
-    letter-spacing: -0.04em;
-    color: #fff;
-    text-shadow: 0px 4px 70px rgba(0, 0, 0, 0.1);
     @media (max-width: $md2) { //767
       width: 440px;
     }
@@ -74,13 +59,13 @@
     background-color: $color2;
     font-size: 18px;
     line-height: 24px;
-    color: #fff;
+    color: #FFFFFF;
     span {
       margin-right: 4px;
     }
 
     &:hover {
-      background-color: #fff;
+      background-color: #FFFFFF;
       color: $color2;
       transition: none;
       -webkit-transition: none;

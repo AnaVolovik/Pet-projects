@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
   const orderButton = document.getElementById('orderButton');
+  const shopButton = document.getElementById('shopButton');
   const cartDesktop = document.getElementById('cartDesktop');
   const cartMobile = document.getElementById('cartMobile');
 
@@ -62,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
   cartDesktop.addEventListener('click', openOrderPopup);
   cartMobile.addEventListener('click', openOrderPopup);
   orderButton.addEventListener('click', openOrderPopup);
+  shopButton.addEventListener('click', openOrderPopup);
 
   // Generate Fruits list
   function generateFruitsList() {
@@ -169,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (validateForm()) {
       const data = collectFormData();
-      
+
       fetch('/submit-form', {
         method: 'POST',
         headers: {
@@ -188,5 +190,4 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   });
-
 });

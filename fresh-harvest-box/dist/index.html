@@ -19,13 +19,13 @@
       <nav class="header__menu menu">
         <ul class="menu__list">
           <li class="menu__item">
-            <a href="#" class="menu__link">How It Works</a>
+            <a href="#howWorksSection" class="menu__link">How It Works</a>
           </li>
           <li class="menu__item">
-            <a href="#" class="menu__link">Fruits</a>
+            <a href="#fruitsSection" class="menu__link">Fruits</a>
           </li>
           <li class="menu__item">
-            <a href="#" class="menu__link">Contacts</a>
+            <a href="#footer" class="menu__link">Contacts</a>
           </li>
         </ul>
       </nav>
@@ -77,14 +77,14 @@
             </div>
             <div class="cta__border"></div>
             <div class="cta__button">
-              <button class="round-button">shop now</button>
+              <button class="round-button" id="shopButton">shop now</button>
             </div>
           </div>
         </div>
       </div>
       <div class="about__description-tags-wrapper">
         <div class="about__description description">
-          <p class="description__text">
+          <p class="description__text annotation">
             Our expertly curated fruit baskets are made with the freshest, highest quality fruits available. Whether you are looking for a healthy snack or a gift for a loved one, Fresh Harvest Box has got you covered.
           </p>
           <div class="description__info-card info-card">
@@ -120,13 +120,13 @@
     </div>
   </div>
 </section>
-        <section class="how-works">
+        <section class="how-works" id="howWorksSection">
   <div class="how-works__container _container">
     <div class="how-works__content">
-      <h2 class="how-works__title">
+      <h2 class="how-works__title title">
         To order your fruit basket, simply follow these easy steps
       </h2>
-      <p class="how-works__annotation">
+      <p class="how-works__annotation annotation">
         Our baskets are assembled with care and delivered straight to your doorstep, so you can enjoy the taste of fresh fruit without ever leaving your home. Whether you're looking for a healthy snack or a thoughtful gift, our fruit baskets are the perfect choice.
       </p>
       <ul class="how-works__steps">
@@ -152,7 +152,7 @@
         </li>
       </ul>
       <div class="how-works__image">
-        <img src="img/how-works/fruits.webp" alt="fruits">
+        <img src="img/how-works/fruits.webp" loading="lazy" alt="fruits">
       </div>
     </div>
   </div>
@@ -160,8 +160,8 @@
         <section class="fruits" id="fruitsSection">
   <div class="fruits__container _container">
     <div class="fruits__content">
-      <h2 class="fruits__title">organic fruits</h2>
-      <p class="fruits__annotation">
+      <h2 class="fruits__title title">organic fruits</h2>
+      <p class="fruits__annotation annotation">
         Our organic fruits are hand-picked from local farms and delivered straight to your doorstep, ensuring that you get the freshest and most nutritious produce possible. We offer a wide selection of organic fruits grown without the use of harmful pesticides or chemicals.
       </p>
       <div class="fruits__list" id="fruitsList"></div>
@@ -181,7 +181,7 @@
       <path d="M7 7L21 21" stroke="#AE1332" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
   </div>
-  <h2 class="order-popup__title">Your Order</h2>
+  <h2 class="order-popup__title title">Your Order</h2>
   <form class="order-popup__form form" id="orderForm" action="/submit-form" method="POST">
     <div class="form__fruits-list" id="formFruitsList"></div>
     <div class="form__data data">
@@ -204,7 +204,7 @@
   <div class="success__image">
     <img src="img/success-popup/raspberry.png" alt="success!">
   </div>
-  <h2 class="success__title">thank you</h2>
+  <h2 class="success__title title">thank you</h2>
   <p class="success__annotation">
     Thank you for your order! Our team is preparing your box with fresh, delicious fruits and vegetables, and we'll deliver it straight to your doorstep. We appreciate your business and look forward to providing you with the best possible experience!
   </p>
@@ -220,7 +220,7 @@
         <div></div>
         <div></div>
       </div>
-      <p class="subscribe__annotation">
+      <p class="subscribe__annotation annotation">
         Our boxes are packed with delicious, nutritious fruits and vegetables, perfect for anyone looking to eat healthier or support local farmers. Order your box today and start enjoying the best that nature has to offer!
       </p>
       <form class="subscribe__form" id="subscribeForm" action="#" method="get">
@@ -231,7 +231,7 @@
   </div>
 </section>
       </div>
-      <footer class="footer">
+      <footer class="footer" id="footer">
   <div class="footer__container _container">
     <div class="footer__content">
       <div class="footer__logo logo">
