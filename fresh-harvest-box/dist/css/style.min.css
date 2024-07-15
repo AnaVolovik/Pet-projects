@@ -146,6 +146,10 @@ html {
   display: block;
 }
 
+.hidden {
+  display: none;
+}
+
 .menu {
   display: flex;
   justify-content: flex-start;

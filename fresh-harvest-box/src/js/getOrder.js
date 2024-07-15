@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const orderButton = document.getElementById('orderButton');
   const cartDesktop = document.getElementById('cartDesktop');
-  //const cartMobile = document.getElementById('cartMobile');
+  const cartMobile = document.getElementById('cartMobile');
 
   const orderPopup = document.getElementById('orderPopup');
   const successPopup = document.getElementById('successPopup');
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   cartDesktop.addEventListener('click', openOrderPopup);
-  //cartMobile.addEventListener('click', openOrderPopup);
+  cartMobile.addEventListener('click', openOrderPopup);
   orderButton.addEventListener('click', openOrderPopup);
 
   // Generate Fruits list
