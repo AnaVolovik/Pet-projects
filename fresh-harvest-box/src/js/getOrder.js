@@ -16,8 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
   //const cartMobile = document.getElementById('cartMobile');
 
   const orderPopup = document.getElementById('orderPopup');
-  //const successPopup = document.querySelector('.success-popup');
+  const successPopup = document.getElementById('successPopup');
   const closeOrderPopup = document.getElementById('closeOrderPopup');
+  const closeSuccessPopup = document.getElementById('closeSuccessPopup');
+  const fruitsSection = document.getElementById('fruitsSection');
   const overlay = document.querySelector('.overlay');
 
   const orderForm = document.getElementById('orderForm');
@@ -42,13 +44,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   closePopup(closeOrderPopup, orderPopup);
+  closePopup(closeSuccessPopup, successPopup);
 
-  // Open Order Popup
+  // Open Popups
   function openOrderPopup() {
     overlay.classList.add('active');
     orderPopup.style.display = 'flex';
-    orderPopup.scrollIntoView({ behavior: 'smooth', block: 'start'});
+    fruitsSection.scrollIntoView({ behavior: 'smooth', block: 'start'});
     generateFruitsList();
+  }
+
+  function openSuccessPopup() {
+    successPopup.style.display = 'flex';
+    fruitsSection.scrollIntoView({ behavior: 'smooth', block: 'start'});
   }
 
   cartDesktop.addEventListener('click', openOrderPopup);
@@ -173,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(result => {
         console.log('Success:', result);
         orderPopup.style.display = 'none';
-        overlay.classList.remove('active');
+        openSuccessPopup();
       })
       .catch(error => {
         console.error('Error:', error);
