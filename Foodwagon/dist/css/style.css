@@ -168,6 +168,10 @@ html {
   display: block;
 }
 
+.subscribed {
+  pointer-events: none;
+}
+
 .preloader {
   position: fixed;
   top: 50%;

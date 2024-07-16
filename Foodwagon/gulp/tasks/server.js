@@ -11,6 +11,26 @@ const port = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Обработчик GET-запроса для обработки данных формы подписки
+app.get('/subscribe', (req, res) => {
+  try {
+    const email = req.query.email; // Получаем email из query parameters
+    console.log('Email Received:', email);
+
+    // Простая проверка email на сервере
+    const emailRe = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(\.[a-zA-Z]{2,})+$/;
+    if (!emailRe.test(email)) {
+      return res.status(400).json({ error: 'Invalid email address' });
+    }
+
+    // Обработка успешной подписки
+    res.status(200).json({ message: 'Subscription successful', email: email });
+  } catch (error) {
+    console.error('Error processing subscription:', error);
+    res.status(500).json({ error: 'Failed to process subscription' });
+  }
+});
+
 // Функция для проверки существования адреса
 async function validateAddress(address) {
   try {
