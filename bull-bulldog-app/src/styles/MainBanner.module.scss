@@ -1,0 +1,65 @@
+.banner {
+  background-color: #FFF;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 220px 160px 150px;
+    background: url("../assets/images/background.png") no-repeat right bottom / cover;
+    @media (max-width: "1350px") {
+      padding: 160px 80px 120px;
+      background-position: calc(100% + 60px) bottom;
+    }
+    @media (max-width: "1100px") {
+      background-position: calc(100% + 120px) bottom;
+    }
+  }
+
+  &__title {
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 60px;
+    line-height: 82px;
+    color: #000;
+  }
+
+  &__buttons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 186px;
+    height: 50px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 25px;
+
+    &.orangeBtn {
+      background-color: #F79007;
+      color: #000;
+    }
+
+    &.blackBtn {
+      background-color: #000;
+      color: #FFF;
+    }
+
+    &:hover {
+      background-color: #FFF;
+      color: #000;
+      border: 1px solid #000;
+      cursor: pointer;
+    }
+  }
+}

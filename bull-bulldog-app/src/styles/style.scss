@@ -39,7 +39,7 @@ html {
 ._container {
   max-width: $maxWidthContainer;
   margin: 0 auto;
-  padding: 0 30px;
+  padding: 0 40px;
   @media (max-width: $md1) {
     min-width: 1024px;
   }

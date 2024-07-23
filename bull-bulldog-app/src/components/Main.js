@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-// import HomePage from '../pages/HomePage';
+import HomePage from '../pages/HomePage';
 // import LoginPage from '../pages/LoginPage';
 // import RegistrationPage from '../pages/RegistrationPage';
 // import AccountPage from '../pages/AccountPage';
@@ -10,6 +10,7 @@ import { Route, Switch } from 'react-router-dom';
 const Main = () => {
   return (
     <main>
+      <HomePage />
       {/* <Switch>
         <Route path="/" exact component={HomePage} />
         <Route path="/login" component={LoginPage} />
