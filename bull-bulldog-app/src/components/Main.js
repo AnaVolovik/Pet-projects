@@ -1,27 +1,23 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import HomePage from '../pages/HomePage';
 import LoginPage from '../pages/LoginPage';
 import RegistrationPage from '../pages/RegistrationPage';
 // import AccountPage from '../pages/AccountPage';
-// import AddDogPage from '../pages/AddDogPage';
+import AddDogPage from '../pages/AddDogPage';
 import ContactPage from '../pages/ContactPage';
 
 const Main = () => {
   return (
     <main>
-      {/* <HomePage /> */}
-      {/* <ContactPage /> */}
-      {/* <LoginPage /> */}
-      <RegistrationPage />
-      {/* <Switch>
-        <Route path="/" exact component={HomePage} />
-        <Route path="/login" component={LoginPage} />
-        <Route path="/register" component={RegistrationPage} />
-        <Route path="/account" component={AccountPage} />
-        <Route path="/add-dog" component={AddDogPage} />
-        <Route path="/contact" component={ContactPage} />
-      </Switch> */}
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegistrationPage />} />
+        {/* <Route path="/account" element={<AccountPage />} /> */}
+        <Route path="/add-dog" element={<AddDogPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+      </Routes>
     </main>
   );
 };
