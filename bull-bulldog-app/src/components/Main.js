@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import HomePage from '../pages/HomePage';
 import LoginPage from '../pages/LoginPage';
-// import RegistrationPage from '../pages/RegistrationPage';
+import RegistrationPage from '../pages/RegistrationPage';
 // import AccountPage from '../pages/AccountPage';
 // import AddDogPage from '../pages/AddDogPage';
 import ContactPage from '../pages/ContactPage';
@@ -12,7 +12,8 @@ const Main = () => {
     <main>
       {/* <HomePage /> */}
       {/* <ContactPage /> */}
-      <LoginPage />
+      {/* <LoginPage /> */}
+      <RegistrationPage />
       {/* <Switch>
         <Route path="/" exact component={HomePage} />
         <Route path="/login" component={LoginPage} />
