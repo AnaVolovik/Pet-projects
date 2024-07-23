@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import HomePage from '../pages/HomePage';
-// import LoginPage from '../pages/LoginPage';
+import LoginPage from '../pages/LoginPage';
 // import RegistrationPage from '../pages/RegistrationPage';
 // import AccountPage from '../pages/AccountPage';
 // import AddDogPage from '../pages/AddDogPage';
@@ -11,7 +11,8 @@ const Main = () => {
   return (
     <main>
       {/* <HomePage /> */}
-      <ContactPage />
+      {/* <ContactPage /> */}
+      <LoginPage />
       {/* <Switch>
         <Route path="/" exact component={HomePage} />
         <Route path="/login" component={LoginPage} />

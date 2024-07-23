@@ -8,6 +8,7 @@
 $maxWidth: 1920px;
 $maxWidthContainer: 1580px;
 $md1: 1200px;
+$md2: 1024px;
 
 /* Layout */
 
@@ -42,6 +43,10 @@ html {
   padding: 0 40px;
   @media (max-width: $md1) {
     min-width: 1024px;
+  }
+  @media (max-width: $md2) {
+    min-width: 980px;
+    padding: 0 20px;
   }
 }
 
