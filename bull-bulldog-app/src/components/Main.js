@@ -5,12 +5,13 @@ import HomePage from '../pages/HomePage';
 // import RegistrationPage from '../pages/RegistrationPage';
 // import AccountPage from '../pages/AccountPage';
 // import AddDogPage from '../pages/AddDogPage';
-// import ContactPage from '../pages/ContactPage';
+import ContactPage from '../pages/ContactPage';
 
 const Main = () => {
   return (
     <main>
-      <HomePage />
+      {/* <HomePage /> */}
+      <ContactPage />
       {/* <Switch>
         <Route path="/" exact component={HomePage} />
         <Route path="/login" component={LoginPage} />

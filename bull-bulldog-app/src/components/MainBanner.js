@@ -6,7 +6,7 @@ import styles from '../styles/MainBanner.module.scss';
 const MainBanner = () => {
   return (
     <section className={styles.banner}>
-      <div className={classNames(styles.bunner__container, '_container')}>
+      <div className={classNames(styles.banner__container, '_container')}>
         <div className={styles.banner__content}>
           <h1 className={styles.banner__title}>
             Поиск собаки<br/>на раз–два–три!
