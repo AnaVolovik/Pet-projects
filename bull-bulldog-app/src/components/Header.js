@@ -8,11 +8,9 @@ const Header = () => {
       {/* logo */}
       <nav>
         <Link to="/">Home</Link>
-        <Link to="/login">Login</Link>
-        <Link to="/register">Register</Link>
-        {/* <Link to="/account">Account</Link>
+        <Link to="/account">Account</Link>
         <Link to="/add-dog">Add Dog</Link>
-        <Link to="/contact">Contact</Link> */}
+        <Link to="/contact">Contact</Link>
       </nav>
     </header>
   );
