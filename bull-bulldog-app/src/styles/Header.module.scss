@@ -1,3 +1,37 @@
-header {
-  background-color: #fff;
+.header {
+  padding: 10px 0;
+  background-color: #F79007;
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__menu {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+
+  &__item {
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 25px;
+    display: inline-flex;
+    align-items: center;
+    text-align: center;
+    color: #000;
+
+    &:hover {
+      color: #FFF;
+      cursor: pointer;
+    }
+
+    &.active {
+      color: #FFF;
+    }
+  }
 }

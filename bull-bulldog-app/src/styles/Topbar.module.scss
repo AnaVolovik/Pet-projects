@@ -21,9 +21,6 @@
     font-size: 18px;
     line-height: 25px;
     color: #FFF;
-    @media (max-width: "767px") { //767
-      font-size: 16px;
-    }
 
     &:hover {
       color: #F79007;
