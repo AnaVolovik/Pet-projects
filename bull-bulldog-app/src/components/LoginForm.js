@@ -11,9 +11,7 @@ const LoginForm = () => {
     e.preventDefault();
     const validationErrors = validateForm();
     if (Object.keys(validationErrors).length === 0) {
-      // Отправка данных формы
       console.log('Форма логина отправлена:', { email, password });
-      // Сброс формы
       setEmail('');
       setPassword('');
     } else {

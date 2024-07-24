@@ -15,9 +15,7 @@ const RegistrationForm = () => {
     e.preventDefault();
     const validationErrors = validateForm();
     if (Object.keys(validationErrors).length === 0) {
-      // Отправка данных формы
       console.log('Форма регистрации отправлена:', { name, email, city, phone, password });
-      // Сброс формы
       setName('');
       setEmail('');
       setCity('');

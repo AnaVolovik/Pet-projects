@@ -1,8 +1,5 @@
 import React from 'react';
 import { Link, Route, Routes, Outlet } from 'react-router-dom';
-import MyData from '../components/MyData';
-import MyDogs from '../components/MyDogs'; // Создайте этот компонент аналогично MyData
-import Favourites from '../components/Favourites'; // Создайте этот компонент аналогично MyData
 import classNames from 'classnames';
 import styles from '../styles/AccountPage.module.scss';
 
