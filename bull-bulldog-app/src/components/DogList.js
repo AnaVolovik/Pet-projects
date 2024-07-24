@@ -1,5 +1,6 @@
 import React from 'react';
-import DogItem from './DogItem';
+//import DogItem from './DogItem';
+import styles from '../styles/DogList.module.scss';
 
 const DogList = () => {
   const dogs = [
@@ -9,10 +10,10 @@ const DogList = () => {
   ];
 
   return (
-    <div>
-      {dogs.map((dog) => (
+    <div className={styles.dogList}>
+      {/* {dogs.map((dog) => (
         <DogItem key={dog.id} dog={dog} />
-      ))}
+      ))} */}
     </div>
   );
 };

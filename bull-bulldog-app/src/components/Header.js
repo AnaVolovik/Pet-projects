@@ -11,7 +11,7 @@ const Header = () => {
         <div className={styles.header__content}>
           <Logo />
           <nav className={styles.header__menu}>
-            <Link to="/search-dog" className={styles.header__item}>Найти собаку</Link>
+            <a href="/#search-form" className={styles.header__item}>Найти собаку</a>
             <Link to="/add-dog" className={styles.header__item}>Добавить анкету</Link>
             <Link to="/contact" className={styles.header__item}>Контакты</Link>
             <Link to="/account" className={styles.header__item}>Личный кабинет</Link>

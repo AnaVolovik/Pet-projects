@@ -106,7 +106,6 @@ const AddDogForm = () => {
               checked={gender === 'Кобель'}
               onChange={(e) => setGender(e.target.value)}
             />
-            <span className={styles.addDogForm__checkmark}></span>
             Кобель
           </label>
           <label className={styles.addDogForm__radioLabel}>
@@ -116,7 +115,6 @@ const AddDogForm = () => {
               checked={gender === 'Сука'}
               onChange={(e) => setGender(e.target.value)}
             />
-            <span className={styles.addDogForm__checkmark}></span>
             Сука
           </label>
         </div>
@@ -145,7 +143,6 @@ const AddDogForm = () => {
               checked={pedigree === true}
               onChange={() => setPedigree(true)}
             />
-            <span className={styles.addDogForm__checkmark}></span>
             Да
           </label>
           <label className={styles.addDogForm__radioLabel}>
@@ -155,7 +152,6 @@ const AddDogForm = () => {
               checked={pedigree === false}
               onChange={() => setPedigree(false)}
             />
-            <span className={styles.addDogForm__checkmark}></span>
             Нет
           </label>
         </div>

@@ -1,0 +1,104 @@
+.findDogForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 20px 30px;
+  background: #FFF;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  @media (max-width: "1024px") {
+    //padding: 60px 40px;
+  }
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 246px;
+    margin-bottom: 16px;
+    @media (max-width: "1024px") {
+      //width: 480px;
+    }
+  }
+
+  &__label {
+    display: block;
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 25px;
+    color: #000;
+  }
+
+  &__radioBtns {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  &__radioLabel,
+  &__checkboxLabel {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 15px;
+    margin-top: 6px;
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 25px;
+    color: #000;
+  }
+
+  &__button {
+    margin-top: 20px;
+    padding: 8px 42px;
+    background-color: #F79007;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 25px;
+    text-align: center;
+    color: #000;
+
+    &:hover {
+      background-color: #FFF;
+      border: 1px solid #000;
+      cursor: pointer;
+    }
+  }
+}
+
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #727171;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  margin-right: 5px;
+}
+
+input[type="checkbox"] {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+.errorInput {
+  border-color: red;
+}
+
+.errorText {
+  color: red;
+  font-size: 12px;
+}
