@@ -1,0 +1,52 @@
+.myData {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  &__name,
+  &__email,
+  &__city,
+  &__phone {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__title {
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 25px;
+    color: #000;
+  }
+
+  &__value {
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 25px;
+    color: #000;
+  }
+
+  &__link {
+    display: block;
+    margin-bottom: 20px;
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 25px;
+    text-decoration-line: underline;
+    text-underline-offset: 4px;
+    color: #000;
+
+    &:hover {
+      text-decoration-line: underline;
+      text-underline-offset: 4px;
+      color: #F79007;
+      cursor: pointer;
+    }
+  }
+}
