@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from '../styles/FindDogForm.module.scss';
+import styles from '../styles/SearchDogForm.module.scss';
 
 const SearchForm = () => {
   const [breed, setBreed] = useState('');
@@ -36,9 +36,9 @@ const SearchForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.findDogForm}>
-      <div className={styles.findDogForm__group}>
-        <label className={styles.findDogForm__label} htmlFor="breed">Порода</label>
+    <form onSubmit={handleSubmit} className={styles.searchDogForm}>
+      <div className={styles.searchDogForm__group}>
+        <label className={styles.searchDogForm__label} htmlFor="breed">Порода</label>
         <input
           type="text"
           id="breed"
@@ -49,8 +49,8 @@ const SearchForm = () => {
         {errors.breed && <span className={styles.errorText}>{errors.breed}</span>}
       </div>
 
-      <div className={styles.findDogForm__group}>
-        <label className={styles.findDogForm__label} htmlFor="age">Возраст</label>
+      <div className={styles.searchDogForm__group}>
+        <label className={styles.searchDogForm__label} htmlFor="age">Возраст</label>
         <input
           type="number"
           id="age"
@@ -63,10 +63,10 @@ const SearchForm = () => {
         {errors.age && <span className={styles.errorText}>{errors.age}</span>}
       </div>
 
-      <div className={styles.findDogForm__group}>
-        <label className={styles.findDogForm__label} htmlFor="gender">Пол</label>
-        <div className={styles.findDogForm__radioBtns}>
-          <label className={styles.findDogForm__radioLabel}>
+      <div className={styles.searchDogForm__group}>
+        <label className={styles.searchDogForm__label} htmlFor="gender">Пол</label>
+        <div className={styles.searchDogForm__radioBtns}>
+          <label className={styles.searchDogForm__radioLabel}>
             <input
               type="radio"
               value="Кобель"
@@ -75,7 +75,7 @@ const SearchForm = () => {
             />
             Кобель
           </label>
-          <label className={styles.findDogForm__radioLabel}>
+          <label className={styles.searchDogForm__radioLabel}>
             <input
               type="radio"
               value="Сука"
@@ -88,8 +88,8 @@ const SearchForm = () => {
         {errors.gender && <span className={styles.errorText}>{errors.gender}</span>}
       </div>
 
-      <div className={styles.findDogForm__group}>
-        <label className={styles.findDogForm__label} htmlFor="color">Окрас</label>
+      <div className={styles.searchDogForm__group}>
+        <label className={styles.searchDogForm__label} htmlFor="color">Окрас</label>
         <input
           type="text"
           id="color"
@@ -100,8 +100,8 @@ const SearchForm = () => {
         {errors.color && <span className={styles.errorText}>{errors.color}</span>}
       </div>
 
-      <div className={styles.findDogForm__group}>
-        <label className={styles.findDogForm__label} htmlFor="city">Город</label>
+      <div className={styles.searchDogForm__group}>
+        <label className={styles.searchDogForm__label} htmlFor="city">Город</label>
         <input
           type="text"
           id="city"
@@ -112,10 +112,10 @@ const SearchForm = () => {
         {errors.city && <span className={styles.errorText}>{errors.city}</span>}
       </div>
 
-      <div className={styles.findDogForm__group}>
-        <label className={styles.findDogForm__label}>Наличие родословной</label>
-        <div className={styles.findDogForm__radioBtns}>
-          <label className={styles.findDogForm__radioLabel}>
+      <div className={styles.searchDogForm__group}>
+        <label className={styles.searchDogForm__label}>Наличие родословной</label>
+        <div className={styles.searchDogForm__radioBtns}>
+          <label className={styles.searchDogForm__radioLabel}>
             <input
               type="radio"
               value="true"
@@ -124,7 +124,7 @@ const SearchForm = () => {
             />
             Да
           </label>
-          <label className={styles.findDogForm__radioLabel}>
+          <label className={styles.searchDogForm__radioLabel}>
             <input
               type="radio"
               value="false"
@@ -136,8 +136,8 @@ const SearchForm = () => {
         </div>
       </div>
 
-      <div className={styles.findDogForm__group}>
-        <label className={styles.findDogForm__checkboxLabel}>
+      <div className={styles.searchDogForm__group}>
+        <label className={styles.searchDogForm__checkboxLabel}>
           <input
             type="checkbox"
             checked={withPhoto}
@@ -147,7 +147,7 @@ const SearchForm = () => {
         </label>
       </div>
 
-      <button type="submit" className={styles.findDogForm__button}>Найти</button>
+      <button type="submit" className={styles.searchDogForm__button}>Найти</button>
     </form>
   );
 };
