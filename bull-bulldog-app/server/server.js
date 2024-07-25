@@ -1,21 +1,22 @@
 const express = require('express');
-const db = require('./db');
+const cors = require('cors'); // Для настройки CORS
 const app = express();
 const port = 5000;
 
 app.use(express.json());
+app.use(cors()); // Разрешает запросы с других доменов
 
-app.get('/api/registr_data', (req, res) => {
-  const query = 'SELECT * FROM registr_data';
-  db.query(query, (err, results) => {
-    if (err) {
-      console.error('Error fetching data from database:', err);
-      res.status(500).send('Server error');
-      return;
-    }
-    console.log(results);
-    res.json(results);
-  });
+app.post('/api/register', (req, res) => {
+  const { name, email, city, phone, password } = req.body;
+  
+  // Пример валидации данных
+  if (!name || !email || !city || !phone || !password) {
+    return res.status(400).json({ message: 'Все поля обязательны' });
+  }
+  
+  // Здесь добавьте логику регистрации пользователя
+
+  res.status(200).json({ user: { name, email, city, phone } });
 });
 
 app.listen(port, () => {

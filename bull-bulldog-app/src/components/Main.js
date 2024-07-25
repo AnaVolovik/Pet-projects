@@ -10,13 +10,13 @@ import MyData from '../components/MyData';
 import MyDogs from '../components/MyDogs';
 import Favourites from '../components/Favourites';
 
-const Main = () => {
+const Main = ({ onRegister }) => {
   return (
     <main>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegistrationPage />} />
+        <Route path="/register" element={<RegistrationPage onRegister={onRegister} />} />
         <Route path="/account/*" element={<AccountPage />}>
           <Route index element={<MyData />} />
           <Route path="my-data" element={<MyData />} />

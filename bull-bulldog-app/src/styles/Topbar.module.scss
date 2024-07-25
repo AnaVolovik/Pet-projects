@@ -15,6 +15,7 @@
   }
 
   &__item {
+    background-color: transparent;
     font-family: inherit;
     font-style: normal;
     font-weight: 400;
@@ -27,4 +28,8 @@
       cursor: pointer;
     }
   }
+}
+
+span.topbar__item {
+  pointer-events: none;
 }

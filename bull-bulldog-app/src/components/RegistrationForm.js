@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from '../styles/RegistrationForm.module.scss';
 
-const RegistrationForm = () => {
+const RegistrationForm = ({ onRegister }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [city, setCity] = useState('');
@@ -11,17 +11,36 @@ const RegistrationForm = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errors, setErrors] = useState({});
 
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validateForm();
     if (Object.keys(validationErrors).length === 0) {
-      console.log('Форма регистрации отправлена:', { name, email, city, phone, password });
-      setName('');
-      setEmail('');
-      setCity('');
-      setPhone('');
-      setPassword('');
-      setConfirmPassword('');
+      try {
+        const response = await fetch('http://localhost:5000/api/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ name, email, city, phone, password }),
+        });
+        const data = await response.json();
+        if (response.ok) {
+          console.log('Форма регистрации отправлена:', { name, email, city, phone, password });
+          onRegister(data.user);
+          setName('');
+          setEmail('');
+          setCity('');
+          setPhone('');
+          setPassword('');
+          setConfirmPassword('');
+          navigate('/');
+        } else {
+          setErrors({ server: data.message });
+        }
+      } catch (error) {
+        setErrors({ server: 'Ошибка сервера. Попробуйте позже.' });
+      }
     } else {
       setErrors(validationErrors);
     }
@@ -33,17 +52,12 @@ const RegistrationForm = () => {
     const phoneRegex = /^\+375\(\d{2}\)\d{3}-\d{2}-\d{2}$/;
 
     if (!name) errors.name = 'Имя обязательно';
-    
     if (!email) errors.email = 'E-mail обязателен';
     else if (!emailRegex.test(email)) errors.email = 'Неверный формат E-mail';
-
     if (!city) errors.city = 'Город обязателен';
-
     if (!phone) errors.phone = 'Номер телефона обязателен';
     else if (!phoneRegex.test(phone)) errors.phone = 'Неверный формат номера телефона';
-
     if (!password) errors.password = 'Пароль обязателен';
-    
     if (!confirmPassword) errors.confirmPassword = 'Повторите пароль';
     else if (password !== confirmPassword) errors.confirmPassword = 'Пароли не совпадают';
 
@@ -126,6 +140,7 @@ const RegistrationForm = () => {
 
       <button type="submit" className={styles.registrationForm__button}>Зарегистрироваться</button>
       <Link to="/login" className={styles.registrationForm__registerLink}>Вход</Link>
+      {errors.server && <div className={styles.errorText}>{errors.server}</div>}
     </form>
   );
 };
