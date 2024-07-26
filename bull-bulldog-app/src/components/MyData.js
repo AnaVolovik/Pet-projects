@@ -1,15 +1,38 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import styles from '../styles/MyData.module.scss';
 
 const MyData = () => {
-  // Эти данные будут браться из базы данных
-  const userData = {
-    name: 'Ваше имя',
-    email: 'example@example.com',
-    city: 'Ваш город',
-    phone: '+375(00)000-00-00'
-  };
+  const { userId } = useParams();
+  const [userData, setUserData] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/api/user/data/${userId}`);
+        if (!response.ok) {
+          throw new Error('Ошибка при получении данных');
+        }
+        const data = await response.json();
+        setUserData(data);
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    if (userId) {
+      fetchUserData();
+    }
+  }, [userId]);
+
+  if (error) {
+    return <p>Ошибка: {error}</p>;
+  }
+
+  if (!userData) {
+    return <p>Данные не найдены</p>;
+  }
 
   return (
     <div className={styles.myData}>

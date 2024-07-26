@@ -41,8 +41,7 @@ const RegistrationForm = ({ onRegister }) => {
         });
         const data = await response.json();
         if (response.ok) {
-          console.log('Форма регистрации отправлена:', { name, email, city, phone, password });
-          onRegister(data.user);
+          onRegister(data);
           setName('');
           setEmail('');
           setCity('');

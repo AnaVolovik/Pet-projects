@@ -8,8 +8,14 @@ import Main from './components/Main';
 function App() {
   const [user, setUser] = useState(null);
 
-  const handleRegister = (userData) => {
-    setUser(userData);
+  const handleRegister = (data) => {
+    setUser({
+      userId: data.userId,
+      name: data.name,
+      email: data.email,
+      city: data.city,
+      phone: data.phone
+    });
   };
 
   const handleLogout = () => {
@@ -22,7 +28,7 @@ function App() {
         <Topbar user={user} onLogout={handleLogout} />
         <Header />
         <div className="main">
-          <Main onRegister={handleRegister} />
+          <Main onRegister={handleRegister} user={user} />
         </div>
         <Footer />
       </div>

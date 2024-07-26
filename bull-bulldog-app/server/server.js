@@ -8,53 +8,70 @@ app.use(express.json());
 app.use(cors());
 
 // Route to get the list of cities
-app.get('/api/cities', (req, res) => {
-  db.query('SHOW COLUMNS FROM contacts LIKE "city"', (err, results) => {
-    if (err) {
-      console.error('Ошибка выполнения запроса:', err);
-      res.status(500).send('Ошибка сервера');
-      return;
-    }
-
+app.get('/api/cities', async (req, res) => {
+  try {
+    const results = await db.query('SHOW COLUMNS FROM contacts LIKE "city"');
     const cityEnum = results[0].Type;
     const cities = cityEnum.match(/'([^']+)'/g).map((city) => city.replace(/'/g, ''));
 
     res.json({ cities });
-  });
+  } catch (err) {
+    console.error('Ошибка выполнения запроса:', err);
+    res.status(500).send('Ошибка сервера');
+  }
 });
 
-app.post('/api/register', (req, res) => {
+app.post('/api/register', async (req, res) => {
   const { name, email, city, phone, password } = req.body;
   
-  // Пример валидации данных
   if (!name || !email || !city || !phone || !password) {
     return res.status(400).json({ message: 'Все поля обязательны' });
   }
   
-  const dateReg = new Date().toISOString().split('T')[0]; // Получаем текущую дату в формате YYYY-MM-DD
+  const date = new Date().toISOString().split('T')[0]; // Получаем текущую дату в формате YYYY-MM-DD
   const role = 'user';
 
-  // Вставка данных в таблицу registr_data
-  db.query('INSERT INTO registr_data (name_reg, email, password, date_reg, role) VALUES (?, ?, ?, ?, ?)', 
-    [name, email, password, dateReg, role], (err, results) => {
-    if (err) {
-      console.error('Ошибка выполнения запроса:', err);
-      return res.status(500).json({ message: 'Ошибка сервера' });
-    }
-
-    const registrDataId = results.insertId; // Получаем ID вставленной записи
+  try {
+    // Вставка данных в таблицу registr_data
+    const result1 = await db.query('INSERT INTO registr_data (name_reg, email, password, date_reg, role) VALUES (?, ?, ?, ?, ?)', 
+      [name, email, password, date, role]);
+    const registrDataId = result1.insertId; // Получаем ID вставленной записи
 
     // Вставка данных в таблицу contacts
-    db.query('INSERT INTO contacts (city, tel_num, fk_con_reg) VALUES (?, ?, ?)', 
-      [city, phone, registrDataId], (err, results) => {
-      if (err) {
-        console.error('Ошибка выполнения запроса:', err);
-        return res.status(500).json({ message: 'Ошибка сервера' });
-      }
+    await db.query('INSERT INTO contacts (city, tel_num, fk_con_reg) VALUES (?, ?, ?)', 
+      [city, phone, registrDataId]);
 
-      res.status(200).json({ user: { name, email, city, phone } });
-    });
-  });
+      res.status(200).json({
+        userId: registrDataId, 
+        name, 
+        email, 
+        city, 
+        phone
+      });
+  } catch (err) {
+    console.error('Ошибка выполнения запроса:', err);
+    res.status(500).json({ message: 'Ошибка сервера' });
+  }
+});
+
+// Запрос данных пользователя
+app.get('/api/user/data/:userId', async (req, res) => {
+  const userId = req.params.userId;
+
+  try {
+    const userQuery = 'SELECT r.name_reg as name, r.email, c.city, c.tel_num as phone FROM registr_data r JOIN contacts c ON r.id_reg = c.fk_con_reg WHERE r.id_reg = ?';
+    const userResults = await db.query(userQuery, [userId]);
+
+    if (userResults.length === 0) {
+      return res.status(404).json({ message: 'Пользователь не найден' });
+    }
+
+    const user = userResults[0];
+    res.status(200).json(user);
+  } catch (error) {
+    console.error('Ошибка при получении данных пользователя:', error.message);
+    res.status(500).json({ message: 'Ошибка сервера', error: error.message });
+  }
 });
 
 app.listen(port, () => {
