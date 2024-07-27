@@ -65,6 +65,7 @@ const RegistrationForm = ({ onRegister }) => {
     const nameRegex = /^[А-Яа-яЁё\s-]+$/;
     const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(\.[a-zA-Z]{2,})+$/;
     const phoneRegex = /^\+375\(\d{2}\)\d{3}-\d{2}-\d{2}$/;
+    const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,}$/;
 
     if (!name) errors.name = 'Имя обязательно';
     else if (!nameRegex.test(name)) errors.name = 'Имя может содержать только кириллицу, пробелы и дефисы';
@@ -74,6 +75,7 @@ const RegistrationForm = ({ onRegister }) => {
     if (!phone) errors.phone = 'Номер телефона обязателен';
     else if (!phoneRegex.test(phone)) errors.phone = 'Неверный формат номера телефона';
     if (!password) errors.password = 'Пароль обязателен';
+    else if (!passwordRegex.test(password)) errors.password = 'Пароль должен содержать латинские буквы и цифры, и быть длиной не менее 6 символов';
     if (!confirmPassword) errors.confirmPassword = 'Повторите пароль';
     else if (password !== confirmPassword) errors.confirmPassword = 'Пароли не совпадают';
 

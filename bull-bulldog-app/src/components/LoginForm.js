@@ -22,12 +22,14 @@ const LoginForm = () => {
   const validateForm = () => {
     const errors = {};
     const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(\.[a-zA-Z]{2,})+$/;
+    const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,}$/;
 
     if (!email) errors.email = 'E-mail обязателен';
     else if (!emailRegex.test(email)) errors.email = 'Неверный формат E-mail';
 
     if (!password) errors.password = 'Пароль обязателен';
-
+    else if (!passwordRegex.test(password)) errors.password = 'Пароль должен содержать латинские буквы и цифры, и быть длиной не менее 6 символов';
+    
     return errors;
   };
 
