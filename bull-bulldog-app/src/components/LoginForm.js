@@ -1,19 +1,39 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from '../styles/LoginForm.module.scss';
 
-const LoginForm = () => {
+const LoginForm = ({ onLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validateForm();
     if (Object.keys(validationErrors).length === 0) {
-      console.log('Форма логина отправлена:', { email, password });
-      setEmail('');
-      setPassword('');
+      try {
+        const response = await fetch('http://localhost:5000/api/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, password }),
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log('Авторизация успешна:', data);
+          onLogin(data);
+          navigate('/');
+        } else {
+          const errorData = await response.json();
+          setErrors({ form: errorData.message });
+        }
+      } catch (err) {
+        console.error('Ошибка при отправке данных:', err);
+        setErrors({ form: 'Ошибка при отправке данных' });
+      }
     } else {
       setErrors(validationErrors);
     }
@@ -29,7 +49,7 @@ const LoginForm = () => {
 
     if (!password) errors.password = 'Пароль обязателен';
     else if (!passwordRegex.test(password)) errors.password = 'Пароль должен содержать латинские буквы и цифры, и быть длиной не менее 6 символов';
-    
+
     return errors;
   };
 
@@ -58,6 +78,8 @@ const LoginForm = () => {
         />
         {errors.password && <span className={styles.errorText}>{errors.password}</span>}
       </div>
+
+      {errors.form && <span className={styles.errorText}>{errors.form}</span>}
 
       <button type="submit" className={styles.loginForm__button}>Войти</button>
       <Link to="/register" className={styles.loginForm__registerLink}>Регистрация</Link>

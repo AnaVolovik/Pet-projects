@@ -18,6 +18,14 @@ function App() {
     });
   };
 
+  const handleLogin = (data) => {
+    setUser({
+      userId: data.userId,
+      name: data.name,
+      email: data.email
+    });
+  };
+
   const handleLogout = () => {
     setUser(null);
   };
@@ -28,7 +36,7 @@ function App() {
         <Topbar user={user} onLogout={handleLogout} />
         <Header />
         <div className="main">
-          <Main onRegister={handleRegister} user={user} />
+          <Main onRegister={handleRegister} onLogin={handleLogin} user={user} />
         </div>
         <Footer />
       </div>

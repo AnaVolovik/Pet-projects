@@ -10,12 +10,12 @@ import MyData from '../components/MyData';
 import MyDogs from '../components/MyDogs';
 import Favourites from '../components/Favourites';
 
-const Main = ({ onRegister, user }) => {
+const Main = ({ onRegister, user, onLogin }) => {
   return (
     <main>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/login" element={<LoginPage onLogin={onLogin} />} />
         <Route path="/register" element={<RegistrationPage onRegister={onRegister} />} />
         <Route path="/account/" element={<AccountPage user={user} />}>
           {user?.userId && <Route index element={<Navigate to={`/account/${user.userId}/my-data`} />} />}

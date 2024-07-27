@@ -74,6 +74,31 @@ app.get('/api/user/data/:userId', async (req, res) => {
   }
 });
 
+// Обработка логина
+app.post('/api/login', async (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).json({ message: 'E-mail и пароль обязательны' });
+  }
+
+  try {
+    // Проверка данных пользователя в базе
+    const query = 'SELECT id_reg as userId, name_reg as name, email FROM registr_data WHERE email = ? AND password = ?';
+    const results = await db.query(query, [email, password]);
+
+    if (results.length === 0) {
+      return res.status(401).json({ message: 'Неверный e-mail или пароль' });
+    }
+
+    const user = results[0];
+    res.status(200).json(user);
+  } catch (err) {
+    console.error('Ошибка выполнения запроса:', err);
+    res.status(500).json({ message: 'Ошибка сервера' });
+  }
+});
+
 // Обработка формы обратной связи
 app.post('/api/contact', async (req, res) => {
   const { name, email, message } = req.body;
