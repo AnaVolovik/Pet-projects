@@ -6,15 +6,36 @@ const ContactForm = () => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [errors, setErrors] = useState({});
+  const [successMessage, setSuccessMessage] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validateForm();
     if (Object.keys(validationErrors).length === 0) {
-      console.log('Форма отправлена:', { name, email, message });
-      setName('');
-      setEmail('');
-      setMessage('');
+      try {
+        const response = await fetch('http://localhost:5000/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ name, email, message })
+        });
+        
+        if (!response.ok) {
+          throw new Error('Ошибка при отправке сообщения');
+        }
+
+        const result = await response.json();
+        console.log('Форма отправлена:', result);
+        setName('');
+        setEmail('');
+        setMessage('');
+        setErrors({});
+        setSuccessMessage('Сообщение отправлено');
+      } catch (error) {
+        console.error('Ошибка при отправке формы:', error);
+        setErrors({ form: 'Ошибка при отправке формы, попробуйте еще раз' });
+      }
     } else {
       setErrors(validationErrors);
     }
@@ -40,6 +61,9 @@ const ContactForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className={styles.contactForm}>
+      {successMessage && <p className={styles.successMessage}>{successMessage}</p>}
+      {errors.form && <p className={styles.errorMessage}>{errors.form}</p>}
+
       <div className={styles.contactForm__group}>
         <label className={styles.contactForm__label} htmlFor="name">Имя*</label>
         <input

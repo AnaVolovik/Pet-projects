@@ -74,6 +74,23 @@ app.get('/api/user/data/:userId', async (req, res) => {
   }
 });
 
+// Обработка формы обратной связи
+app.post('/api/contact', async (req, res) => {
+  const { name, email, message } = req.body;
+
+  if (!name || !email || !message) {
+    return res.status(400).json({ message: 'Все поля обязательны' });
+  }
+
+  try {
+    await db.query('INSERT INTO contact_messages (name, email, message) VALUES (?, ?, ?)', [name, email, message]);
+    res.status(200).json({ message: 'Сообщение отправлено' });
+  } catch (err) {
+    console.error('Ошибка выполнения запроса:', err);
+    res.status(500).json({ message: 'Ошибка сервера' });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
