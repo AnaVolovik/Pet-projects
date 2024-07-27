@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from '../styles/AddDogForm.module.scss';
 
 const AddDogForm = () => {
@@ -10,12 +10,39 @@ const AddDogForm = () => {
   const [pedigree, setPedigree] = useState(true);
   const [photos, setPhotos] = useState([]);
   const [errors, setErrors] = useState({});
+  const [breeds, setBreeds] = useState([]);
+  const [colors, setColors] = useState([]);
+
+  useEffect(() => {
+    const fetchBreeds = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/breeds');
+        const data = await response.json();
+        setBreeds(data.breeds);
+      } catch (error) {
+        console.error('Error fetching breeds:', error);
+      }
+    };
+    
+    const fetchColors = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/colors');
+        const data = await response.json();
+        setColors(data.colors);
+      } catch (error) {
+        console.error('Error fetching colors:', error);
+      }
+    };
+
+    fetchBreeds();
+    fetchColors();
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const validationErrors = validateForm();
     if (Object.keys(validationErrors).length === 0) {
-      console.log('Форма добавления собаки отправлена:', { petName, breed, age, gender, color, pedigree, photos });
+      console.log('Dog form submitted:', { petName, breed, age, gender, color, pedigree, photos });
       setPetName('');
       setBreed('');
       setAge('');
@@ -72,13 +99,17 @@ const AddDogForm = () => {
 
       <div className={styles.addDogForm__group}>
         <label className={styles.addDogForm__label} htmlFor="breed">Порода*</label>
-        <input
-          type="text"
+        <select
           id="breed"
           value={breed}
           onChange={(e) => setBreed(e.target.value)}
           className={errors.breed ? styles.errorInput : ''}
-        />
+        >
+          <option value="">Выберите породу</option>
+          {breeds.map((b, index) => (
+            <option key={index} value={b}>{b}</option>
+          ))}
+        </select>
         {errors.breed && <span className={styles.errorText}>{errors.breed}</span>}
       </div>
 
@@ -122,14 +153,18 @@ const AddDogForm = () => {
       </div>
 
       <div className={styles.addDogForm__group}>
-        <label className={styles.addDogForm__label} htmlFor="color">Окрас</label>
-        <input
-          type="text"
+        <label className={styles.addDogForm__label} htmlFor="color">Окрас*</label>
+        <select
           id="color"
           value={color}
           onChange={(e) => setColor(e.target.value)}
           className={errors.color ? styles.errorInput : ''}
-        />
+        >
+          <option value="">Выберите окрас</option>
+          {colors.map((c, index) => (
+            <option key={index} value={c}>{c}</option>
+          ))}
+        </select>
         {errors.color && <span className={styles.errorText}>{errors.color}</span>}
       </div>
 

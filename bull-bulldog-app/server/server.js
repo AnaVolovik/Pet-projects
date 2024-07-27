@@ -21,6 +21,34 @@ app.get('/api/cities', async (req, res) => {
   }
 });
 
+// Route to get the list of breeds
+app.get('/api/breeds', async (req, res) => {
+  try {
+    const results = await db.query('SHOW COLUMNS FROM profile LIKE "breed"');
+    const breedEnum = results[0].Type;
+    const breeds = breedEnum.match(/'([^']+)'/g).map((breed) => breed.replace(/'/g, ''));
+
+    res.json({ breeds });
+  } catch (err) {
+    console.error('Error fetching breeds:', err);
+    res.status(500).send('Server error');
+  }
+});
+
+// Route to get the list of colors
+app.get('/api/colors', async (req, res) => {
+  try {
+    const results = await db.query('SHOW COLUMNS FROM profile LIKE "color"');
+    const colorEnum = results[0].Type;
+    const colors = colorEnum.match(/'([^']+)'/g).map((color) => color.replace(/'/g, ''));
+
+    res.json({ colors });
+  } catch (err) {
+    console.error('Error fetching colors:', err);
+    res.status(500).send('Server error');
+  }
+});
+
 app.post('/api/register', async (req, res) => {
   const { name, email, city, phone, password } = req.body;
   
