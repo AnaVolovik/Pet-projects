@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from '../styles/AddDogForm.module.scss';
 
-const AddDogForm = ({ user }) => {
+const AddDogForm = ({ user, onProfileChange }) => {
   const [petName, setPetName] = useState('');
   const [breed, setBreed] = useState('');
   const [age, setAge] = useState('');
@@ -14,6 +15,7 @@ const AddDogForm = ({ user }) => {
   const [genders, setGenders] = useState([]);
   const [colors, setColors] = useState([]);
   const [photoPreviews, setPhotoPreviews] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchBreeds = async () => {
@@ -52,11 +54,8 @@ const AddDogForm = ({ user }) => {
   }, []);
 
   useEffect(() => {
-    // Create object URLs for photo previews
     const newPhotoPreviews = photos.map(photo => URL.createObjectURL(photo));
     setPhotoPreviews(newPhotoPreviews);
-
-    // Cleanup function to revoke object URLs
     return () => {
       newPhotoPreviews.forEach(url => URL.revokeObjectURL(url));
     };
@@ -66,18 +65,6 @@ const AddDogForm = ({ user }) => {
     e.preventDefault();
     const validationErrors = validateForm();
     if (Object.keys(validationErrors).length === 0) {
-      console.log('Dog form submitted:', {
-        fk_reg_data: user.userId,
-        petName,
-        breed,
-        age,
-        gender,
-        color,
-        pedigree,
-        photos
-      });
-      
-      // Add logic to submit the form data to the server here
       await submitForm();
     } else {
       setErrors(validationErrors);
@@ -93,32 +80,29 @@ const AddDogForm = ({ user }) => {
     formData.append('gender', gender);
     formData.append('color', color);
     formData.append('pedigree', pedigree);
-    
-    photos.forEach((photo, index) => {
-      formData.append('photos', photo);
-    });
+    photos.forEach(photo => formData.append('photos', photo));
 
     try {
       const response = await fetch('http://localhost:5000/api/add-dog', {
         method: 'POST',
-        body: formData
+        body: formData,
       });
 
       const result = await response.json();
       if (response.ok) {
         console.log('Success:', result);
-        // Optionally handle success (e.g., reset form or show a success message)
+        onProfileChange(result);
         setPetName('');
         setBreed('');
         setAge('');
-        setGender('Кобель');
+        setGender('');
         setColor('');
         setPedigree(1);
         setPhotos([]);
         setPhotoPreviews([]);
         setErrors({});
+        navigate(`/profile/${result.id_dog}`);
       } else {
-        // Handle server-side validation errors
         console.error('Server Error:', result);
         setErrors(result.errors || {});
       }
@@ -130,7 +114,6 @@ const AddDogForm = ({ user }) => {
   const validateForm = () => {
     const errors = {};
     const photoTypes = ['image/png', 'image/jpeg', 'image/gif'];
-
     if (!petName) errors.petName = 'Кличка обязательна';
     if (!breed) errors.breed = 'Порода обязательна';
     if (!age) errors.age = 'Возраст обязателен';
@@ -145,7 +128,6 @@ const AddDogForm = ({ user }) => {
         errors[`photo${index}`] = 'Размер файла не должен превышать 10 МБ';
       }
     });
-
     return errors;
   };
 

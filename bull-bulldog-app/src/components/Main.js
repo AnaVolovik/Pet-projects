@@ -6,11 +6,12 @@ import RegistrationPage from '../pages/RegistrationPage';
 import AccountPage from '../pages/AccountPage';
 import AddDogPage from '../pages/AddDogPage';
 import ContactPage from '../pages/ContactPage';
+import DogProfilePage from '../pages/DogProfilePage';
 import MyData from '../components/MyData';
 import MyDogs from '../components/MyDogs';
 import Favourites from '../components/Favourites';
 
-const Main = ({ onRegister, user, onLogin }) => {
+const Main = ({ onRegister, user, onLogin, profile, onProfileChange }) => {
   return (
     <main>
       <Routes>
@@ -23,8 +24,9 @@ const Main = ({ onRegister, user, onLogin }) => {
           <Route path=":userId/my-dogs" element={<MyDogs />} />
           <Route path=":userId/favourites" element={<Favourites />} />
         </Route>
-        <Route path="/add-dog" element={<AddDogPage user={user} />} />
+        <Route path="/add-dog" element={<AddDogPage user={user} onProfileChange={onProfileChange} />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/profile/:id" element={<DogProfilePage user={user} profile={profile} />} />
       </Routes>
     </main>
   );

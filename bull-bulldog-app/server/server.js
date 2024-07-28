@@ -50,7 +50,16 @@ app.post('/api/add-dog', upload.array('photos', 3), async (req, res) => {
       ]
     );
 
-    res.status(200).json({ message: 'Dog added successfully', profileId });
+    // Получение всех данных профиля собаки
+    const [dogProfile] = await db.query(
+      `SELECT profile.*, photo.photo1, photo.photo2, photo.photo3, photo.photo_format1, photo.photo_format2, photo.photo_format3
+       FROM profile
+       LEFT JOIN photo ON profile.id_dog = photo.fk_ph_profile
+       WHERE profile.id_dog = ?`,
+      [profileId]
+    );
+
+    res.status(200).json(dogProfile);
   } catch (error) {
     console.error('Error inserting dog data:', error);
     res.status(500).json({ message: 'Server error' });
@@ -205,7 +214,17 @@ app.post('/api/login', async (req, res) => {
   }
 
   try {
-    const query = 'SELECT id_reg as userId, name_reg as name, email FROM registr_data WHERE email = ? AND password = ?';
+    const query = `
+      SELECT 
+        r.id_reg as userId, 
+        r.name_reg as name, 
+        r.email,
+        c.city,
+        c.tel_num as phone
+      FROM registr_data r
+      JOIN contacts c ON r.id_reg = c.fk_con_reg
+      WHERE r.email = ? AND r.password = ?
+    `;
     const results = await db.query(query, [email, password]);
 
     if (results.length === 0) {

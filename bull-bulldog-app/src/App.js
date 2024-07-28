@@ -7,6 +7,7 @@ import Main from './components/Main';
 
 function App() {
   const [user, setUser] = useState(null);
+  const [profile, setProfile] = useState(null);
 
   const handleRegister = (data) => {
     setUser({
@@ -22,12 +23,18 @@ function App() {
     setUser({
       userId: data.userId,
       name: data.name,
-      email: data.email
+      email: data.email,
+      city: data.city,
+      phone: data.phone
     });
   };
 
   const handleLogout = () => {
     setUser(null);
+  };
+
+  const handleProfile = (profileData) => {
+    setProfile(profileData);
   };
 
   return (
@@ -36,7 +43,7 @@ function App() {
         <Topbar user={user} onLogout={handleLogout} />
         <Header />
         <div className="main">
-          <Main onRegister={handleRegister} onLogin={handleLogin} user={user} />
+          <Main onRegister={handleRegister} onLogin={handleLogin} user={user} profile={profile} onProfileChange={handleProfile} />
         </div>
         <Footer />
       </div>
