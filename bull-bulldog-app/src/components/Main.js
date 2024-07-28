@@ -23,7 +23,7 @@ const Main = ({ onRegister, user, onLogin }) => {
           <Route path=":userId/my-dogs" element={<MyDogs />} />
           <Route path=":userId/favourites" element={<Favourites />} />
         </Route>
-        <Route path="/add-dog" element={<AddDogPage />} />
+        <Route path="/add-dog" element={<AddDogPage user={user} />} />
         <Route path="/contact" element={<ContactPage />} />
       </Routes>
     </main>

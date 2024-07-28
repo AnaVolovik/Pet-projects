@@ -1,13 +1,94 @@
 const express = require('express');
-const db = require('./db');
 const cors = require('cors');
+const multer = require('multer');
+const db = require('./db');
 const app = express();
 const port = 5000;
+
+// Настройка multer
+const upload = multer({
+  storage: multer.memoryStorage(), // Память для хранения файла
+});
 
 app.use(express.json());
 app.use(cors());
 
-// Route to get the list of cities
+// Добавление анкеты собаки
+app.post('/api/add-dog', upload.array('photos', 3), async (req, res) => {
+  const { fk_reg_data, petName, age, gender, breed, color, pedigree } = req.body;
+  const photos = req.files;
+
+  // Преобразуем файлы в бинарный формат и получаем их типы
+  const photoBuffers = photos.map(file => file.buffer);
+  const photoFormats = photos.map(file => file.mimetype);
+
+  try {
+    const resultProfile = await db.query(
+      `INSERT INTO profile (fk_reg_data, name_dog, age, gender, breed, color, pedigree, date_add) 
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        fk_reg_data,
+        petName,
+        age,
+        gender,
+        breed,
+        color,
+        pedigree,
+        new Date().toISOString().split('T')[0] // Текущая дата анкеты
+      ]
+    );
+    const profileId = resultProfile.insertId; // Получаем ID собаки
+
+    // Вставка фотографий
+    await db.query(
+      `INSERT INTO photo (fk_ph_profile, photo1, photo2, photo3, photo_format1, photo_format2, photo_format3) 
+       VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      [
+        profileId,
+        photoBuffers[0] || null, photoBuffers[1] || null, photoBuffers[2] || null,
+        photoFormats[0] || null, photoFormats[1] || null, photoFormats[2] || null
+      ]
+    );
+
+    res.status(200).json({ message: 'Dog added successfully', profileId });
+  } catch (error) {
+    console.error('Error inserting dog data:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+
+// Получение изображений в бинарном формате
+app.get('/api/photo/:id', async (req, res) => {
+  const photoId = req.params.id;
+
+  try {
+    const result = await db.query(
+      'SELECT photo1, photo2, photo3, photo_format1, photo_format2, photo_format3 FROM photo WHERE id_photo = ?',
+      [photoId]
+    );
+
+    const { photo1, photo2, photo3, photo_format1, photo_format2, photo_format3 } = result[0];
+
+    if (photo1) {
+      res.setHeader('Content-Type', photo_format1 || 'image/jpeg');
+      res.send(photo1);
+    } else if (photo2) {
+      res.setHeader('Content-Type', photo_format2 || 'image/jpeg');
+      res.send(photo2);
+    } else if (photo3) {
+      res.setHeader('Content-Type', photo_format3 || 'image/jpeg');
+      res.send(photo3);
+    } else {
+      res.status(404).send('No image found');
+    }
+  } catch (error) {
+    console.error('Error fetching photo:', error);
+    res.status(500).send('Server error');
+  }
+});
+
+// Получение списка городов
 app.get('/api/cities', async (req, res) => {
   try {
     const results = await db.query('SHOW COLUMNS FROM contacts LIKE "city"');
@@ -16,12 +97,12 @@ app.get('/api/cities', async (req, res) => {
 
     res.json({ cities });
   } catch (err) {
-    console.error('Ошибка выполнения запроса:', err);
-    res.status(500).send('Ошибка сервера');
+    console.error('Error fetching cities:', err);
+    res.status(500).send('Server error');
   }
 });
 
-// Route to get the list of breeds
+// Получение списка пород
 app.get('/api/breeds', async (req, res) => {
   try {
     const results = await db.query('SHOW COLUMNS FROM profile LIKE "breed"');
@@ -35,7 +116,21 @@ app.get('/api/breeds', async (req, res) => {
   }
 });
 
-// Route to get the list of colors
+// Получение пола собаки
+app.get('/api/genders', async (req, res) => {
+  try {
+    const results = await db.query('SHOW COLUMNS FROM profile LIKE "gender"');
+    const genderEnum = results[0].Type;
+    const genders = genderEnum.match(/'([^']+)'/g).map((gender) => gender.replace(/'/g, ''));
+
+    res.json({ genders });
+  } catch (err) {
+    console.error('Error fetching genders:', err);
+    res.status(500).send('Server error');
+  }
+});
+
+// Получение списка окрасов
 app.get('/api/colors', async (req, res) => {
   try {
     const results = await db.query('SHOW COLUMNS FROM profile LIKE "color"');
@@ -49,36 +144,35 @@ app.get('/api/colors', async (req, res) => {
   }
 });
 
+// Регистрация пользователя
 app.post('/api/register', async (req, res) => {
   const { name, email, city, phone, password } = req.body;
   
   if (!name || !email || !city || !phone || !password) {
-    return res.status(400).json({ message: 'Все поля обязательны' });
+    return res.status(400).json({ message: 'All fields are required' });
   }
   
-  const date = new Date().toISOString().split('T')[0]; // Получаем текущую дату в формате YYYY-MM-DD
+  const date = new Date().toISOString().split('T')[0];
   const role = 'user';
 
   try {
-    // Вставка данных в таблицу registr_data
     const result1 = await db.query('INSERT INTO registr_data (name_reg, email, password, date_reg, role) VALUES (?, ?, ?, ?, ?)', 
       [name, email, password, date, role]);
-    const registrDataId = result1.insertId; // Получаем ID вставленной записи
+    const registrDataId = result1.insertId;
 
-    // Вставка данных в таблицу contacts
     await db.query('INSERT INTO contacts (city, tel_num, fk_con_reg) VALUES (?, ?, ?)', 
       [city, phone, registrDataId]);
 
-      res.status(200).json({
-        userId: registrDataId, 
-        name, 
-        email, 
-        city, 
-        phone
-      });
+    res.status(200).json({
+      userId: registrDataId, 
+      name, 
+      email, 
+      city, 
+      phone
+    });
   } catch (err) {
-    console.error('Ошибка выполнения запроса:', err);
-    res.status(500).json({ message: 'Ошибка сервера' });
+    console.error('Error registering user:', err);
+    res.status(500).json({ message: 'Server error' });
   }
 });
 
@@ -91,39 +185,38 @@ app.get('/api/user/data/:userId', async (req, res) => {
     const userResults = await db.query(userQuery, [userId]);
 
     if (userResults.length === 0) {
-      return res.status(404).json({ message: 'Пользователь не найден' });
+      return res.status(404).json({ message: 'User not found' });
     }
 
     const user = userResults[0];
     res.status(200).json(user);
   } catch (error) {
-    console.error('Ошибка при получении данных пользователя:', error.message);
-    res.status(500).json({ message: 'Ошибка сервера', error: error.message });
+    console.error('Error fetching user data:', error.message);
+    res.status(500).json({ message: 'Server error', error: error.message });
   }
 });
 
-// Обработка логина
+// Логин пользователя
 app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    return res.status(400).json({ message: 'E-mail и пароль обязательны' });
+    return res.status(400).json({ message: 'Email and password are required' });
   }
 
   try {
-    // Проверка данных пользователя в базе
     const query = 'SELECT id_reg as userId, name_reg as name, email FROM registr_data WHERE email = ? AND password = ?';
     const results = await db.query(query, [email, password]);
 
     if (results.length === 0) {
-      return res.status(401).json({ message: 'Неверный e-mail или пароль' });
+      return res.status(401).json({ message: 'Invalid email or password' });
     }
 
     const user = results[0];
     res.status(200).json(user);
   } catch (err) {
-    console.error('Ошибка выполнения запроса:', err);
-    res.status(500).json({ message: 'Ошибка сервера' });
+    console.error('Error logging in:', err);
+    res.status(500).json({ message: 'Server error' });
   }
 });
 
@@ -132,15 +225,15 @@ app.post('/api/contact', async (req, res) => {
   const { name, email, message } = req.body;
 
   if (!name || !email || !message) {
-    return res.status(400).json({ message: 'Все поля обязательны' });
+    return res.status(400).json({ message: 'All fields are required' });
   }
 
   try {
     await db.query('INSERT INTO contact_messages (name, email, message) VALUES (?, ?, ?)', [name, email, message]);
-    res.status(200).json({ message: 'Сообщение отправлено' });
+    res.status(200).json({ message: 'Message sent' });
   } catch (err) {
-    console.error('Ошибка выполнения запроса:', err);
-    res.status(500).json({ message: 'Ошибка сервера' });
+    console.error('Error sending message:', err);
+    res.status(500).json({ message: 'Server error' });
   }
 });
 

@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/AddDogForm.module.scss';
 
-const AddDogForm = () => {
+const AddDogForm = ({ user }) => {
   const [petName, setPetName] = useState('');
   const [breed, setBreed] = useState('');
   const [age, setAge] = useState('');
-  const [gender, setGender] = useState('Кобель');
+  const [gender, setGender] = useState('');
   const [color, setColor] = useState('');
-  const [pedigree, setPedigree] = useState(true);
+  const [pedigree, setPedigree] = useState(1);
   const [photos, setPhotos] = useState([]);
   const [errors, setErrors] = useState({});
   const [breeds, setBreeds] = useState([]);
+  const [genders, setGenders] = useState([]);
   const [colors, setColors] = useState([]);
+  const [photoPreviews, setPhotoPreviews] = useState([]);
 
   useEffect(() => {
     const fetchBreeds = async () => {
@@ -23,7 +25,17 @@ const AddDogForm = () => {
         console.error('Error fetching breeds:', error);
       }
     };
-    
+
+    const fetchGenders = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/genders');
+        const data = await response.json();
+        setGenders(data.genders);
+      } catch (error) {
+        console.error('Error fetching genders:', error);
+      }
+    };
+
     const fetchColors = async () => {
       try {
         const response = await fetch('http://localhost:5000/api/colors');
@@ -35,24 +47,83 @@ const AddDogForm = () => {
     };
 
     fetchBreeds();
+    fetchGenders();
     fetchColors();
   }, []);
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    // Create object URLs for photo previews
+    const newPhotoPreviews = photos.map(photo => URL.createObjectURL(photo));
+    setPhotoPreviews(newPhotoPreviews);
+
+    // Cleanup function to revoke object URLs
+    return () => {
+      newPhotoPreviews.forEach(url => URL.revokeObjectURL(url));
+    };
+  }, [photos]);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validateForm();
     if (Object.keys(validationErrors).length === 0) {
-      console.log('Dog form submitted:', { petName, breed, age, gender, color, pedigree, photos });
-      setPetName('');
-      setBreed('');
-      setAge('');
-      setGender('Кобель');
-      setColor('');
-      setPedigree(true);
-      setPhotos([]);
-      setErrors({});
+      console.log('Dog form submitted:', {
+        fk_reg_data: user.userId,
+        petName,
+        breed,
+        age,
+        gender,
+        color,
+        pedigree,
+        photos
+      });
+      
+      // Add logic to submit the form data to the server here
+      await submitForm();
     } else {
       setErrors(validationErrors);
+    }
+  };
+
+  const submitForm = async () => {
+    const formData = new FormData();
+    formData.append('fk_reg_data', user.userId);
+    formData.append('petName', petName);
+    formData.append('breed', breed);
+    formData.append('age', age);
+    formData.append('gender', gender);
+    formData.append('color', color);
+    formData.append('pedigree', pedigree);
+    
+    photos.forEach((photo, index) => {
+      formData.append('photos', photo);
+    });
+
+    try {
+      const response = await fetch('http://localhost:5000/api/add-dog', {
+        method: 'POST',
+        body: formData
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        console.log('Success:', result);
+        // Optionally handle success (e.g., reset form or show a success message)
+        setPetName('');
+        setBreed('');
+        setAge('');
+        setGender('Кобель');
+        setColor('');
+        setPedigree(1);
+        setPhotos([]);
+        setPhotoPreviews([]);
+        setErrors({});
+      } else {
+        // Handle server-side validation errors
+        console.error('Server Error:', result);
+        setErrors(result.errors || {});
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
     }
   };
 
@@ -128,27 +199,18 @@ const AddDogForm = () => {
       </div>
 
       <div className={styles.addDogForm__group}>
-        <label className={styles.addDogForm__label} htmlFor="gender">Пол</label>
-        <div className={styles.addDogForm__radioBtns}>
-          <label className={styles.addDogForm__radioLabel}>
-            <input
-              type="radio"
-              value="Кобель"
-              checked={gender === 'Кобель'}
-              onChange={(e) => setGender(e.target.value)}
-            />
-            Кобель
-          </label>
-          <label className={styles.addDogForm__radioLabel}>
-            <input
-              type="radio"
-              value="Сука"
-              checked={gender === 'Сука'}
-              onChange={(e) => setGender(e.target.value)}
-            />
-            Сука
-          </label>
-        </div>
+        <label className={styles.addDogForm__label} htmlFor="gender">Пол*</label>
+        <select
+          id="gender"
+          value={gender}
+          onChange={(e) => setGender(e.target.value)}
+          className={errors.gender ? styles.errorInput : ''}
+        >
+          <option value="">Выберите пол</option>
+          {genders.map((g, index) => (
+            <option key={index} value={g}>{g}</option>
+          ))}
+        </select>
         {errors.gender && <span className={styles.errorText}>{errors.gender}</span>}
       </div>
 
@@ -175,8 +237,8 @@ const AddDogForm = () => {
             <input
               type="radio"
               value="true"
-              checked={pedigree === true}
-              onChange={() => setPedigree(true)}
+              checked={pedigree === 1}
+              onChange={() => setPedigree(1)}
             />
             Да
           </label>
@@ -184,8 +246,8 @@ const AddDogForm = () => {
             <input
               type="radio"
               value="false"
-              checked={pedigree === false}
-              onChange={() => setPedigree(false)}
+              checked={pedigree === 0}
+              onChange={() => setPedigree(0)}
             />
             Нет
           </label>
@@ -202,9 +264,9 @@ const AddDogForm = () => {
           className={errors.photos ? styles.errorInput : ''}
         />
         {errors.photos && <span className={styles.errorText}>{errors.photos}</span>}
-        {photos.map((photo, index) => (
+        {photoPreviews.map((photo, index) => (
           <div key={index} className={styles.addDogForm__photoPreview}>
-            <img src={URL.createObjectURL(photo)} alt={`Фото ${index + 1}`} />
+            <img src={photo} alt={`Фото ${index + 1}`} />
             {errors[`photo${index}`] && <span className={styles.errorText}>{errors[`photo${index}`]}</span>}
           </div>
         ))}
