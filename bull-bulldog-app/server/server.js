@@ -69,26 +69,6 @@ app.get('/api/colors', async (req, res) => {
   }
 });
 
-// Запрос данных пользователя 
-app.get('/api/user/data/:userId', async (req, res) => {
-  const userId = req.params.userId;
-
-  try {
-    const userQuery = 'SELECT r.name_reg as name, r.email, c.city, c.tel_num as phone FROM registr_data r JOIN contacts c ON r.id_reg = c.fk_con_reg WHERE r.id_reg = ?';
-    const userResults = await db.query(userQuery, [userId]);
-
-    if (userResults.length === 0) {
-      return res.status(404).json({ message: 'User not found' });
-    }
-
-    const user = userResults[0];
-    res.status(200).json(user);
-  } catch (error) {
-    console.error('Error fetching user data:', error.message);
-    res.status(500).json({ message: 'Server error', error: error.message });
-  }
-});
-
 // Получение изображений в бинарном формате
 app.get('/api/photo/:id', async (req, res) => {
   const photoId = req.params.id;
@@ -252,6 +232,26 @@ app.post('/api/add-dog', upload.array('photos', 3), async (req, res) => {
   } catch (error) {
     console.error('Error inserting dog data:', error);
     res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Запрос данных пользователя ("Мои данные")
+app.get('/api/user/data/:userId', async (req, res) => {
+  const userId = req.params.userId;
+
+  try {
+    const userQuery = 'SELECT r.name_reg as name, r.email, c.city, c.tel_num as phone FROM registr_data r JOIN contacts c ON r.id_reg = c.fk_con_reg WHERE r.id_reg = ?';
+    const userResults = await db.query(userQuery, [userId]);
+
+    if (userResults.length === 0) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    const user = userResults[0];
+    res.status(200).json(user);
+  } catch (error) {
+    console.error('Error fetching user data:', error.message);
+    res.status(500).json({ message: 'Server error', error: error.message });
   }
 });
 
