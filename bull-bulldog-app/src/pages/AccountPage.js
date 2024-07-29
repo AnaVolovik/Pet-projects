@@ -19,9 +19,7 @@ const AccountPage = ({ user }) => {
           <h2 className={classNames(styles.account__title, 'h2')}>Личный кабинет</h2>
           <div className={styles.account__body}>
             <AccountMenu user={user} />
-            <div className={styles.account__dataDisplay}>
-              <Outlet />
-            </div>
+            <Outlet />
           </div>
         </div>
       </div>

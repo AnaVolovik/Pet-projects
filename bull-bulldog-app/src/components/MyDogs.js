@@ -1,45 +1,44 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import Card from './Card';
 import styles from '../styles/MyDogs.module.scss';
 
-const MyDogs = () => {
+const MyDogs = ({ user }) => {
   const [dogs, setDogs] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Загрузка данных о собаках из API или базы данных
+    const fetchDogs = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/api/user/dogs/${user.userId}`);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+
+        if (Array.isArray(data)) {
+          setDogs(data);
+        } else {
+          setError('Unexpected data format');
+        }
+      } catch (error) {
+        console.error("Ошибка при загрузке данных:", error);
+        setError(error.message);
+      }
+    };
+
     fetchDogs();
-  }, []);
-
-  const fetchDogs = async () => {
-    // Пример получения данных из API
-    const response = await fetch('/api/dogs');
-    const data = await response.json();
-    setDogs(data);
-  };
-
-  const handleDelete = async (id) => {
-    // Пример запроса на удаление данных из API
-    await fetch(`/api/dogs/${id}`, {
-      method: 'DELETE',
-    });
-    // Обновление списка после удаления
-    setDogs(dogs.filter(dog => dog.id !== id));
-  };
+  }, [user.userId]);
 
   return (
     <div className={styles.myDogs}>
-      <h2 className={styles.myDogs__title}>Мои анкеты</h2>
-      <div className={styles.myDogs__list}>
-        {dogs.map(dog => (
-          <div key={dog.id} className={styles.myDogs__card}>
-            <h3 className={styles.myDogs__name}>{dog.name}</h3>
-            <div className={styles.myDogs__actions}>
-              <Link to={`/account/my-dogs/edit/${dog.id}`} className={styles.myDogs__edit}>Изменить</Link>
-              <button onClick={() => handleDelete(dog.id)} className={styles.myDogs__delete}>Удалить</button>
-            </div>
-          </div>
-        ))}
-      </div>
+      {error && <p className={styles.error}>{error}</p>}
+      {Array.isArray(dogs) && dogs.length > 0 ? (
+        dogs.map(dog => (
+          <Card key={dog.id_dog} dog={dog} user={user} />
+        ))
+      ) : (
+        <p>Нет данных для отображения.</p>
+      )}
     </div>
   );
 };

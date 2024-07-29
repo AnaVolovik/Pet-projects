@@ -20,9 +20,9 @@ const Main = ({ onRegister, user, onLogin, profile, onProfileChange }) => {
         <Route path="/register" element={<RegistrationPage onRegister={onRegister} />} />
         <Route path="/account/" element={<AccountPage user={user} />}>
           {user?.userId && <Route index element={<Navigate to={`/account/${user.userId}/my-data`} />} />}
-          <Route path=":userId/my-data" element={<MyData />} />
-          <Route path=":userId/my-dogs" element={<MyDogs />} />
-          <Route path=":userId/favourites" element={<Favourites />} />
+          <Route path=":userId/my-data" element={<MyData user={user} />} />
+          <Route path=":userId/my-dogs" element={<MyDogs user={user} />} />
+          <Route path=":userId/favourites" element={<Favourites user={user} />} />
         </Route>
         <Route path="/add-dog" element={<AddDogPage user={user} onProfileChange={onProfileChange} />} />
         <Route path="/contact" element={<ContactPage />} />

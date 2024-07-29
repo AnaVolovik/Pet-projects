@@ -7,95 +7,11 @@ const port = 5000;
 
 // Настройка multer
 const upload = multer({
-  storage: multer.memoryStorage(), // Память для хранения файла
+  storage: multer.memoryStorage(),
 });
 
 app.use(express.json());
 app.use(cors());
-
-// Добавление анкеты собаки
-app.post('/api/add-dog', upload.array('photos', 3), async (req, res) => {
-  const { fk_reg_data, petName, age, gender, breed, color, pedigree } = req.body;
-  const photos = req.files;
-
-  // Преобразуем файлы в бинарный формат и получаем их типы
-  const photoBuffers = photos.map(file => file.buffer);
-  const photoFormats = photos.map(file => file.mimetype);
-
-  try {
-    const resultProfile = await db.query(
-      `INSERT INTO profile (fk_reg_data, name_dog, age, gender, breed, color, pedigree, date_add) 
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-      [
-        fk_reg_data,
-        petName,
-        age,
-        gender,
-        breed,
-        color,
-        pedigree,
-        new Date().toISOString().split('T')[0] // Текущая дата анкеты
-      ]
-    );
-    const profileId = resultProfile.insertId; // Получаем ID собаки
-
-    // Вставка фотографий
-    await db.query(
-      `INSERT INTO photo (fk_ph_profile, photo1, photo2, photo3, photo_format1, photo_format2, photo_format3) 
-       VALUES (?, ?, ?, ?, ?, ?, ?)`,
-      [
-        profileId,
-        photoBuffers[0] || null, photoBuffers[1] || null, photoBuffers[2] || null,
-        photoFormats[0] || null, photoFormats[1] || null, photoFormats[2] || null
-      ]
-    );
-
-    // Получение всех данных профиля собаки
-    const [dogProfile] = await db.query(
-      `SELECT profile.*, photo.photo1, photo.photo2, photo.photo3, photo.photo_format1, photo.photo_format2, photo.photo_format3
-       FROM profile
-       LEFT JOIN photo ON profile.id_dog = photo.fk_ph_profile
-       WHERE profile.id_dog = ?`,
-      [profileId]
-    );
-
-    res.status(200).json(dogProfile);
-  } catch (error) {
-    console.error('Error inserting dog data:', error);
-    res.status(500).json({ message: 'Server error' });
-  }
-});
-
-
-// Получение изображений в бинарном формате
-app.get('/api/photo/:id', async (req, res) => {
-  const photoId = req.params.id;
-
-  try {
-    const result = await db.query(
-      'SELECT photo1, photo2, photo3, photo_format1, photo_format2, photo_format3 FROM photo WHERE id_photo = ?',
-      [photoId]
-    );
-
-    const { photo1, photo2, photo3, photo_format1, photo_format2, photo_format3 } = result[0];
-
-    if (photo1) {
-      res.setHeader('Content-Type', photo_format1 || 'image/jpeg');
-      res.send(photo1);
-    } else if (photo2) {
-      res.setHeader('Content-Type', photo_format2 || 'image/jpeg');
-      res.send(photo2);
-    } else if (photo3) {
-      res.setHeader('Content-Type', photo_format3 || 'image/jpeg');
-      res.send(photo3);
-    } else {
-      res.status(404).send('No image found');
-    }
-  } catch (error) {
-    console.error('Error fetching photo:', error);
-    res.status(500).send('Server error');
-  }
-});
 
 // Получение списка городов
 app.get('/api/cities', async (req, res) => {
@@ -153,7 +69,57 @@ app.get('/api/colors', async (req, res) => {
   }
 });
 
-// Регистрация пользователя
+// Запрос данных пользователя 
+app.get('/api/user/data/:userId', async (req, res) => {
+  const userId = req.params.userId;
+
+  try {
+    const userQuery = 'SELECT r.name_reg as name, r.email, c.city, c.tel_num as phone FROM registr_data r JOIN contacts c ON r.id_reg = c.fk_con_reg WHERE r.id_reg = ?';
+    const userResults = await db.query(userQuery, [userId]);
+
+    if (userResults.length === 0) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    const user = userResults[0];
+    res.status(200).json(user);
+  } catch (error) {
+    console.error('Error fetching user data:', error.message);
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+});
+
+// Получение изображений в бинарном формате
+app.get('/api/photo/:id', async (req, res) => {
+  const photoId = req.params.id;
+
+  try {
+    const result = await db.query(
+      'SELECT photo1, photo2, photo3, photo_format1, photo_format2, photo_format3 FROM photo WHERE id_photo = ?',
+      [photoId]
+    );
+
+    const { photo1, photo2, photo3, photo_format1, photo_format2, photo_format3 } = result[0];
+
+    if (photo1) {
+      res.setHeader('Content-Type', photo_format1 || 'image/jpeg');
+      res.send(photo1);
+    } else if (photo2) {
+      res.setHeader('Content-Type', photo_format2 || 'image/jpeg');
+      res.send(photo2);
+    } else if (photo3) {
+      res.setHeader('Content-Type', photo_format3 || 'image/jpeg');
+      res.send(photo3);
+    } else {
+      res.status(404).send('No image found');
+    }
+  } catch (error) {
+    console.error('Error fetching photo:', error);
+    res.status(500).send('Server error');
+  }
+});
+
+// Регистрация пользователя ("Регистрация")
 app.post('/api/register', async (req, res) => {
   const { name, email, city, phone, password } = req.body;
   
@@ -185,27 +151,7 @@ app.post('/api/register', async (req, res) => {
   }
 });
 
-// Запрос данных пользователя
-app.get('/api/user/data/:userId', async (req, res) => {
-  const userId = req.params.userId;
-
-  try {
-    const userQuery = 'SELECT r.name_reg as name, r.email, c.city, c.tel_num as phone FROM registr_data r JOIN contacts c ON r.id_reg = c.fk_con_reg WHERE r.id_reg = ?';
-    const userResults = await db.query(userQuery, [userId]);
-
-    if (userResults.length === 0) {
-      return res.status(404).json({ message: 'User not found' });
-    }
-
-    const user = userResults[0];
-    res.status(200).json(user);
-  } catch (error) {
-    console.error('Error fetching user data:', error.message);
-    res.status(500).json({ message: 'Server error', error: error.message });
-  }
-});
-
-// Логин пользователя
+// Логин пользователя ("Вход")
 app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -239,7 +185,7 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-// Обработка формы обратной связи
+// Обработка формы обратной связи ("Контакты")
 app.post('/api/contact', async (req, res) => {
   const { name, email, message } = req.body;
 
@@ -252,6 +198,95 @@ app.post('/api/contact', async (req, res) => {
     res.status(200).json({ message: 'Message sent' });
   } catch (err) {
     console.error('Error sending message:', err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Добавление анкеты собаки ("Добавить анкету")
+app.post('/api/add-dog', upload.array('photos', 3), async (req, res) => {
+  const { fk_reg_data, petName, age, gender, breed, color, pedigree } = req.body;
+  const photos = req.files;
+
+  // Преобразуем файлы в бинарный формат и получаем их типы
+  const photoBuffers = photos.map(file => file.buffer);
+  const photoFormats = photos.map(file => file.mimetype);
+
+  try {
+    const resultProfile = await db.query(
+      `INSERT INTO profile (fk_reg_data, name_dog, age, gender, breed, color, pedigree, date_add) 
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        fk_reg_data,
+        petName,
+        age,
+        gender,
+        breed,
+        color,
+        pedigree,
+        new Date().toISOString().split('T')[0] // Текущая дата анкеты
+      ]
+    );
+    const profileId = resultProfile.insertId; // Получаем ID собаки
+
+    // Вставка фотографий
+    await db.query(
+      `INSERT INTO photo (fk_ph_profile, photo1, photo2, photo3, photo_format1, photo_format2, photo_format3) 
+       VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      [
+        profileId,
+        photoBuffers[0] || null, photoBuffers[1] || null, photoBuffers[2] || null,
+        photoFormats[0] || null, photoFormats[1] || null, photoFormats[2] || null
+      ]
+    );
+
+    // Получение всех данных профиля собаки
+    const [dogProfile] = await db.query(
+      `SELECT profile.*, photo.photo1, photo.photo2, photo.photo3, photo.photo_format1, photo.photo_format2, photo.photo_format3
+       FROM profile
+       LEFT JOIN photo ON profile.id_dog = photo.fk_ph_profile
+       WHERE profile.id_dog = ?`,
+      [profileId]
+    );
+
+    res.status(200).json(dogProfile);
+  } catch (error) {
+    console.error('Error inserting dog data:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Получение списка собак авторизованного пользователя ("Мои анкеты")
+app.get('/api/user/dogs/:userId', async (req, res) => {
+  const userId = req.params.userId;
+
+  try {
+    const result = await db.query(
+      `SELECT profile.*, photo.photo1, photo.photo2, photo.photo3, photo.photo_format1, photo.photo_format2, photo.photo_format3
+       FROM profile
+       LEFT JOIN photo ON profile.id_dog = photo.fk_ph_profile
+       WHERE profile.fk_reg_data = ?`,
+      [userId]
+    );
+
+    const formattedResult = result.map(dog => {
+      // Функция для преобразования данных в строку Base64
+      const toBase64 = (photo, format) => {
+        if (photo && Buffer.isBuffer(photo)) {
+          return `data:${format};base64,${photo.toString('base64')}`;
+        }
+        return null;
+      };
+
+      dog.photo1 = toBase64(dog.photo1, dog.photo_format1);
+      dog.photo2 = toBase64(dog.photo2, dog.photo_format2);
+      dog.photo3 = toBase64(dog.photo3, dog.photo_format3);
+
+      return dog;
+    });
+
+    res.status(200).json(formattedResult);
+  } catch (error) {
+    console.error('Error fetching user dogs:', error);
     res.status(500).json({ message: 'Server error' });
   }
 });
