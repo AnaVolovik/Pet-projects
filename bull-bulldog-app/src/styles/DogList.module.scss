@@ -1,7 +1,6 @@
 .dogList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
   flex-grow: 1;
-  padding: 40px 60px 70px;
-  background-color: #FFF;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
 }

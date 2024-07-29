@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/SearchDogForm.module.scss';
 
-const SearchForm = () => {
+const SearchForm = ({ onSearch }) => {
   const [breed, setBreed] = useState('');
   const [age, setAge] = useState('');
   const [gender, setGender] = useState('');
   const [color, setColor] = useState('');
   const [city, setCity] = useState('');
-  const [pedigree, setPedigree] = useState(1);
+  const [pedigree, setPedigree] = useState(0);
   const [withPhoto, setWithPhoto] = useState(true);
   const [errors, setErrors] = useState({});
   const [breeds, setBreeds] = useState([]);
@@ -62,19 +62,32 @@ const SearchForm = () => {
     fetchCities();
   }, []);
 
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validateForm();
     if (Object.keys(validationErrors).length === 0) {
-      console.log('Форма поиска собак отправлена:', { breed, age, gender, color, city, pedigree, withPhoto });
-      setBreed('');
-      setAge('');
-      setGender('Кобель');
-      setColor('');
-      setCity('');
-      setPedigree(true);
-      setWithPhoto(true);
+      const searchParams = {
+        breed,
+        age,
+        gender,
+        color,
+        city,
+        pedigree: pedigree === 1 ? 1 : 0,
+        withPhoto,
+      };
+
+      const queryParams = new URLSearchParams(searchParams).toString();
+
+      try {
+        const response = await fetch(`http://localhost:5000/api/dogs?${queryParams}`);
+        const data = await response.json();
+        if (onSearch) {
+          onSearch(data);
+        }
+      } catch (error) {
+        console.error('Error fetching search results:', error);
+      }
+
       setErrors({});
     } else {
       setErrors(validationErrors);
@@ -172,7 +185,7 @@ const SearchForm = () => {
       <div className={styles.searchDogForm__group}>
         <label className={styles.searchDogForm__label}>Наличие родословной</label>
         <div className={styles.searchDogForm__radioBtns}>
-        <label className={styles.addDogForm__radioLabel}>
+          <label className={styles.addDogForm__radioLabel}>
             <input
               type="radio"
               value="true"

@@ -291,6 +291,75 @@ app.get('/api/user/dogs/:userId', async (req, res) => {
   }
 });
 
+// Запрос данных о всех собаках и их владельцах ("DogList")
+app.get('/api/dogs', async (req, res) => {
+  const { age, breed, city, color, gender, pedigree, withPhoto } = req.query;
+
+  let dogsQuery = `
+    SELECT 
+      p.id_dog, p.name_dog, p.age, p.breed, p.gender, p.date_add,
+      ph.photo1, ph.photo2, ph.photo3, ph.photo_format1, ph.photo_format2, ph.photo_format3,
+      r.name_reg AS owner_name, r.email AS owner_email, ct.city AS owner_city, ct.tel_num AS owner_phone
+    FROM profile p
+    LEFT JOIN photo ph ON p.id_dog = ph.fk_ph_profile
+    JOIN registr_data r ON p.fk_reg_data = r.id_reg
+    JOIN contacts ct ON r.id_reg = ct.fk_con_reg
+    WHERE 1=1
+  `;
+
+  const queryParams = [];
+
+  if (age) {
+    dogsQuery += ' AND p.age = ?';
+    queryParams.push(age);
+  }
+  if (breed) {
+    dogsQuery += ' AND p.breed = ?';
+    queryParams.push(breed);
+  }
+  if (city) {
+    dogsQuery += ' AND ct.city = ?';
+    queryParams.push(city);
+  }
+  if (color) {
+    dogsQuery += ' AND p.color = ?';
+    queryParams.push(color);
+  }
+  if (gender) {
+    dogsQuery += ' AND p.gender = ?';
+    queryParams.push(gender);
+  }
+  if (pedigree) {
+    dogsQuery += ' AND p.pedigree = ?';
+    queryParams.push(pedigree);
+  }
+  if (withPhoto === 'true') {
+    dogsQuery += ' AND (ph.photo1 IS NOT NULL OR ph.photo2 IS NOT NULL OR ph.photo3 IS NOT NULL)';
+  }
+
+  try {
+    const dogsResults = await db.query(dogsQuery, queryParams);
+    const toBase64 = (photo, format) => {
+      if (photo && Buffer.isBuffer(photo)) {
+        return `data:${format};base64,${photo.toString('base64')}`;
+      }
+      return null;
+    };
+
+    const formattedResults = dogsResults.map(dog => {
+      dog.photo1 = toBase64(dog.photo1, dog.photo_format1);
+      dog.photo2 = toBase64(dog.photo2, dog.photo_format2);
+      dog.photo3 = toBase64(dog.photo3, dog.photo_format3);
+      return dog;
+    });
+
+    res.status(200).json(formattedResults);
+  } catch (error) {
+    console.error('Error fetching filtered dogs data:', error.message);
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
