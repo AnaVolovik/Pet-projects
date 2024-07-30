@@ -77,7 +77,7 @@ const SearchForm = ({ onSearch }) => {
       };
 
       const queryParams = new URLSearchParams(searchParams).toString();
-
+  
       try {
         const response = await fetch(`http://localhost:5000/api/dogs?${queryParams}`);
         const data = await response.json();
@@ -87,7 +87,7 @@ const SearchForm = ({ onSearch }) => {
       } catch (error) {
         console.error('Error fetching search results:', error);
       }
-
+  
       setErrors({});
     } else {
       setErrors(validationErrors);

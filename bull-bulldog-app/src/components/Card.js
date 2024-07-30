@@ -1,9 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from '../styles/Card.module.scss';
 
 const Card = ({ dog, user }) => {
-  const { name_dog, age, breed, gender, photo1, date_add } = dog;
-  const photoUrl = photo1 ? photo1 : 'https://via.placeholder.com/150';
+  const navigate = useNavigate();
+
+  const { id_dog, name_dog, age, breed, gender, photo1, date_add } = dog;
+  const photoUrl = photo1 ? photo1 : 'https://via.placeholder.com/150/EEEEEE/000000?text=Нет+фото';
   const formattedDate = new Date(date_add).toLocaleDateString();
 
   const getYearString = (age) => {
@@ -16,8 +19,12 @@ const Card = ({ dog, user }) => {
     return 'лет';
   };
 
+  const handleClick = () => {
+    navigate(`/dog/${id_dog}`);
+  };
+
   return (
-    <div key={dog.id_dog} className={styles.card}>
+    <div key={dog.id_dog} className={styles.card} onClick={handleClick}>
       <div className={styles.card__photo}>
         <img src={photoUrl} alt={name_dog} />
       </div>
@@ -26,7 +33,7 @@ const Card = ({ dog, user }) => {
         <p className={styles.card__detail}>{breed}</p>
         <p className={styles.card__detail}>{age} {getYearString(age)}</p>
         <p className={styles.card__detail}>{gender}</p>
-        <p className={styles.card__detail}>{user.city}</p>
+        <p className={styles.card__detail}>{user?.city}</p>
       </div>
       <div className={styles.card__date}>{formattedDate}</div>
     </div>

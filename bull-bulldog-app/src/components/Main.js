@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import HomePage from '../pages/HomePage';
 import LoginPage from '../pages/LoginPage';
@@ -11,11 +11,13 @@ import MyData from '../components/MyData';
 import MyDogs from '../components/MyDogs';
 import Favourites from '../components/Favourites';
 
-const Main = ({ onRegister, user, onLogin, profile, onProfileChange }) => {
+const Main = ({ onRegister, user, onLogin, onProfileChange }) => {
+  const [dogs, setDogs] = useState([]);
+
   return (
     <main>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage key="home" setDogs={setDogs} />} />
         <Route path="/login" element={<LoginPage onLogin={onLogin} />} />
         <Route path="/register" element={<RegistrationPage onRegister={onRegister} />} />
         <Route path="/account/" element={<AccountPage user={user} />}>
@@ -26,7 +28,7 @@ const Main = ({ onRegister, user, onLogin, profile, onProfileChange }) => {
         </Route>
         <Route path="/add-dog" element={<AddDogPage user={user} onProfileChange={onProfileChange} />} />
         <Route path="/contact" element={<ContactPage />} />
-        <Route path="/profile/:id" element={<DogProfilePage user={user} profile={profile} />} />
+        <Route path="/dog/:id" element={<DogProfilePage dogs={dogs} />} />
       </Routes>
     </main>
   );

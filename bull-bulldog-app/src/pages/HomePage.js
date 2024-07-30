@@ -5,8 +5,8 @@ import DogList from '../components/DogList';
 import classNames from 'classnames';
 import styles from '../styles/HomePage.module.scss';
 
-const HomePage = () => {
-  const [dogs, setDogs] = useState([]);
+const HomePage = ({ setDogs }) => {
+  const [dogsData, setDogsData] = useState([]);
 
   useEffect(() => {
     const fetchDogs = async () => {
@@ -16,6 +16,7 @@ const HomePage = () => {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
+        setDogsData(data);
         setDogs(data);
       } catch (error) {
         console.error('Error fetching dogs:', error);
@@ -23,7 +24,16 @@ const HomePage = () => {
     };
 
     fetchDogs();
-  }, []);
+  }, [setDogs]);
+
+  const handleSearch = async (data) => {
+    if (Array.isArray(data)) {
+      setDogsData(data);
+      setDogs(data);
+    } else {
+      console.error('Invalid search data:', data);
+    }
+  };
 
   return (
     <div>
@@ -33,8 +43,8 @@ const HomePage = () => {
           <div id="search-form" className={styles.homePage__content}>
             <h2 className={classNames(styles.homePage__title, 'h2')}>Найти собаку для вязки</h2>
             <div className={styles.homePage__body}>
-              <SearchForm onSearch={setDogs} />
-              <DogList dogs={dogs} />
+              <SearchForm onSearch={handleSearch} />
+              <DogList dogs={dogsData} />
             </div>
           </div>
         </div>

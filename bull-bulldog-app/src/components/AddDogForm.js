@@ -90,7 +90,7 @@ const AddDogForm = ({ user, onProfileChange }) => {
 
       const result = await response.json();
       if (response.ok) {
-        console.log('Success:', result);
+        console.log('Форма отправлена:', result);
         onProfileChange(result);
         setPetName('');
         setBreed('');
@@ -101,7 +101,7 @@ const AddDogForm = ({ user, onProfileChange }) => {
         setPhotos([]);
         setPhotoPreviews([]);
         setErrors({});
-        navigate(`/profile/${result.id_dog}`);
+        navigate(`/dog/${result.id_dog}`);
       } else {
         console.error('Server Error:', result);
         setErrors(result.errors || {});

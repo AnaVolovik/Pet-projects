@@ -297,7 +297,7 @@ app.get('/api/dogs', async (req, res) => {
 
   let dogsQuery = `
     SELECT 
-      p.id_dog, p.name_dog, p.age, p.breed, p.gender, p.date_add,
+      p.id_dog, p.name_dog, p.age, p.breed, p.gender, p.color, p.date_add,
       ph.photo1, ph.photo2, ph.photo3, ph.photo_format1, ph.photo_format2, ph.photo_format3,
       r.name_reg AS owner_name, r.email AS owner_email, ct.city AS owner_city, ct.tel_num AS owner_phone
     FROM profile p
