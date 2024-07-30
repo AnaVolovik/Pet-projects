@@ -4,6 +4,7 @@ import Topbar from './components/Topbar';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Main from './components/Main';
+import ScrollToHashElement from './components/ScrollToHashElement';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -39,6 +40,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToHashElement />
       <div className="wrapper">
         <Topbar user={user} onLogout={handleLogout} />
         <Header />
