@@ -13,6 +13,7 @@ import Favourites from '../components/Favourites';
 
 const Main = ({ onRegister, user, onLogin, onProfileChange }) => {
   const [dogs, setDogs] = useState([]);
+  const [favourites, setFavourites] = useState([]);
 
   return (
     <main>
@@ -24,11 +25,11 @@ const Main = ({ onRegister, user, onLogin, onProfileChange }) => {
           {user?.userId && <Route index element={<Navigate to={`/account/${user.userId}/my-data`} />} />}
           <Route path=":userId/my-data" element={<MyData user={user} />} />
           <Route path=":userId/my-dogs" element={<MyDogs user={user} />} />
-          <Route path=":userId/favourites" element={<Favourites user={user} />} />
+          <Route path=":userId/favourites" element={<Favourites user={user} setFavourites={setFavourites} />} />
         </Route>
         <Route path="/add-dog" element={<AddDogPage user={user} onProfileChange={onProfileChange} />} />
         <Route path="/contact" element={<ContactPage />} />
-        <Route path="/dog/:id" element={<DogProfilePage dogs={dogs} />} />
+        <Route path="/dog/:id" element={<DogProfilePage dogs={dogs} user={user} />} />
       </Routes>
     </main>
   );

@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import classNames from 'classnames';
 import styles from '../styles/DogProfilePage.module.scss';
 
-const DogProfilePage = ({ dogs = [] }) => {
+const DogProfilePage = ({ dogs = [], user }) => {
   const { id } = useParams();
   const dog = dogs.find(d => d.id_dog === parseInt(id));
 
@@ -28,6 +28,29 @@ const DogProfilePage = ({ dogs = [] }) => {
   ].filter(url => url !== null);
 
   const placeholderUrl = 'https://via.placeholder.com/150/EEEEEE/000000?text=Нет+фото';
+
+  const addToFavourites = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/api/liked_adds', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          fk_id_reg: user.userId,
+          fk_id_dog: dog.id_dog,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const result = await response.json();
+    } catch (error) {
+      console.error('Ошибка при добавлении в избранное:', error);
+    }
+  };
 
   return (
     <section className={styles.dogProfile}>
@@ -85,6 +108,13 @@ const DogProfilePage = ({ dogs = [] }) => {
                 <p className={styles.dog__title}>Номер телефона:</p>
                 <p className={styles.dog__value}>{owner_phone}</p>
               </div>
+              <button 
+                className={styles.dogProfile__button} 
+                onClick={addToFavourites} 
+                disabled={!user}
+              >
+                {user ? 'В избранное' : 'Авторизуйтесь, чтобы добавить в избранное'}
+              </button>
             </div>
           </div>
         </div>

@@ -1,45 +1,42 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import Card from './Card';
 import styles from '../styles/Favourites.module.scss';
 
-const Favourites = () => {
-  const [favourites, setFavourites] = useState([]);
+const Favourites = ({ user, setFavourites }) => {
+  const [favouriteDogs, setFavouriteDogs] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Загрузка избранных данных из API или базы данных
-    fetchFavourites();
-  }, []);
+    const fetchFavourites = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/api/favourites/${user.userId}`);
+        if (!response.ok) {
+          throw new Error('Ошибка при загрузке избранных анкет');
+        }
+        const data = await response.json();
+        setFavouriteDogs(data);
+        setFavourites(data);
+      } catch (error) {
+        console.error('Ошибка при загрузке избранных анкет:', error);
+        setError(error.message);
+      }
+    };
 
-  const fetchFavourites = async () => {
-    // Пример получения данных из API
-    const response = await fetch('/api/favourites');
-    const data = await response.json();
-    setFavourites(data);
-  };
-
-  const handleRemove = async (id) => {
-    // Пример запроса на удаление из избранного в API
-    await fetch(`/api/favourites/${id}`, {
-      method: 'DELETE',
-    });
-    // Обновление списка после удаления
-    setFavourites(favourites.filter(fav => fav.id !== id));
-  };
+    if (user) {
+      fetchFavourites();
+    }
+  }, [user, setFavourites]);
 
   return (
     <div className={styles.favourites}>
-      <h2 className={styles.favourites__title}>Избранное</h2>
-      <div className={styles.favourites__list}>
-        {favourites.map(dog => (
-          <div key={dog.id} className={styles.favourites__card}>
-            <h3 className={styles.favourites__name}>{dog.name}</h3>
-            <div className={styles.favourites__actions}>
-              <Link to={`/dogs/${dog.id}`} className={styles.favourites__view}>Посмотреть</Link>
-              <button onClick={() => handleRemove(dog.id)} className={styles.favourites__remove}>Удалить</button>
-            </div>
-          </div>
-        ))}
-      </div>
+      {error && <p className={styles.error}>{error}</p>}
+      {Array.isArray(favouriteDogs) && favouriteDogs.length > 0 ? (
+        favouriteDogs.map(dog => (
+          <Card key={dog.id_dog} dog={dog} user={user} />
+        ))
+      ) : (
+        <p>Нет данных для отображения.</p>
+      )}
     </div>
   );
 };

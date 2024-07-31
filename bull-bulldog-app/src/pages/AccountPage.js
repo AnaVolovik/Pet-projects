@@ -1,13 +1,28 @@
 import React from 'react';
-import { Link, Route, Routes, Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 import classNames from 'classnames';
 import styles from '../styles/AccountPage.module.scss';
 
 const AccountMenu = ({ user }) => (
   <nav className={styles.account__menu}>
-    <Link to={`/account/${user?.userId}/my-data`} className={styles.account__item}>Мои данные</Link>
-    <Link to={`/account/${user?.userId}/my-dogs`} className={styles.account__item}>Мои анкеты</Link>
-    <Link to={`/account/${user?.userId}/favourites`} className={styles.account__item}>Избранное</Link>
+    <NavLink
+      to={`/account/${user?.userId}/my-data`}
+      className={({ isActive }) => isActive ? classNames(styles.account__item, styles.active) : styles.account__item}
+    >
+      Мои данные
+    </NavLink>
+    <NavLink
+      to={`/account/${user?.userId}/my-dogs`}
+      className={({ isActive }) => isActive ? classNames(styles.account__item, styles.active) : styles.account__item}
+    >
+      Мои анкеты
+    </NavLink>
+    <NavLink
+      to={`/account/${user?.userId}/favourites`}
+      className={({ isActive }) => isActive ? classNames(styles.account__item, styles.active) : styles.account__item}
+    >
+      Избранное
+    </NavLink>
   </nav>
 );
 

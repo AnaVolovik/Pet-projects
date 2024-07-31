@@ -360,6 +360,66 @@ app.get('/api/dogs', async (req, res) => {
   }
 });
 
+// Добавление анкеты в избранное (кнопка "В избранное")
+app.post('/api/liked_adds', async (req, res) => {
+  const { fk_id_reg, fk_id_dog } = req.body;
+
+  if (!fk_id_reg || !fk_id_dog) {
+    return res.status(400).json({ message: 'Необходимы fk_id_reg и fk_id_dog' });
+  }
+
+  try {
+    const result = await db.query(
+      'INSERT INTO liked_adds (fk_id_reg, fk_id_dog) VALUES (?, ?)',
+      [fk_id_reg, fk_id_dog]
+    );
+    res.status(201).json({ message: 'Анкета добавлена в избранное', id: result.insertId });
+  } catch (error) {
+    console.error('Ошибка при добавлении в избранное:', error);
+    res.status(500).json({ message: 'Ошибка сервера' });
+  }
+});
+
+// Получение избранных анкет пользователя ("Избранное")
+app.get('/api/favourites/:userId', async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    const favourites = await db.query(
+      `SELECT 
+          dogs.*, 
+          photo.photo1, photo.photo2, photo.photo3, 
+          photo.photo_format1, photo.photo_format2, photo.photo_format3 
+      FROM profile dogs 
+      JOIN liked_adds ON dogs.id_dog = liked_adds.fk_id_dog 
+      LEFT JOIN photo ON dogs.id_dog = photo.fk_ph_profile 
+      WHERE liked_adds.fk_id_reg = ?`,
+  [userId]
+    );
+
+    const toBase64 = (photo, format) => {
+      if (photo && Buffer.isBuffer(photo)) {
+        return `data:${format};base64,${photo.toString('base64')}`;
+      }
+      return null;
+    };
+
+    const formattedFavourites = favourites.map(dog => {
+      dog.photo1 = toBase64(dog.photo1, dog.photo_format1);
+      dog.photo2 = toBase64(dog.photo2, dog.photo_format2);
+      dog.photo3 = toBase64(dog.photo3, dog.photo_format3);
+      return dog;
+    });
+
+    console.log(formattedFavourites);
+
+    res.status(200).json(formattedFavourites);
+  } catch (error) {
+    console.error('Ошибка при получении избранных анкет:', error);
+    res.status(500).json({ message: 'Ошибка сервера' });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
