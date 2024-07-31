@@ -15,6 +15,17 @@ const Main = ({ onRegister, user, onLogin, onProfileChange }) => {
   const [dogs, setDogs] = useState([]);
   const [favourites, setFavourites] = useState([]);
 
+  const handleProfileChange = (newDog) => {
+    console.log('onProfileChange вызван с данными:', newDog); // Логируем новые данные о собаке
+
+    // Обновляем состояние с новым догом
+    setDogs(prevDogs => {
+      const updatedDogs = [...prevDogs, newDog];
+      console.log('Обновлённое состояние собак:', updatedDogs); // Логируем обновлённое состояние
+      return updatedDogs;
+    });
+  };
+
   return (
     <main>
       <Routes>
@@ -27,7 +38,7 @@ const Main = ({ onRegister, user, onLogin, onProfileChange }) => {
           <Route path=":userId/my-dogs" element={<MyDogs user={user} />} />
           <Route path=":userId/favourites" element={<Favourites user={user} setFavourites={setFavourites} />} />
         </Route>
-        <Route path="/add-dog" element={<AddDogPage user={user} onProfileChange={onProfileChange} />} />
+        <Route path="/add-dog" element={<AddDogPage user={user} onProfileChange={handleProfileChange} />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/dog/:id" element={<DogProfilePage dogs={dogs} user={user} />} />
       </Routes>

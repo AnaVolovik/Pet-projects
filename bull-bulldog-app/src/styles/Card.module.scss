@@ -1,4 +1,5 @@
 .card {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 290px;
@@ -17,6 +18,13 @@
   @media (max-width: "1024px") {
     width: 236px;
     height: 485px;
+  }
+
+  &:hover{
+    cursor: pointer;
+    .card__deleteIcon {
+      display: block;
+    }
   }
 
   &__photo {
@@ -76,5 +84,14 @@
     line-height: 22px;
     text-align: right;
     color: #727171;
+  }
+
+  &__deleteIcon {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    cursor: pointer;
+    display: none;
+    font-size: 1.5rem;
   }
 }

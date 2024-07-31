@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../styles/Card.module.scss';
 
-const Card = ({ dog, user }) => {
+const Card = ({ dog, user, onDelete }) => {
   const navigate = useNavigate();
 
   const { id_dog, name_dog, age, breed, gender, photo1, date_add } = dog;
@@ -23,8 +23,15 @@ const Card = ({ dog, user }) => {
     navigate(`/dog/${id_dog}`);
   };
 
+  const handleDeleteClick = (e) => {
+    e.stopPropagation();
+    if (onDelete) onDelete(id_dog);
+  };
+
+  const showDeleteIcon = window.location.pathname.startsWith(`/account/${user?.userId}/`);
+
   return (
-    <div key={dog.id_dog} className={styles.card} onClick={handleClick}>
+    <div className={styles.card} onClick={handleClick}>
       <div className={styles.card__photo}>
         <img src={photoUrl} alt={name_dog} />
       </div>
@@ -36,6 +43,15 @@ const Card = ({ dog, user }) => {
         <p className={styles.card__detail}>{user?.city}</p>
       </div>
       <div className={styles.card__date}>{formattedDate}</div>
+      {showDeleteIcon && (
+        <div className={styles.card__deleteIcon} onClick={handleDeleteClick}>
+          <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11.75 8.25V15.75H10.25V8.25H11.75Z" fill="red"/>
+            <path d="M7.75 15.75V8.25H6.25L6.25 15.75H7.75Z" fill="red"/>
+            <path fillRule="evenodd" clipRule="evenodd" d="M13.75 0.25H4.25V4.25H0V5.75H2.25V19.75H15.75V5.75H18V4.25H13.75V0.25ZM12.25 4.25V1.75H5.75V4.25H12.25ZM3.75 5.75V18.25H14.25V5.75H3.75Z" fill="red"/>
+          </svg>
+        </div>
+      )}
     </div>
   );
 };

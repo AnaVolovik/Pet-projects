@@ -108,13 +108,11 @@ const DogProfilePage = ({ dogs = [], user }) => {
                 <p className={styles.dog__title}>Номер телефона:</p>
                 <p className={styles.dog__value}>{owner_phone}</p>
               </div>
-              <button 
-                className={styles.dogProfile__button} 
-                onClick={addToFavourites} 
-                disabled={!user}
-              >
-                {user ? 'В избранное' : 'Авторизуйтесь, чтобы добавить в избранное'}
-              </button>
+              {user ?
+              <button className={styles.dogProfile__button} onClick={addToFavourites} disabled={!user}>В избранное</button>
+              :
+              <p className={styles.dogProfile__message} >Авторизуйтесь, чтобы добавить в избранное</p>
+              }
             </div>
           </div>
         </div>

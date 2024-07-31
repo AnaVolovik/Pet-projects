@@ -420,6 +420,33 @@ app.get('/api/favourites/:userId', async (req, res) => {
   }
 });
 
+// Удаление анкеты собаки из БД ("Мои анкеты")
+app.delete('/api/dogs/:id', async (req, res) => {
+  const { id } = req.params;
+  const userId = req.headers['user-id'];
+
+  if (!userId) {
+    return res.status(400).json({ message: 'User ID is required' });
+  }
+
+  try {
+    await db.query('DELETE FROM profile WHERE id_dog = ?', [id]);
+
+    const remainingDogs = await db.query(
+      `SELECT profile.*, photo.photo1, photo.photo2, photo.photo3, photo.photo_format1, photo.photo_format2, photo.photo_format3
+       FROM profile
+       LEFT JOIN photo ON profile.id_dog = photo.fk_ph_profile
+       WHERE profile.fk_reg_data = ?`,
+      [userId]
+    );
+
+    res.status(200).json({ message: 'Собака успешно удалена', remainingDogs });
+  } catch (error) {
+    console.error('Ошибка при удалении собаки:', error);
+    res.status(500).json({ message: 'Ошибка сервера' });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
