@@ -498,6 +498,33 @@ app.delete('/api/user/delete/:userId', async (req, res) => {
   }
 });
 
+// Редактирование данных пользователя
+app.put('/api/user/update/:userId', async (req, res) => {
+  const { userId } = req.params;
+  const { name, email, city, phone } = req.body;
+
+  try {
+    const updateUserData = await db.query(
+      `UPDATE registr_data SET name_reg = ?, email = ? WHERE id_reg = ?`,
+      [name, email, userId]
+    );
+
+    const updateUserContacts = await db.query(
+      `UPDATE contacts SET city = ?, tel_num = ? WHERE fk_con_reg = ?`,
+      [city, phone, userId]
+    );
+
+    if (updateUserData.affectedRows === 0 && updateUserContacts.affectedRows === 0) {
+      return res.status(404).json({ message: 'Пользователь не найден' });
+    }
+
+    res.status(200).json({ userId, name, email, city, phone });
+  } catch (error) {
+    console.error('Ошибка при обновлении данных пользователя:', error);
+    res.status(500).json({ message: 'Ошибка сервера' });
+  }
+});
+
 
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);

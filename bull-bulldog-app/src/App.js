@@ -45,7 +45,7 @@ function App() {
         <Topbar user={user} onLogout={handleLogout} />
         <Header />
         <div className="main">
-          <Main onRegister={handleRegister} onLogin={handleLogin} user={user} profile={profile} onProfileChange={handleProfile} />
+          <Main onRegister={handleRegister} onLogin={handleLogin} user={user} profile={profile} onProfileChange={handleProfile} setUser={setUser} />
         </div>
         <Footer />
       </div>

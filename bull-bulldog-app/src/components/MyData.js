@@ -72,7 +72,7 @@ const MyData = () => {
         <p className={styles.myData__value}>{userData.phone}</p>
       </div>
       <div className={styles.myData__actions}>
-        <Link to="/edit" className={styles.myData__link}>Изменить данные</Link>
+        <Link to={`/account/${userId}/edit-my-data`} className={styles.myData__link}>Изменить данные</Link>
         <button 
           className={styles.myData__link}
           onClick={handleDelete}
