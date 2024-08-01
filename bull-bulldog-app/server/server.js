@@ -368,12 +368,26 @@ app.post('/api/liked_adds', async (req, res) => {
     return res.status(400).json({ message: 'Необходимы fk_id_reg и fk_id_dog' });
   }
 
+  const query = `
+    INSERT INTO liked_adds (fk_id_reg, fk_id_dog)
+    SELECT ?, ?
+    FROM DUAL
+    WHERE NOT EXISTS (
+      SELECT 1
+      FROM liked_adds
+      WHERE fk_id_reg = ? AND fk_id_dog = ?
+    )
+  `;
+
   try {
-    const result = await db.query(
-      'INSERT INTO liked_adds (fk_id_reg, fk_id_dog) VALUES (?, ?)',
-      [fk_id_reg, fk_id_dog]
-    );
-    res.status(201).json({ message: 'Анкета добавлена в избранное', id: result.insertId });
+    const result = await db.query(query, [fk_id_reg, fk_id_dog, fk_id_reg, fk_id_dog]);
+
+    if (result.affectedRows === 0) {
+      console.log('Запись уже существует в таблице');
+      return res.status(409).json({ message: 'Запись уже существует в таблице' });
+    }
+
+    res.status(201).json({ message: 'Анкета добавлена в избранное' });
   } catch (error) {
     console.error('Ошибка при добавлении в избранное:', error);
     res.status(500).json({ message: 'Ошибка сервера' });
