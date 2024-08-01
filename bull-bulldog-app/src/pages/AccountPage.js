@@ -33,8 +33,14 @@ const AccountPage = ({ user }) => {
         <div className={styles.account__content}>
           <h2 className={classNames(styles.account__title, 'h2')}>Личный кабинет</h2>
           <div className={styles.account__body}>
-            <AccountMenu user={user} />
-            <Outlet />
+            {user ? (
+              <>
+                <AccountMenu user={user} />
+                <Outlet />
+              </>
+            ) : (
+              <p className={styles.account__message}>Необходимо авторизоваться, чтобы получить доступ к личному кабинету.</p>
+            )}
           </div>
         </div>
       </div>
