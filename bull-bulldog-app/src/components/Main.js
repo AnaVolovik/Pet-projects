@@ -16,12 +16,8 @@ const Main = ({ onRegister, user, onLogin, onProfileChange }) => {
   const [favourites, setFavourites] = useState([]);
 
   const handleProfileChange = (newDog) => {
-    console.log('onProfileChange вызван с данными:', newDog); // Логируем новые данные о собаке
-
-    // Обновляем состояние с новым догом
     setDogs(prevDogs => {
       const updatedDogs = [...prevDogs, newDog];
-      console.log('Обновлённое состояние собак:', updatedDogs); // Логируем обновлённое состояние
       return updatedDogs;
     });
   };

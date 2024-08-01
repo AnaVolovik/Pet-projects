@@ -447,6 +447,26 @@ app.delete('/api/dogs/:id', async (req, res) => {
   }
 });
 
+// Удаление анкеты собаки из избранного ("Избранное")
+app.delete('/api/liked_adds/:id_dog', async (req, res) => {
+  const { id_dog } = req.params;
+  const userId = req.headers['user-id'];
+
+  if (!userId) {
+    return res.status(400).json({ message: 'User ID is required' });
+  }
+
+  try {
+    await db.query('DELETE FROM liked_adds WHERE fk_id_reg = ? AND fk_id_dog = ?', [userId, id_dog]);
+
+    res.status(200).json({ message: 'Анкета успешно удалена из избранного' });
+  } catch (error) {
+    console.error('Ошибка при удалении из избранного:', error);
+    res.status(500).json({ message: 'Ошибка сервера' });
+  }
+});
+
+
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });

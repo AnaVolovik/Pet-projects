@@ -27,12 +27,33 @@ const Favourites = ({ user, setFavourites }) => {
     }
   }, [user, setFavourites]);
 
+  const handleDelete = async (id_dog) => {
+    try {
+      const response = await fetch(`http://localhost:5000/api/liked_adds/${id_dog}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'User-ID': user.userId
+        }
+      });
+      if (!response.ok) {
+        throw new Error('Ошибка при удалении из избранного');
+      }
+      // Убираем удаленную собаку из состояния
+      setFavouriteDogs(prevDogs => prevDogs.filter(dog => dog.id_dog !== id_dog));
+      setFavourites(prevDogs => prevDogs.filter(dog => dog.id_dog !== id_dog));
+    } catch (error) {
+      console.error('Ошибка при удалении из избранного:', error);
+      setError(error.message);
+    }
+  };
+
   return (
     <div className={styles.favourites}>
       {error && <p className={styles.error}>{error}</p>}
       {Array.isArray(favouriteDogs) && favouriteDogs.length > 0 ? (
         favouriteDogs.map(dog => (
-          <Card key={dog.id_dog} dog={dog} user={user} />
+          <Card key={dog.id_dog} dog={dog} user={user} onDelete={() => handleDelete(dog.id_dog)} />
         ))
       ) : (
         <p>Нет данных для отображения.</p>
