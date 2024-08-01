@@ -11,4 +11,16 @@
       width: 560px;
     }
   }
+
+  &__message {
+    width: 50%;
+    margin: 0 auto;
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 25px;
+    text-align: center;
+    color: #F79007;
+  }
 }

@@ -9,7 +9,11 @@ const AddDogPage = ( {user, onProfileChange}) => {
       <div className={classNames(styles.addDog__container, '_container')}>
         <div className={styles.addDog__content}>
           <h2 className={classNames(styles.addDog__title, 'h2')}>Добавить анкету собаки</h2>
-          <AddDogForm user={user} onProfileChange={onProfileChange} />
+          {user ? (
+            <AddDogForm user={user} onProfileChange={onProfileChange} />
+          ) : (
+            <p className={styles.addDog__message}>Необходимо авторизоваться, чтобы добавить анкету собаки</p>
+          )}
         </div>
       </div>
     </section>
