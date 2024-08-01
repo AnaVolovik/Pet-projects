@@ -480,6 +480,24 @@ app.delete('/api/liked_adds/:id_dog', async (req, res) => {
   }
 });
 
+// Удаления аккаунта пользователя
+app.delete('/api/user/delete/:userId', async (req, res) => {
+  const userId = req.params.userId;
+
+  try {
+    const result = await db.query('DELETE FROM registr_data WHERE id_reg = ?', [userId]);
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ message: 'Пользователь не найден' });
+    }
+
+    res.status(200).json({ message: 'Пользователь успешно удален' });
+  } catch (error) {
+    console.error('Ошибка при удалении пользователя:', error);
+    res.status(500).json({ message: 'Ошибка сервера' });
+  }
+});
+
 
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
