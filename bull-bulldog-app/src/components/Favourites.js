@@ -56,7 +56,7 @@ const Favourites = ({ user, setFavourites }) => {
           <Card key={dog.id_dog} dog={dog} user={user} onDelete={() => handleDelete(dog.id_dog)} />
         ))
       ) : (
-        <p>Нет данных для отображения.</p>
+        <p className={styles.favourites__message}>Нет избранных анкет</p>
       )}
     </div>
   );

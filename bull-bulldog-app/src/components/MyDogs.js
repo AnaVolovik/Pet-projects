@@ -58,7 +58,7 @@ const MyDogs = ({ user }) => {
           <Card key={dog.id_dog} dog={dog} user={user} onDelete={handleDelete} />
         ))
       ) : (
-        <p>Нет данных для отображения.</p>
+        <p className={styles.myDogs__message}>У вас пока нет добавленных анкет</p>
       )}
     </div>
   );

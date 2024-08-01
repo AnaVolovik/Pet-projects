@@ -2,4 +2,16 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  width: 100%;
+
+  &__message {
+    width: 50%;
+    margin: 0 auto;
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 25px;
+    color: #F79007;
+  }
 }
