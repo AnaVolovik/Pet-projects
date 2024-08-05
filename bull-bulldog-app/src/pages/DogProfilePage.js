@@ -3,37 +3,86 @@ import { useParams } from 'react-router-dom';
 import classNames from 'classnames';
 import styles from '../styles/DogProfilePage.module.scss';
 
-const DogProfilePage = ({ dogs = [], user }) => {
+const DogProfilePage = ({ user }) => {
   const { id } = useParams();
-  const dog = dogs.find(d => d.id_dog === parseInt(id));
-
+  const [dog, setDog] = useState(null);
   const [isFavourite, setIsFavourite] = useState(false);
 
   useEffect(() => {
-    const checkIfFavourite = async () => {
-      if (user) {
-        try {
-          const response = await fetch(`http://localhost:5000/api/favourites/${user.userId}`);
-          if (response.ok) {
-            const favourites = await response.json();
-            const isDogFavourite = favourites.some(fav => fav.id_dog === dog.id_dog);
+    const fetchDogData = async () => {
+      try {
+        if (!user || !user.userId) {
+          console.error('User is not authenticated');
+          return;
+        }
+
+        const response = await fetch(`http://localhost:5000/api/users/${user.userId}/dogs/${id}`);
+        if (response.ok) {
+          const dogData = await response.json();
+          setDog(dogData);
+
+          const favResponse = await fetch(`http://localhost:5000/api/favourites/${user.userId}`);
+          if (favResponse.ok) {
+            const favourites = await favResponse.json();
+            const isDogFavourite = favourites.some(fav => fav.id_dog === dogData.id_dog);
             setIsFavourite(isDogFavourite);
           } else {
-            console.error('Ошибка при получении избранных анкет');
+            console.error('Error fetching favourites');
           }
-        } catch (error) {
-          console.error('Ошибка при получении избранных анкет:', error);
+        } else {
+          console.error('Error fetching dog data');
         }
+      } catch (error) {
+        console.error('Error fetching dog data:', error);
       }
     };
 
-    if (dog) {
-      checkIfFavourite();
-    }
-  }, [user, dog]);
+    fetchDogData();
+  }, [id, user]);
 
-  const getPhotoUrl = (photo) => {
-    return photo ? photo : null;
+  if (!dog) {
+    return <p>Собака не найдена.</p>;
+  }
+
+  const getPhotoUrl = (photo) => photo || null;
+
+  const addToFavourites = async () => {
+    if (dog && user) {
+      try {
+        const response = await fetch('http://localhost:5000/api/liked_adds', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ fk_id_reg: user.userId, fk_id_dog: dog.id_dog }),
+        });
+
+        if (response.ok) {
+          setIsFavourite(true);
+        } else {
+          console.error('Error adding to favourites');
+        }
+      } catch (error) {
+        console.error('Error adding to favourites:', error);
+      }
+    }
+  };
+
+  const removeFromFavourites = async () => {
+    if (dog && user) {
+      try {
+        const response = await fetch(`http://localhost:5000/api/liked_adds/${dog.id_dog}`, {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json', 'user-id': user.userId },
+        });
+
+        if (response.ok) {
+          setIsFavourite(false);
+        } else {
+          console.error('Error removing from favourites');
+        }
+      } catch (error) {
+        console.error('Error removing from favourites:', error);
+      }
+    }
   };
 
   const photoUrls = [
@@ -43,53 +92,6 @@ const DogProfilePage = ({ dogs = [], user }) => {
   ].filter(url => url !== null);
 
   const placeholderUrl = 'https://via.placeholder.com/150/EEEEEE/000000?text=Нет+фото';
-
-  const addToFavourites = async () => {
-    try {
-      const response = await fetch('http://localhost:5000/api/liked_adds', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          fk_id_reg: user.userId,
-          fk_id_dog: dog.id_dog,
-        }),
-      });
-
-      if (response.ok) {
-        setIsFavourite(true);
-      } else {
-        console.error('Ошибка при добавлении в избранное');
-      }
-    } catch (error) {
-      console.error('Ошибка при добавлении в избранное:', error);
-    }
-  };
-
-  const removeFromFavourites = async () => {
-    try {
-      const response = await fetch(`http://localhost:5000/api/liked_adds/${dog.id_dog}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          'user-id': user.userId,
-        },
-      });
-
-      if (response.ok) {
-        setIsFavourite(false);
-      } else {
-        console.error('Ошибка при удалении из избранного');
-      }
-    } catch (error) {
-      console.error('Ошибка при удалении из избранного:', error);
-    }
-  };
-
-  if (!dog) {
-    return <p>Собака не найдена.</p>;
-  }
 
   return (
     <section className={styles.dogProfile}>

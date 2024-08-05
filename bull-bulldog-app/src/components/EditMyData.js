@@ -82,6 +82,7 @@ const EditMyData = () => {
         <div className={styles.editMyData__group}>
           <label className={styles.editMyData__label} htmlFor="name">Имя:</label>
           <input
+            className={styles.editMyData__input}
             type="text"
             id="name"
             name="name"
@@ -92,6 +93,7 @@ const EditMyData = () => {
         <div className={styles.editMyData__group}>
           <label className={styles.editMyData__label} htmlFor="email">E-mail:</label>
           <input
+            className={styles.editMyData__input}
             type="email"
             id="email"
             name="email"
@@ -102,6 +104,7 @@ const EditMyData = () => {
         <div className={styles.editMyData__group}>
           <label className={styles.editMyData__label} htmlFor="city">Город:</label>
           <select
+            className={styles.editMyData__select}
             id="city"
             name="city"
             value={formData.city}
@@ -118,6 +121,7 @@ const EditMyData = () => {
         <div className={styles.editMyData__group}>
           <label className={styles.editMyData__label} htmlFor="phone">Номер телефона:</label>
           <input
+            className={styles.editMyData__input}
             type="text"
             id="phone"
             name="phone"

@@ -66,15 +66,15 @@
       cursor: pointer;
     }
   }
-}
 
-input,
-select {
-  width: 450px;;
-  padding: 10px;
-  border: 1px solid #727171;
-  border-radius: 8px;
-  box-sizing: border-box;
+  &__input,
+  &__select {
+    width: 450px;;
+    padding: 10px;
+    border: 1px solid #727171;
+    border-radius: 8px;
+    box-sizing: border-box;
+  }
 }
 
 .errorInput {

@@ -22,7 +22,8 @@
 
   &:hover{
     cursor: pointer;
-    .card__deleteIcon {
+    .card__deleteIcon,
+    .card__editIcon {
       display: block;
     }
   }
@@ -89,6 +90,15 @@
   &__deleteIcon {
     position: absolute;
     bottom: 10px;
+    left: 50px;
+    cursor: pointer;
+    display: none;
+    font-size: 1.5rem;
+  }
+
+  &__editIcon {
+    position: absolute;
+    bottom: 8px;
     left: 10px;
     cursor: pointer;
     display: none;

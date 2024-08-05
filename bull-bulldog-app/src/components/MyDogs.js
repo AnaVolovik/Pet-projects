@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
 import Card from './Card';
 import styles from '../styles/MyDogs.module.scss';
 
-const MyDogs = ({ user }) => {
+const MyDogs = () => {
+  const { user, onProfileChange } = useOutletContext();
   const [dogs, setDogs] = useState([]);
   const [error, setError] = useState(null);
 
@@ -42,7 +44,6 @@ const MyDogs = ({ user }) => {
         throw new Error('Ошибка при удалении');
       }
       const data = await response.json();
-      // Обновляем состояние с новыми данными
       setDogs(data.remainingDogs);
     } catch (error) {
       console.error('Ошибка при удалении:', error);
@@ -50,12 +51,25 @@ const MyDogs = ({ user }) => {
     }
   };
 
+  // Обновление списка собак при изменении профиля
+  const updateDogs = (updatedDog) => {
+    setDogs((prevDogs) => 
+      prevDogs.map((dog) => (dog.id_dog === updatedDog.id_dog ? updatedDog : dog))
+    );
+  };
+
   return (
     <div className={styles.myDogs}>
       {error && <p className={styles.error}>{error}</p>}
       {Array.isArray(dogs) && dogs.length > 0 ? (
         dogs.map(dog => (
-          <Card key={dog.id_dog} dog={dog} user={user} onDelete={handleDelete} />
+          <Card
+            key={dog.id_dog}
+            dog={dog}
+            user={user}
+            onDelete={handleDelete}
+            onProfileChange={onProfileChange || updateDogs}
+          />
         ))
       ) : (
         <p className={styles.myDogs__message}>У вас пока нет добавленных анкет</p>

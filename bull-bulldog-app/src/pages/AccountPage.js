@@ -26,7 +26,7 @@ const AccountMenu = ({ user }) => (
   </nav>
 );
 
-const AccountPage = ({ user, setUser }) => {
+const AccountPage = ({ user, setUser, onProfileChange }) => {
   return (
     <section className={styles.account}>
       <div className={classNames(styles.account__container, '_container')}>
@@ -36,7 +36,7 @@ const AccountPage = ({ user, setUser }) => {
             {user ? (
               <>
                 <AccountMenu user={user} setUser={setUser} />
-                <Outlet context={{ user, setUser }} />
+                <Outlet context={{ user, setUser, onProfileChange }} />
               </>
             ) : (
               <p className={styles.account__message}>Необходимо авторизоваться, чтобы получить доступ к личному кабинету.</p>

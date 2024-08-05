@@ -383,7 +383,6 @@ app.post('/api/liked_adds', async (req, res) => {
     const result = await db.query(query, [fk_id_reg, fk_id_dog, fk_id_reg, fk_id_dog]);
 
     if (result.affectedRows === 0) {
-      console.log('Запись уже существует в таблице');
       return res.status(409).json({ message: 'Запись уже существует в таблице' });
     }
 
@@ -424,8 +423,6 @@ app.get('/api/favourites/:userId', async (req, res) => {
       dog.photo3 = toBase64(dog.photo3, dog.photo_format3);
       return dog;
     });
-
-    console.log(formattedFavourites);
 
     res.status(200).json(formattedFavourites);
   } catch (error) {
@@ -525,6 +522,174 @@ app.put('/api/user/update/:userId', async (req, res) => {
   }
 });
 
+// Получение данных о конкретной собаке по userId и dogId
+app.get('/api/users/:userId/dogs/:id', async (req, res) => {
+  const { userId, id } = req.params;
+
+  try {
+    const checkOwnershipQuery = `
+      SELECT 1 
+      FROM profile 
+      WHERE id_dog = ? AND fk_reg_data = ?
+    `;
+    const ownershipResult = await db.query(checkOwnershipQuery, [id, userId]);
+
+    if (ownershipResult.length === 0) {
+      return res.status(403).json({ message: 'Нет доступа к данным этой анкеты' });
+    }
+
+    const [dogProfile] = await db.query(
+      `SELECT profile.*, photo.photo1, photo.photo2, photo.photo3, 
+       photo.photo_format1, photo.photo_format2, photo.photo_format3,
+       registr_data.name_reg as owner_name, 
+       contacts.city as owner_city, 
+       contacts.tel_num as owner_phone
+       FROM profile
+       LEFT JOIN photo ON profile.id_dog = photo.fk_ph_profile
+       LEFT JOIN registr_data ON profile.fk_reg_data = registr_data.id_reg
+       LEFT JOIN contacts ON registr_data.id_reg = contacts.fk_con_reg
+       WHERE profile.id_dog = ?`,
+      [id]
+    );
+
+    if (!dogProfile) {
+      return res.status(404).json({ message: 'Собака не найдена' });
+    }
+
+    const toBase64 = (buffer, format) => {
+      if (buffer) {
+        return `data:${format};base64,${Buffer.from(buffer).toString('base64')}`;
+      }
+      return null;
+    };
+
+    const formattedDogProfile = {
+      ...dogProfile,
+      photo1: toBase64(dogProfile.photo1, dogProfile.photo_format1),
+      photo2: toBase64(dogProfile.photo2, dogProfile.photo_format2),
+      photo3: toBase64(dogProfile.photo3, dogProfile.photo_format3),
+    };
+
+    res.status(200).json(formattedDogProfile);
+  } catch (error) {
+    console.error('Ошибка при получении данных собаки:', error);
+    res.status(500).json({ message: 'Ошибка сервера' });
+  }
+});
+
+// Редактирование анкеты
+app.put('/api/users/:userId/dogs/:id', upload.array('photos', 3), async (req, res) => {
+  const { userId, id } = req.params;
+  const { petName, age, gender, breed, color, pedigree } = req.body;
+  const photos = req.files;
+
+  try {
+    // Проверка прав доступа
+    const [ownershipResult] = await db.query(`
+      SELECT 1 FROM profile WHERE id_dog = ? AND fk_reg_data = ?`,
+      [id, userId]
+    );
+
+    if (ownershipResult.length === 0) {
+      return res.status(403).json({ message: 'Нет доступа к редактированию этой анкеты' });
+    }
+
+    // Обновление данных профиля собаки
+    await db.query(`
+      UPDATE profile SET 
+        name_dog = ?, 
+        age = ?, 
+        gender = ?, 
+        breed = ?, 
+        color = ?, 
+        pedigree = ?
+      WHERE id_dog = ?`,
+      [petName || '', age || '', gender || '', breed || '', color || '', pedigree || '', id]
+    );
+
+    // Получение текущих фото
+    const [currentPhotos] = await db.query(`
+      SELECT photo1, photo2, photo3, photo_format1, photo_format2, photo_format3 
+      FROM photo 
+      WHERE fk_ph_profile = ?`,
+      [id]
+    );
+
+    const existingPhotos = currentPhotos[0] || {};
+    const updatedPhotos = { ...existingPhotos };
+
+    // Обработка новых фото
+    photos.forEach((photo, index) => {
+      const key = `photo${index + 1}`;
+      const formatKey = `photo_format${index + 1}`;
+      if (photo.buffer) {
+        updatedPhotos[key] = photo.buffer;
+        updatedPhotos[formatKey] = photo.mimetype;
+      }
+    });
+
+    // Проверка и установка значений, если фото не было
+    updatedPhotos.photo1 = updatedPhotos.photo1 || existingPhotos.photo1 || null;
+    updatedPhotos.photo2 = updatedPhotos.photo2 || existingPhotos.photo2 || null;
+    updatedPhotos.photo3 = updatedPhotos.photo3 || existingPhotos.photo3 || null;
+    updatedPhotos.photo_format1 = updatedPhotos.photo_format1 || existingPhotos.photo_format1 || null;
+    updatedPhotos.photo_format2 = updatedPhotos.photo_format2 || existingPhotos.photo_format2 || null;
+    updatedPhotos.photo_format3 = updatedPhotos.photo_format3 || existingPhotos.photo_format3 || null;
+
+    // Обновление фото в базе данных
+    await db.query(`
+      UPDATE photo SET 
+        photo1 = ?, 
+        photo2 = ?, 
+        photo3 = ?, 
+        photo_format1 = ?, 
+        photo_format2 = ?, 
+        photo_format3 = ? 
+      WHERE fk_ph_profile = ?`,
+      [
+        updatedPhotos.photo1,
+        updatedPhotos.photo2,
+        updatedPhotos.photo3,
+        updatedPhotos.photo_format1,
+        updatedPhotos.photo_format2,
+        updatedPhotos.photo_format3,
+        id
+      ]
+    );
+
+    const toBase64 = (buffer, format) => {
+      if (buffer) {
+        return `data:${format};base64,${Buffer.from(buffer).toString('base64')}`;
+      }
+      return null;
+    };
+
+    const [dogProfile] = await db.query(
+      `SELECT profile.*, photo.photo1, photo.photo2, photo.photo3, 
+       photo.photo_format1, photo.photo_format2, photo.photo_format3
+       FROM profile
+       LEFT JOIN photo ON profile.id_dog = photo.fk_ph_profile
+       WHERE profile.id_dog = ?`,
+      [id]
+    );
+
+    if (!dogProfile) {
+      return res.status(404).json({ message: 'Собака не найдена' });
+    }
+
+    const formattedDogProfile = {
+      ...dogProfile,
+      photo1: toBase64(dogProfile.photo1, dogProfile.photo_format1),
+      photo2: toBase64(dogProfile.photo2, dogProfile.photo_format2),
+      photo3: toBase64(dogProfile.photo3, dogProfile.photo_format3),
+    };
+
+    res.status(200).json(formattedDogProfile);
+  } catch (error) {
+    console.error('Ошибка при редактировании данных собаки:', error);
+    res.status(500).json({ message: 'Ошибка сервера' });
+  }
+});
 
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
