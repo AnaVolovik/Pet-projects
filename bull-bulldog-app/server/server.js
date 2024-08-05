@@ -522,7 +522,7 @@ app.put('/api/user/update/:userId', async (req, res) => {
   }
 });
 
-// Получение данных о конкретной собаке по userId и dogId
+// Получение данных о конкретной собаке по userId и dogId ("Анкета собаки", для редактирования)
 app.get('/api/users/:userId/dogs/:id', async (req, res) => {
   const { userId, id } = req.params;
 
@@ -544,6 +544,51 @@ app.get('/api/users/:userId/dogs/:id', async (req, res) => {
        registr_data.name_reg as owner_name, 
        contacts.city as owner_city, 
        contacts.tel_num as owner_phone
+       FROM profile
+       LEFT JOIN photo ON profile.id_dog = photo.fk_ph_profile
+       LEFT JOIN registr_data ON profile.fk_reg_data = registr_data.id_reg
+       LEFT JOIN contacts ON registr_data.id_reg = contacts.fk_con_reg
+       WHERE profile.id_dog = ?`,
+      [id]
+    );
+
+    if (!dogProfile) {
+      return res.status(404).json({ message: 'Собака не найдена' });
+    }
+
+    const toBase64 = (buffer, format) => {
+      if (buffer) {
+        return `data:${format};base64,${Buffer.from(buffer).toString('base64')}`;
+      }
+      return null;
+    };
+
+    const formattedDogProfile = {
+      ...dogProfile,
+      photo1: toBase64(dogProfile.photo1, dogProfile.photo_format1),
+      photo2: toBase64(dogProfile.photo2, dogProfile.photo_format2),
+      photo3: toBase64(dogProfile.photo3, dogProfile.photo_format3),
+    };
+
+    res.status(200).json(formattedDogProfile);
+  } catch (error) {
+    console.error('Ошибка при получении данных собаки:', error);
+    res.status(500).json({ message: 'Ошибка сервера' });
+  }
+});
+
+// Получение данных о конкретной собаке по dogId ("Анкета собаки", просмотр)
+app.get('/api/users/dogs/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const [dogProfile] = await db.query(
+      `SELECT profile.*, photo.photo1, photo.photo2, photo.photo3, 
+       photo.photo_format1, photo.photo_format2, photo.photo_format3,
+       registr_data.name_reg as owner_name, 
+       contacts.city as owner_city, 
+       contacts.tel_num as owner_phone,
+       profile.fk_reg_data
        FROM profile
        LEFT JOIN photo ON profile.id_dog = photo.fk_ph_profile
        LEFT JOIN registr_data ON profile.fk_reg_data = registr_data.id_reg

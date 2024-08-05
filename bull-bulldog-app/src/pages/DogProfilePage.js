@@ -11,23 +11,20 @@ const DogProfilePage = ({ user }) => {
   useEffect(() => {
     const fetchDogData = async () => {
       try {
-        if (!user || !user.userId) {
-          console.error('User is not authenticated');
-          return;
-        }
-
-        const response = await fetch(`http://localhost:5000/api/users/${user.userId}/dogs/${id}`);
+        const response = await fetch(`http://localhost:5000/api/users/dogs/${id}`);
         if (response.ok) {
           const dogData = await response.json();
           setDog(dogData);
 
-          const favResponse = await fetch(`http://localhost:5000/api/favourites/${user.userId}`);
-          if (favResponse.ok) {
-            const favourites = await favResponse.json();
-            const isDogFavourite = favourites.some(fav => fav.id_dog === dogData.id_dog);
-            setIsFavourite(isDogFavourite);
-          } else {
-            console.error('Error fetching favourites');
+          if (user) {
+            const favResponse = await fetch(`http://localhost:5000/api/favourites/${user.userId}`);
+            if (favResponse.ok) {
+              const favourites = await favResponse.json();
+              const isDogFavourite = favourites.some(fav => fav.id_dog === dogData.id_dog);
+              setIsFavourite(isDogFavourite);
+            } else {
+              console.error('Error fetching favourites');
+            }
           }
         } else {
           console.error('Error fetching dog data');
