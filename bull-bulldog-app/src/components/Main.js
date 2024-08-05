@@ -12,6 +12,7 @@ import MyDogs from '../components/MyDogs';
 import Favourites from '../components/Favourites';
 import EditMyData from '../components/EditMyData';
 import EditMyDog from '../components/EditMyDog';
+import NotFoundPage from '../pages/NotFoundPage';
 
 const Main = ({ onRegister, user, onLogin, onProfileChange, setUser }) => {
   const [dogs, setDogs] = useState([]);
@@ -41,6 +42,7 @@ const Main = ({ onRegister, user, onLogin, onProfileChange, setUser }) => {
         <Route path="/add-dog" element={<AddDogPage user={user} onProfileChange={handleProfileChange} />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/dog/:id" element={<DogProfilePage dogs={dogs} user={user} />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </main>
   );
