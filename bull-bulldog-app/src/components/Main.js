@@ -13,6 +13,7 @@ import Favourites from '../components/Favourites';
 import EditMyData from '../components/EditMyData';
 import EditMyDog from '../components/EditMyDog';
 import NotFoundPage from '../pages/NotFoundPage';
+import Breadcrumbs from './Breadcrumbs';
 
 const Main = ({ onRegister, user, onLogin, onProfileChange, setUser }) => {
   const [dogs, setDogs] = useState([]);
@@ -27,6 +28,7 @@ const Main = ({ onRegister, user, onLogin, onProfileChange, setUser }) => {
 
   return (
     <main>
+      <Breadcrumbs />
       <Routes>
         <Route path="/" element={<HomePage key="home" setDogs={setDogs} />} />
         <Route path="/login" element={<LoginPage onLogin={onLogin} />} />
