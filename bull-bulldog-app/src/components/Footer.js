@@ -1,9 +1,12 @@
 import React from 'react';
+import styles from '../styles/Footer.module.scss';
 
 const Footer = () => {
   return (
-    <footer>
-      <p>&copy; 2024 Буль-бульдог</p>
+    <footer className={styles.footer}>
+      <p className={styles.footer__rights}>
+        &copy; {new Date().getFullYear()} Буль-бульдог. Developed by Anastasia Volovik. All rights reserved.
+      </p>
     </footer>
   );
 };
