@@ -21,10 +21,9 @@
   }
 
   &__photos {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
     gap: 10px;
+    grid-template-columns: 1fr 1fr;
     width: 300px;
     padding: 20px;
     background-color: #FFF;
@@ -33,22 +32,13 @@
   }
 
   &__item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-self: center;
-    width: 250px;
-    height: 260px;
     overflow: hidden;
-    @media (max-width: "1200px") {
-      width: 234px;
-      height: 260px;
+    &:first-child {
+      grid-column: span 2;
     }
-    @media (max-width: "1024px") {
-      width: 196px;
-      height: 224px;
+    &:hover {
+      cursor: zoom-in; 
     }
-
     img {
       width: 100%;
       height: 100%;

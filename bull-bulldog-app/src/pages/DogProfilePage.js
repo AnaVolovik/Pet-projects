@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import ImagePopup from '../components/ImagePopup';
 import classNames from 'classnames';
 import styles from '../styles/DogProfilePage.module.scss';
 
@@ -7,6 +8,8 @@ const DogProfilePage = ({ user }) => {
   const { id } = useParams();
   const [dog, setDog] = useState(null);
   const [isFavourite, setIsFavourite] = useState(false);
+  const [popupVisible, setPopupVisible] = useState(false);
+  const [selectedImage, setSelectedImage] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -92,6 +95,16 @@ const DogProfilePage = ({ user }) => {
 
   const placeholderUrl = 'https://via.placeholder.com/150/EEEEEE/000000?text=Нет+фото';
 
+  const openPopup = (url) => {
+    setSelectedImage(url);
+    setPopupVisible(true);
+  };
+
+  const closePopup = () => {
+    setPopupVisible(false);
+    setSelectedImage('');
+  };
+
   return (
     <section className={styles.dogProfile}>
       <div className={classNames(styles.dogProfile__container, '_container')}>
@@ -100,11 +113,16 @@ const DogProfilePage = ({ user }) => {
           <div className={styles.dogProfile__body}>
             <div className={styles.dogProfile__photos}>
               {photoUrls.length > 0 ? (
-                photoUrls.map((url, index) => (
-                  <div key={index} className={styles.dogProfile__item}>
-                    <img src={url} alt={`Фото ${index + 1}`} />
+                <>
+                  <div className={styles.dogProfile__item} onClick={() => openPopup(photoUrls[0])}>
+                    <img src={photoUrls[0]} alt="Фото 1" />
                   </div>
-                ))
+                  {photoUrls.slice(1, 3).map((url, index) => (
+                    <div key={index + 1} className={styles.dogProfile__item} onClick={() => openPopup(url)}>
+                      <img src={url} alt={`Фото ${index + 2}`} />
+                    </div>
+                  ))}
+                </>
               ) : (
                 <div className={styles.dogProfile__item}>
                   <img src={placeholderUrl} alt="Placeholder" />
@@ -163,6 +181,7 @@ const DogProfilePage = ({ user }) => {
           </div>
         </div>
       </div>
+      {popupVisible && <ImagePopup isOpen={popupVisible} imageUrl={selectedImage} onClose={closePopup} />}
     </section>
   );
 };
