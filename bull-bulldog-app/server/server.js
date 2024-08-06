@@ -4,6 +4,7 @@ const multer = require('multer');
 const db = require('./db');
 const app = express();
 const port = 5000;
+const bcrypt = require('bcrypt');
 
 // Настройка multer
 const upload = multer({
@@ -102,21 +103,29 @@ app.get('/api/photo/:id', async (req, res) => {
 // Регистрация пользователя ("Регистрация")
 app.post('/api/register', async (req, res) => {
   const { name, email, city, phone, password } = req.body;
-  
+
   if (!name || !email || !city || !phone || !password) {
     return res.status(400).json({ message: 'All fields are required' });
   }
-  
+
   const date = new Date().toISOString().split('T')[0];
   const role = 'user';
+  const saltRounds = 10; // Количество раундов для генерации соли
 
   try {
-    const result1 = await db.query('INSERT INTO registr_data (name_reg, email, password, date_reg, role) VALUES (?, ?, ?, ?, ?)', 
-      [name, email, password, date, role]);
+    // Хеширование пароля
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+    const result1 = await db.query(
+      'INSERT INTO registr_data (name_reg, email, password, date_reg, role) VALUES (?, ?, ?, ?, ?)', 
+      [name, email, hashedPassword, date, role]
+    );
     const registrDataId = result1.insertId;
 
-    await db.query('INSERT INTO contacts (city, tel_num, fk_con_reg) VALUES (?, ?, ?)', 
-      [city, phone, registrDataId]);
+    await db.query(
+      'INSERT INTO contacts (city, tel_num, fk_con_reg) VALUES (?, ?, ?)', 
+      [city, phone, registrDataId]
+    );
 
     res.status(200).json({
       userId: registrDataId, 
@@ -145,19 +154,30 @@ app.post('/api/login', async (req, res) => {
         r.id_reg as userId, 
         r.name_reg as name, 
         r.email,
+        r.password as hashedPassword,
         c.city,
         c.tel_num as phone
       FROM registr_data r
       JOIN contacts c ON r.id_reg = c.fk_con_reg
-      WHERE r.email = ? AND r.password = ?
+      WHERE r.email = ?
     `;
-    const results = await db.query(query, [email, password]);
+    const results = await db.query(query, [email]);
 
     if (results.length === 0) {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
     const user = results[0];
+
+    const isPasswordMatch = await bcrypt.compare(password, user.hashedPassword);
+
+    if (!isPasswordMatch) {
+      return res.status(401).json({ message: 'Invalid email or password' });
+    }
+
+    // Убираем из ответа хеш пароль
+    delete user.hashedPassword;
+
     res.status(200).json(user);
   } catch (err) {
     console.error('Error logging in:', err);
