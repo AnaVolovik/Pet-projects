@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 import styles from '../styles/DogProfilePage.module.scss';
 
@@ -7,6 +7,7 @@ const DogProfilePage = ({ user }) => {
   const { id } = useParams();
   const [dog, setDog] = useState(null);
   const [isFavourite, setIsFavourite] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchDogData = async () => {
@@ -27,18 +28,19 @@ const DogProfilePage = ({ user }) => {
             }
           }
         } else {
-          console.error('Error fetching dog data');
+          navigate('/404');
         }
       } catch (error) {
         console.error('Error fetching dog data:', error);
+        navigate('/404');
       }
     };
 
     fetchDogData();
-  }, [id, user]);
+  }, [id, user, navigate]);
 
-  if (!dog) {
-    return <p>Собака не найдена.</p>;
+  if (dog === null) {
+    return null;
   }
 
   const getPhotoUrl = (photo) => photo || null;
