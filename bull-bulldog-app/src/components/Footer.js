@@ -5,8 +5,8 @@ const Footer = () => {
   return (
     <footer className={styles.footer}>
       <p className={styles.footer__rights}>
-        &copy; {new Date().getFullYear()} Буль-бульдог. Developed by Anastasia Volovik. All rights reserved.
-      </p>
+        &copy; {new Date().getFullYear()} Буль-бульдог. All rights reserved.</p>
+      <p className={styles.footer__rights}>Developed by Anastasia Volovik</p>
     </footer>
   );
 };
