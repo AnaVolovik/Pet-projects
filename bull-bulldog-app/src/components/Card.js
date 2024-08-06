@@ -33,7 +33,7 @@ const Card = ({ dog, user, onDelete }) => {
     if (onDelete) onDelete(id_dog);
   };
 
-  const showEditIcon = window.location.pathname.startsWith(`/account/${user?.userId}/`);
+  const showEditIcon = window.location.pathname.startsWith(`/account/${user?.userId}/my-dogs`);
   const showDeleteIcon = window.location.pathname.startsWith(`/account/${user?.userId}/`);
 
   return (
