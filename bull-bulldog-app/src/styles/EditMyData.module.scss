@@ -44,9 +44,16 @@
     color: #000;
   }
 
+  &__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
   &__button {
     align-self: center;
-    width: 280px;
+    width: 200px;
     margin-top: 36px;
     padding: 8px 42px;
     background-color: #F79007;
@@ -63,6 +70,16 @@
     &:hover {
       background-color: #FFF;
       border: 1px solid #000;
+      cursor: pointer;
+    }
+  }
+
+  &__cancel {
+    background-color: #FFF;
+    border: 1px solid #F79007;
+    &:hover {
+      background-color: #F79007;
+      border: 1px solid #F79007;
       cursor: pointer;
     }
   }

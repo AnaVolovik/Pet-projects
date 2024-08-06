@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, useOutletContext } from 'react-router-dom';
+import classNames from 'classnames';
 import styles from '../styles/EditMyData.module.scss';
 
 const EditMyData = () => {
@@ -129,7 +130,16 @@ const EditMyData = () => {
             onChange={handleChange}
           />
         </div>
-        <button type="submit" className={styles.editMyData__button}>Сохранить изменения</button>
+        <div className={styles.editMyData__buttons}>
+          <button type="submit" className={styles.editMyData__button}>Сохранить</button>
+          <button
+            type="button"
+            className={classNames(styles.editMyData__button, styles.editMyData__cancel)}
+            onClick={() => navigate(`/account/${userId}/my-data`)}
+          >
+            Отмена
+          </button>
+        </div>
       </form>
     </div>
   );
