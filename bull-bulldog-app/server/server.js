@@ -105,7 +105,7 @@ app.post('/api/register', async (req, res) => {
   const { name, email, city, phone, password } = req.body;
 
   if (!name || !email || !city || !phone || !password) {
-    return res.status(400).json({ message: 'All fields are required' });
+    return res.status(400).json({ message: 'Все поля обязательны для заполнения' });
   }
 
   const date = new Date().toISOString().split('T')[0];
@@ -136,7 +136,7 @@ app.post('/api/register', async (req, res) => {
     });
   } catch (err) {
     console.error('Error registering user:', err);
-    res.status(500).json({ message: 'Server error' });
+    res.status(500).json({ message: 'Ошибка сервера' });
   }
 });
 
@@ -145,7 +145,7 @@ app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    return res.status(400).json({ message: 'Email and password are required' });
+    return res.status(400).json({ message: 'Требуется указать адрес электронной почты и пароль' });
   }
 
   try {
@@ -164,7 +164,7 @@ app.post('/api/login', async (req, res) => {
     const results = await db.query(query, [email]);
 
     if (results.length === 0) {
-      return res.status(401).json({ message: 'Invalid email or password' });
+      return res.status(401).json({ message: 'Неверный адрес электронной почты или пароль' });
     }
 
     const user = results[0];
@@ -172,7 +172,7 @@ app.post('/api/login', async (req, res) => {
     const isPasswordMatch = await bcrypt.compare(password, user.hashedPassword);
 
     if (!isPasswordMatch) {
-      return res.status(401).json({ message: 'Invalid email or password' });
+      return res.status(401).json({ message: 'Неверный адрес электронной почты или пароль' });
     }
 
     // Убираем из ответа хеш пароль
@@ -181,7 +181,7 @@ app.post('/api/login', async (req, res) => {
     res.status(200).json(user);
   } catch (err) {
     console.error('Error logging in:', err);
-    res.status(500).json({ message: 'Server error' });
+    res.status(500).json({ message: 'Ошибка сервера' });
   }
 });
 
@@ -190,7 +190,7 @@ app.post('/api/contact', async (req, res) => {
   const { name, email, message } = req.body;
 
   if (!name || !email || !message) {
-    return res.status(400).json({ message: 'All fields are required' });
+    return res.status(400).json({ message: 'Все поля обязательны для заполнения' });
   }
 
   try {
@@ -264,7 +264,7 @@ app.get('/api/user/data/:userId', async (req, res) => {
     const userResults = await db.query(userQuery, [userId]);
 
     if (userResults.length === 0) {
-      return res.status(404).json({ message: 'User not found' });
+      return res.status(404).json({ message: 'Пользователь не найден' });
     }
 
     const user = userResults[0];
@@ -457,7 +457,7 @@ app.delete('/api/dogs/:id', async (req, res) => {
   const userId = req.headers['user-id'];
 
   if (!userId) {
-    return res.status(400).json({ message: 'User ID is required' });
+    return res.status(400).json({ message: 'Требуется идентификатор пользователя' });
   }
 
   try {
@@ -484,7 +484,7 @@ app.delete('/api/liked_adds/:id_dog', async (req, res) => {
   const userId = req.headers['user-id'];
 
   if (!userId) {
-    return res.status(400).json({ message: 'User ID is required' });
+    return res.status(400).json({ message: 'Требуется идентификатор пользователя' });
   }
 
   try {
