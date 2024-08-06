@@ -1,8 +1,16 @@
 .dogList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  flex-grow: 1;
+  display: grid;
+  gap: 24px;
+  margin: 0 auto;
+  @media (min-width: 919px) and (max-width: 1380px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (min-width: 1380px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  @media (max-width: 919px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
   &__message {
     width: 50%;

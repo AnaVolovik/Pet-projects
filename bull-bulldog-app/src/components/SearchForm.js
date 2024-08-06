@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import classNames from 'classnames';
 import styles from '../styles/SearchDogForm.module.scss';
 
-const SearchForm = ({ onSearch }) => {
+const SearchForm = ({ onSearch, active, onClose, onReset }) => {
   const [breed, setBreed] = useState('');
   const [age, setAge] = useState('');
   const [gender, setGender] = useState('');
@@ -89,6 +90,7 @@ const SearchForm = ({ onSearch }) => {
       }
   
       setErrors({});
+      onClose();
     } else {
       setErrors(validationErrors);
     }
@@ -100,8 +102,40 @@ const SearchForm = ({ onSearch }) => {
     return errors;
   };
 
+  const handleReset = () => {
+    setBreed('');
+    setAge('');
+    setGender('');
+    setColor('');
+    setCity('');
+    setPedigree(0);
+    setWithPhoto(true);
+    setErrors({});
+    if (onReset) {
+      onReset();
+    }
+  };
+
   return (
-    <form onSubmit={handleSubmit} className={styles.searchDogForm}>
+    <form onSubmit={handleSubmit} className={classNames(styles.searchDogForm, { [styles.active]: active })}>
+      <div className={styles.searchDogForm__closeIcon} onClick={onClose}>
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path 
+            d="M21 7L7 21" 
+            stroke="#727171" 
+            strokeWidth="3" 
+            strokeLinecap="round" 
+            strokeLinejoin="round"
+          />
+          <path 
+            d="M7 7L21 21" 
+            stroke="#727171" 
+            strokeWidth="3" 
+            strokeLinecap="round" 
+            strokeLinejoin="round"
+          />
+        </svg>
+      </div>
       <div className={styles.searchDogForm__group}>
         <label className={styles.searchDogForm__label} htmlFor="breed">Порода</label>
         <select
@@ -218,6 +252,16 @@ const SearchForm = ({ onSearch }) => {
       </div>
 
       <button type="submit" className={styles.searchDogForm__button}>Найти</button>
+      <a 
+        href="#reset"
+        onClick={(e) => {
+          e.preventDefault();
+          handleReset();
+        }}
+        className={styles.searchDogForm__resetLink}
+      >
+        Очистить форму
+      </a>
     </form>
   );
 };
