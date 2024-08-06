@@ -13,8 +13,11 @@
   }
 
   &__message {
-    width: 50%;
+    grid-column: 1 / -1;
+    width: 90%;
+    height: 650px;
     margin: 0 auto;
+    background: url("../assets/images/no-dogs.png") no-repeat center bottom / 80%;
     font-family: inherit;
     font-style: normal;
     font-weight: 400;
