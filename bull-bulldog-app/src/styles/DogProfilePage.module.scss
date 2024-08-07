@@ -32,9 +32,11 @@
   }
 
   &__item {
+    height: 130px;
     overflow: hidden;
     &:first-child {
       grid-column: span 2;
+      height: 300px;
     }
     &:hover {
       cursor: zoom-in; 
