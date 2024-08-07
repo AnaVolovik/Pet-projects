@@ -7,23 +7,23 @@ const FiltersElement = ({ onOpenForm }) => {
   useEffect(() => {
     const handleScroll = () => {
       const element = filtersElementRef.current;
-        if (!element) return;
+      if (!element) return;
+  
+      const container = element.parentElement;
+      const containerRect = container.getBoundingClientRect();
+      const elementRect = element.getBoundingClientRect();
 
-        const container = element.parentElement;
-        const containerRect = container.getBoundingClientRect();
-        const elementRect = element.getBoundingClientRect();
+      const triggerOffset = 20;
 
-        const triggerOffset = 20;
-
-        if (window.scrollY + triggerOffset < containerRect.bottom - elementRect.height) {
-          element.style.position = 'absolute';
-          element.style.top = `180px`;
+      if (containerRect.top <= triggerOffset) {
+        element.style.position = 'fixed';
+        element.style.top = `${triggerOffset}px`;
       } else {
-          element.style.position = 'fixed';
-          element.style.top = `${triggerOffset}px`;
+        element.style.position = 'absolute';
+        element.style.top = `${triggerOffset}px`;
       }
     };
-
+  
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -48,7 +48,7 @@ const FiltersElement = ({ onOpenForm }) => {
             strokeLinejoin: 'round',
             strokeWidth: 2,
           }}
-          />
+        />
         <path
           d="M5,17a2,2,0,1,0,2,2A2,2,0,0,0,5,17ZM12,3a2,2,0,1,0,2,2A2,2,0,0,0,12,3Zm7,7a2,2,0,1,0,2,2A2,2,0,0,0,19,10Z"
           style={{

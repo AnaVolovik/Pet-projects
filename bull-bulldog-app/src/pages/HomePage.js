@@ -58,7 +58,6 @@ const HomePage = ({ setDogs }) => {
     <div>
       <MainBanner />
       <section className={styles.homePage}>
-        <FiltersElement onOpenForm={toggleFormActive} />
         <SearchForm 
           onSearch={handleSearch} 
           active={formActive} 
@@ -66,6 +65,7 @@ const HomePage = ({ setDogs }) => {
           onReset={fetchDogs}
         />
         <div className={classNames(styles.homePage__container, '_container')}>
+          <FiltersElement onOpenForm={toggleFormActive} />
           <div id="search-form" className={styles.homePage__content}>
             <h2 className={classNames(styles.homePage__title, 'h2')}>Найти собаку для вязки</h2>
             <div className={styles.homePage__body}>
