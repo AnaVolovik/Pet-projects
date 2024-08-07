@@ -15,7 +15,8 @@
 
   &__body {
     display: flex;
-    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
     gap: 40px;
     width: 100%;
     height: auto;

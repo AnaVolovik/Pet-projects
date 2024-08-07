@@ -3,12 +3,15 @@ import MainBanner from '../components/MainBanner';
 import FiltersElement from '../components/FiltersElement';
 import SearchForm from '../components/SearchForm';
 import DogList from '../components/DogList';
+import Pagination from '../components/Pagination';
 import classNames from 'classnames';
 import styles from '../styles/HomePage.module.scss';
 
 const HomePage = ({ setDogs }) => {
   const [dogsData, setDogsData] = useState([]);
   const [formActive, setFormActive] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [dogsPerPage] = useState(12);
 
   const toggleFormActive = () => {
     setFormActive(!formActive);
@@ -45,6 +48,12 @@ const HomePage = ({ setDogs }) => {
     }
   };
 
+  const indexOfLastDog = currentPage * dogsPerPage;
+  const indexOfFirstDog = indexOfLastDog - dogsPerPage;
+  const currentDogs = dogsData.slice(indexOfFirstDog, indexOfLastDog);
+
+  const paginate = pageNumber => setCurrentPage(pageNumber);
+
   return (
     <div>
       <MainBanner />
@@ -60,7 +69,13 @@ const HomePage = ({ setDogs }) => {
           <div id="search-form" className={styles.homePage__content}>
             <h2 className={classNames(styles.homePage__title, 'h2')}>Найти собаку для вязки</h2>
             <div className={styles.homePage__body}>
-              <DogList dogs={dogsData} />
+              <DogList dogs={currentDogs} />
+              <Pagination 
+                dogsPerPage={dogsPerPage} 
+                totalDogs={dogsData.length} 
+                paginate={paginate} 
+                currentPage={currentPage} 
+              />
             </div>
           </div>
         </div>
