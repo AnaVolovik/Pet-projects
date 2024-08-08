@@ -1,6 +1,5 @@
-// db.js
 const mysql = require('mysql');
-const util = require('util'); // Для промисификации функций
+const util = require('util');
 
 const db = mysql.createConnection({
   host: 'localhost',
@@ -17,7 +16,6 @@ db.connect((err) => {
   console.log('Connected to the MySQL database.');
 });
 
-// Промисифицируйте db.query
 db.query = util.promisify(db.query).bind(db);
 
 module.exports = db;

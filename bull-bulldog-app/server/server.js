@@ -6,6 +6,29 @@ const app = express();
 const port = 5000;
 const bcrypt = require('bcrypt');
 
+const mysql = require('mysql');
+
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: 'root',
+  database: 'dogs'
+});
+
+connection.connect((err) => {
+  if (err) {
+    console.error('Error connecting to the database:', err);
+    return;
+  }
+  console.log('Connected to the MySQL database.');
+
+  connection.query('SELECT 1 + 1 AS solution', (error, results, fields) => {
+    if (error) throw error;
+    console.log('The solution is: ', results[0].solution);
+    connection.end();
+  });
+});
+
 // Настройка multer
 const upload = multer({
   storage: multer.memoryStorage(),
