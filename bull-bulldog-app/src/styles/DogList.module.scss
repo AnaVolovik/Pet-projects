@@ -2,11 +2,11 @@
   display: grid;
   gap: 24px;
   margin: 0 auto;
-  @media (min-width: 919px) and (max-width: 1380px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  @media (min-width: 1380px) {
+  @media (min-width: 1381px) and (max-width: 2560px) {
     grid-template-columns: repeat(4, 1fr);
+  }
+  @media (min-width: 920px) and (max-width: 1380px) {
+    grid-template-columns: repeat(3, 1fr);
   }
   @media (max-width: 919px) {
     grid-template-columns: repeat(2, 1fr);

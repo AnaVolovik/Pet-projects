@@ -42,6 +42,7 @@ const HomePage = ({ setDogs }) => {
   const handleSearch = async (data) => {
     if (Array.isArray(data)) {
       setDogsData(data);
+      setCurrentPage(1);
       setDogs(data);
     } else {
       console.error('Invalid search data:', data);
