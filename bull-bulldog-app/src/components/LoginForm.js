@@ -23,7 +23,6 @@ const LoginForm = ({ onLogin }) => {
 
         if (response.ok) {
           const data = await response.json();
-          console.log('Авторизация успешна:', data);
           onLogin(data);
           navigate('/');
         } else {

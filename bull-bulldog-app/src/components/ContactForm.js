@@ -26,7 +26,6 @@ const ContactForm = () => {
         }
 
         const result = await response.json();
-        console.log('Форма отправлена:', result);
         setName('');
         setEmail('');
         setMessage('');

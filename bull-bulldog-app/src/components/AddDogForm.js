@@ -90,7 +90,6 @@ const AddDogForm = ({ user, onProfileChange }) => {
 
       const result = await response.json();
       if (response.ok) {
-        console.log('Форма отправлена:', result);
         onProfileChange(result);
         setPetName('');
         setBreed('');

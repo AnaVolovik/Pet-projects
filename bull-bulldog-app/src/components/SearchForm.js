@@ -8,7 +8,7 @@ const SearchForm = ({ onSearch, active, onClose, onReset }) => {
   const [gender, setGender] = useState('');
   const [color, setColor] = useState('');
   const [city, setCity] = useState('');
-  const [pedigree, setPedigree] = useState(0);
+  const [pedigree, setPedigree] = useState(1);
   const [withPhoto, setWithPhoto] = useState(true);
   const [errors, setErrors] = useState({});
   const [breeds, setBreeds] = useState([]);
@@ -108,7 +108,7 @@ const SearchForm = ({ onSearch, active, onClose, onReset }) => {
     setGender('');
     setColor('');
     setCity('');
-    setPedigree(0);
+    setPedigree(1);
     setWithPhoto(true);
     setErrors({});
     if (onReset) {
